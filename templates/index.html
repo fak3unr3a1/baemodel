@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your AI Model Web Interface</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to Your AI Model Web Interface</h1>
+
+    <!-- User input form -->
+    <form id="userInputForm">
+        <label for="user_input">User Input:</label>
+        <input type="text" id="user_input" name="user_input" required>
+        <button type="button" onclick="getUserResponse()">Submit</button>
+        <!-- Add a button to fetch and display available tasks -->
+        <button type="button" onclick="getAvailableTasks()">View Available Tasks</button>
+    </form>
+
+    <!-- Display the AI response -->
+    <div id="ai_response_container"></div>
+
+    <!-- Container to display the list of available tasks -->
+    <div id="task_list_container"></div>
+
+
+    <!-- Button to navigate to tasks page -->
+    <a href="tasks"><button type="button">Create a task</button></a>
+
+    <!-- JavaScript for handling AJAX request and updating AI response -->
+    <script>
+        function getUserResponse() {
+            var userInput = document.getElementById('user_input').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/get_response', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    updateAIResponse(response.response);
+                }
+            };
+            xhr.send('user_input=' + userInput);
+        
+            
+        }
+
+        function updateAIResponse(response) {
+            var aiResponseContainer = document.getElementById('ai_response_container');
+            aiResponseContainer.innerHTML = '<p>' + response + '</p>';
+        }
+
+
+        function getAvailableTasks() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get_user_tasks', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    displayAvailableTasks(response.user_tasks);
+                }
+            };
+            xhr.send();
+        }
+    
+        function displayAvailableTasks(tasks) {
+            var taskListContainer = document.getElementById('task_list_container');
+            taskListContainer.innerHTML = ''; // Clear previous content
+            
+            if (tasks.length === 0) {
+                taskListContainer.innerHTML = '<p>No tasks available.</p>';
+            } else {
+                var taskList = '<ul>';
+                tasks.forEach(function(task) {
+                    taskList += '<li>' + task + '</li>';
+                });
+                taskList += '</ul>';
+                taskListContainer.innerHTML = taskList;
+            }
+        }
+    </script>
+</body>
+</html>

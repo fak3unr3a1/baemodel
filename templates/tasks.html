@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Tasks Page</title>
+</head>
+<body>
+    <h1>Tasks Page</h1>
+    <h1>Ensure your code runs from one module and name it main.py</h1>
+
+    <!-- Form for submitting repository link, folder name, task description, and installation command -->
+    <form id="submitForm">
+        <label for="repo_link">Repository Link:</label>
+        <input type="text" id="repo_link" name="repo_link" required>
+        <label for="folder_name">Task Name:</label>
+        <input type="text" id="folder_name" name="folder_name" required>
+
+        <!-- Additional fields -->
+        <label for="task_description">Task Description(to make BAE model to understand task):</label>
+        <textarea id="task_description" name="task_description" required></textarea>
+
+        <label for="installation_command">Installation Command(if required):</label>
+        <input type="text" id="installation_command" name="installation_command" required>
+
+        <!-- Button to submit repository data and installation command -->
+        <button type="button" onclick="submitRepoAndInstall()">Submit Repository and Install libraries</button>
+    </form>
+
+    <!-- Display the results -->
+    <div id="results_container"></div>
+
+    <!-- JavaScript for handling repository and installation submission -->
+    <script>
+        function submitRepoAndInstall() {
+            var repoLink = document.getElementById('repo_link').value;
+            var folderName = document.getElementById('folder_name').value;
+            var taskDescription = document.getElementById('task_description').value;
+            var installationCommand = document.getElementById('installation_command').value;
+    
+            if (repoLink && folderName && taskDescription) {
+                var xhrRepo = new XMLHttpRequest();
+                xhrRepo.open('POST', '/submit_repo', true);
+                xhrRepo.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhrRepo.onreadystatechange = function () {
+                    if (xhrRepo.readyState == 4 && xhrRepo.status == 200) {
+                        // Handle response from submitting repository data if needed
+                        console.log(xhrRepo.responseText);
+                        
+                        // Check if an installation command is provided
+                        if (installationCommand) {
+                            // Submit installation command only if provided
+                            var xhrInstall = new XMLHttpRequest();
+                            xhrInstall.open('POST', '/submit_installation', true);
+                            xhrInstall.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                            xhrInstall.onreadystatechange = function () {
+                                if (xhrInstall.readyState == 4) {
+                                    if (xhrInstall.status == 200) {
+                                        // Handle successful response from submitting installation command
+                                        console.log(xhrInstall.responseText);
+                                    } else {
+                                        // Handle error response from submitting installation command
+                                        console.error('Error:', xhrInstall.status);
+                                    }
+                                }
+                            };
+                            // Send installation command to the server
+                            xhrInstall.send('installation_command=' + encodeURIComponent(installationCommand));
+                        }
+                    }
+                };
+                // Send repository data to the server
+                var formData = 'repo_link=' + repoLink + '&folder_name=' + folderName + '&task_description=' + encodeURIComponent(taskDescription);
+                xhrRepo.send(formData);
+                
+                // Clear inputs after submitting
+                document.getElementById('repo_link').value = '';
+                document.getElementById('folder_name').value = '';
+                document.getElementById('task_description').value = '';
+                document.getElementById('installation_command').value = '';
+            } else {
+                alert('Please provide all required information.');
+            }
+        }
+    </script>
+    
+</body>
+</html>
