@@ -1414,3 +1414,25 @@ INFO:werkzeug: * Restarting with stat
 WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 142-160-373
 INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:54:41] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:54:43] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:54:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:54:49] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:54:49] "GET /static/style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:54:49] "[33mGET /google_signin_button.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:54:50] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:55:00] "[32mPOST /signup HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:55:00] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:55:00] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:55:25] "[32mPOST /save_user_info HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:55:26] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:55:26] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:55:35] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:55:35] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:55:37] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:55:37] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:55:51] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:55:51] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
