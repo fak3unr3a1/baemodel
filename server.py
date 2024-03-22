@@ -1,6 +1,6 @@
 #server.py
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 import os
 import subprocess
 import re
@@ -8,12 +8,291 @@ import re
 # from intent import get_intent
 from builder import understand_query_and_generate_list, perform_actions_and_get_results, execute_code, evaluate_results
 from bae import chat_with_bae, identify_task, execute_task
+import pymongo
+import hashlib
+
+
+
+
+
+# server.py
+
+from flask import Flask, render_template, request, jsonify, session, redirect
+import pymongo
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Set a secret key for session management
+
+
+
+
+
+################################################################################################################################################
+
+
+# # MongoDB client initialization
+# client = pymongo.MongoClient("mongodb+srv://UNR3A1:JXoO1X4EY6iArT0E@baemodelcluster.yvin3kv.mongodb.net/")
+# db = client["user_database"]  # Connecting to the "user_database" database
+# users_collection = db["users"]
+
+# @app.route('/')
+# def login():
+#     if 'email' in session:
+#         return redirect('/home')  # Redirect to home page if user is already logged in
+#     else:
+#         return render_template('login.html')
+
+# @app.route('/signin', methods=['POST'])
+# def signin():
+#     email = request.form['email']
+#     password = request.form['password']
+    
+#     user = users_collection.find_one({'email': email, 'password': password})
+#     if user:
+#         session['email'] = email
+#         return redirect('/home')
+#     else:
+#         return jsonify({'error': 'Invalid email or password'})
+
+# @app.route('/signup', methods=['POST'])
+# def signup():
+#     email = request.form['email']
+#     password = request.form['password']
+    
+#     if users_collection.find_one({'email': email}):
+#         return jsonify({'error': 'Email already registered'})
+#     else:
+#         # Insert the user into the database
+#         users_collection.insert_one({'email': email, 'password': password, 'name': '', 'ai_name': ''})
+#         session['email'] = email
+#         return redirect('/home')
+    
+# db = client["chat_history"]  # Connecting to the "chat_history" database
+
+# # Function to get user-specific chat history collection
+# def get_chat_history_collection(email):
+#     chat_history_collection = db[email]  # Use user's email as collection name
+#     return chat_history_collection
+
+# @app.route('/get_chat_history', methods=['GET'])
+# def get_chat_history():
+#     if 'email' not in session:
+#         return jsonify({'error': 'User not logged in'})
+
+#     email = session['email']
+#     user_chat_history_collection = get_chat_history_collection(email)
+#     # Retrieve chat history messages from the user's collection
+#     chat_history_messages = user_chat_history_collection.find({})
+    
+#     # Process chat history messages and return them
+#     return jsonify({'chat_history': chat_history_messages})
+
+
+
+##############################################################################################################################################3
+
+
+# server.py
+
+from flask import Flask, render_template, request, jsonify, session, redirect
+import pymongo
+import hashlib
+
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Set a secret key for session management
+
+# MongoDB client initialization
+client = pymongo.MongoClient("mongodb+srv://UNR3A1:JXoO1X4EY6iArT0E@baemodelcluster.yvin3kv.mongodb.net/")
+users_db = client["user_database"]  # Connecting to the "user_database" database
+chat_history_db = client["chat_history"]  # Connecting to the "chat_history" database
+
+# Collections
+users_collection = users_db["users"]
 
 @app.route('/')
+def login():
+    if 'email' in session:
+        return redirect('/home')  # Redirect to home page if user is already logged in
+    else:
+        return render_template('login.html')
+
+@app.route('/signin', methods=['POST'])
+def signin():
+    email = request.form['email']
+    password = request.form['password']
+    
+    # Hash the password for comparison
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    
+    user = users_collection.find_one({'email': email, 'password': hashed_password})
+    if user:
+        session['email'] = email
+        return redirect('/home')
+    else:
+        return jsonify({'error': 'Invalid email or password'})
+
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    email = request.form['email']
+    password = request.form['password']
+    
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    
+    if users_collection.find_one({'email': email}):
+        return jsonify({'error': 'Email already registered'})
+    else:
+        users_collection.insert_one({'email': email, 'password': hashed_password})
+        session['email'] = email
+        return redirect('/home')
+
+
+
+ 
+
+
+@app.route('/home')
 def home():
-    return render_template('index.html')
+    if 'email' not in session:
+        return render_template('login.html')  # Render login page if user not logged in
+    else:
+        email = session['email']
+        user = users_collection.find_one({'email': email})
+        if user:
+            if 'name' in user and 'ai_name' in user and user['name'] != '' and user['ai_name'] != '':
+                # User has already provided name and AI name, render home_existing_user.html
+                return render_template('home_existing_user.html', name=user['name'])
+            else:
+                # User needs to provide name and AI name
+                return render_template('home_new_user.html')
+        else:
+            return render_template('login.html')  # Render login page if user not found
+
+        
+        
+@app.route('/save_user_info', methods=['POST'])
+def save_user_info():
+    email = session['email']
+    name = request.form['name']
+    ai_name = request.form['ai_name']
+    
+    # Update user information in the database
+    users_collection.update_one({'email': email}, {'$set': {'name': name, 'ai_name': ai_name}})
+    
+    return redirect('/home')
+
+
+@app.route('/index')
+def index():
+    if 'email' not in session:
+        return render_template('login.html')  # Render login page if user not logged in
+    else:
+        # Render index.html for user interaction with AI
+        return render_template('index.html')    
+        
+
+
+#####################################################################################################################################33
+
+@app.route('/update_user_info', methods=['POST'])
+def update_user_info():
+    email = session['email']
+    name = request.form['name']
+    ai_name = request.form['ai_name']
+    
+    # Update user information in the database
+    users_collection.update_one({'email': email}, {'$set': {'name': name, 'ai_name': ai_name}})
+    
+    return jsonify({'message': 'User information updated successfully'})
+
+
+
+
+####################################################################################################################################################
+
+from flask import render_template, request, session, redirect, url_for
+
+# Route for user settings
+@app.route('/settings')
+def settings():
+    if 'email' not in session:
+        return redirect(url_for('login'))  # Redirect to login page if user is not logged in
+
+    # Retrieve user information from session
+    email = session['email']
+    user = users_collection.find_one({'email': email})
+    if user:
+        username = user.get('name', '')
+        ai_name = user.get('ai_name', '')
+        return render_template('settings.html', email=email, username=username, ai_name=ai_name)
+    else:
+        # User not found in database, redirect to login
+        return redirect(url_for('login'))
+    
+from flask import jsonify
+
+# Route to update AI name
+@app.route('/update_ai_name', methods=['POST'])
+def update_ai_name():
+    if 'email' in session:
+        new_ai_name = request.form['new_ai_name']
+        email = session['email']
+        # Update AI name in the database
+        users_collection.update_one({'email': email}, {'$set': {'ai_name': new_ai_name}})
+        return jsonify({'message': 'AI name updated successfully'})
+    else:
+        return jsonify({'error': 'User not logged in'})
+
+# Route to logout
+@app.route('/logout', methods=['POST'])
+def logout():
+    session.pop('email', None)
+    return jsonify({'message': 'Logout successful'})
+
+# Route to clear user data
+@app.route('/clear_data', methods=['POST'])
+def clear_data():
+    if 'email' in session:
+        email = session['email']
+        # Clear user data from the database (implement as needed)
+        return jsonify({'message': 'User data cleared successfully'})
+    else:
+        return jsonify({'error': 'User not logged in'})
+
+
+
+
+# @app.route('/index')
+# def index():
+#     return render_template('index.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+########################################################################################################################
 
 @app.route('/tasks')
 def tasks():

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Settings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>User Settings</h1>
+    <h2>User Information</h2>
+    <p>Email: {{ email }}</p>
+    <p>Username: {{ username }}</p>
+    <p>AI Name: {{ ai_name }}</p>
+
+    <h2>Update AI Name</h2>
+    <form action="/update_ai_name" method="post">
+        <label for="new_ai_name">New AI Name:</label>
+        <input type="text" id="new_ai_name" name="new_ai_name" required>
+        <button type="submit">Update</button>
+    </form>
+
+    <h2>Actions</h2>
+    <form action="/logout" method="post">
+        <button type="submit">Logout</button>
+    </form>
+    <form action="/clear_data" method="post">
+        <button type="submit">Clear Data</button>
+    </form>
+</body>
+</html>

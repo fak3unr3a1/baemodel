@@ -1,4 +1,5 @@
-#bae.py
+# #bae.py
+
 
 
 import os
@@ -6,54 +7,72 @@ import spacy
 import pymongo
 import g4f
 from difflib import SequenceMatcher
+import logging
+
+# Configure logging
+logging.basicConfig(filename='bae.log', level=logging.ERROR)
 
 # Load the English language model for spaCy
 nlp = spacy.load("en_core_web_sm")
 
-# Connect to MongoDB
-client = pymongo.MongoClient("mongodb://localhost:27017/")
-db = client["chat_history"]  # Connecting to the "chat_history" database
-collection = db["conversations"]
+# Connect to MongoDB Atlas
+try:
+    client = pymongo.MongoClient("mongodb+srv://UNR3A1:JXoO1X4EY6iArT0E@baemodelcluster.yvin3kv.mongodb.net/")
+    db = client["chat_history"]  # Connecting to the "chat_history" database
+    collection = db["conversations"]
+except pymongo.errors.ConnectionFailure as e:
+    print("Failed to connect to MongoDB Atlas:", e)
+    logging.error("Failed to connect to MongoDB Atlas: %s", e)
 
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
 
 def execute_task(task_name):
-    project_folder = r"C:\Users\cglyn\BAE4\B.A.E\usertasks"
-    filename = os.path.join(project_folder, task_name, f"task.py")  # Adjusted file path
-    with open(filename, "r") as file:
-        code = file.read()
-    exec(code)
+    try:
+        project_folder = r"C:\Users\cglyn\BAE4\B.A.E\usertasks"
+        filename = os.path.join(project_folder, task_name, f"task.py")  # Adjusted file path
+        with open(filename, "r") as file:
+            code = file.read()
+        exec(code)
+    except FileNotFoundError as e:
+        print("Task file not found:", e)
+        logging.error("Task file not found: %s", e)
+    except Exception as e:
+        print("Error executing task:", e)
+        logging.error("Error executing task: %s", e)
 
 def identify_task(query):
-    project_folder = r"C:\Users\cglyn\BAE4\B.A.E\usertasks"
-    query_keywords = set(token.text for token in nlp(query) if not token.is_stop)
-    best_match_folder = None
-    best_match_score = 0.0
+    try:
+        project_folder = r"C:\Users\cglyn\BAE4\B.A.E\usertasks"
+        query_keywords = set(token.text for token in nlp(query) if not token.is_stop)
+        best_match_folder = None
+        best_match_score = 0.0
 
-    for folder_name in os.listdir(project_folder):
-        folder_path = os.path.join(project_folder, folder_name)
-        if os.path.isdir(folder_path):
-            description_file = os.path.join(folder_path, 'task_description.txt')
-            if os.path.exists(description_file):
-                # Read the task description from the file
-                with open(description_file, 'r') as desc_file:
-                    description = desc_file.read()
-                
-                # Preprocess the task description
-                desc_doc = nlp(description)
-                desc_keywords = set(token.text for token in desc_doc if not token.is_stop)
-                
-                # Calculate similarity between query and task description
-                score = len(query_keywords.intersection(desc_keywords)) / len(query_keywords.union(desc_keywords))
-                
-                # Update best match folder
-                if score > best_match_score:
-                    best_match_folder = folder_name
-                    best_match_score = score
+        for folder_name in os.listdir(project_folder):
+            folder_path = os.path.join(project_folder, folder_name)
+            if os.path.isdir(folder_path):
+                description_file = os.path.join(folder_path, 'task_description.txt')
+                if os.path.exists(description_file):
+                    # Read the task description from the file
+                    with open(description_file, 'r') as desc_file:
+                        description = desc_file.read()
+                    
+                    # Preprocess the task description
+                    desc_doc = nlp(description)
+                    desc_keywords = set(token.text for token in desc_doc if not token.is_stop)
+                    
+                    # Calculate similarity between query and task description
+                    score = len(query_keywords.intersection(desc_keywords)) / len(query_keywords.union(desc_keywords))
+                    
+                    # Update best match folder
+                    if score > best_match_score:
+                        best_match_folder = folder_name
+                        best_match_score = score
 
-    return best_match_folder
-
+        return best_match_folder
+    except Exception as e:
+        print("Error identifying task:", e)
+        logging.error("Error identifying task: %s", e)
 
 def chat_with_bae(query):
     try:
@@ -107,12 +126,10 @@ def chat_with_bae(query):
         return output_data
 
     except Exception as e:
-        print("An error occurred:", str(e))
+        print("Error processing chat query:", e)
+        logging.error("Error processing chat query: %s", e)
         # If an error occurs, return an error message
         return {'error': f'An error occurred: {str(e)}'}
-
-
-
 
 def get_relevant_context(query):
     try:
@@ -126,19 +143,32 @@ def get_relevant_context(query):
         return relevant_context
 
     except Exception as e:
-        print("An error occurred while retrieving conversation history:", str(e))
+        print("Error retrieving conversation history:", e)
+        logging.error("Error retrieving conversation history: %s", e)
         return []
 
 # Ensure that the database collection is properly initialized with required fields
-collection.create_index([("user_query", pymongo.TEXT)], name="user_query_index")
+try:
+    collection.create_index([("user_query", pymongo.TEXT)], name="user_query_index")
+except pymongo.errors.PyMongoError as e:
+    print("Error creating index:", e)
+    logging.error("Error creating index: %s", e)
 
-# # Example usage:
+# Example usage:
 # while True:
 #     query = input('\nGlynn: ')
 
 #     # Determine if the user wants to perform a task or chat with the AI
-#     task_name = identify_task(query)
-#     if task_name:
-#         execute_task(task_name)
-#     else:
-#         chat_with_bae(query)
+#     try:
+#         task_name = identify_task(query)
+#         if task_name:
+#             execute_task(task_name)
+#         else:
+#             chat_with_bae(query)
+#     except KeyboardInterrupt:
+#         print("\nExiting...")
+#         break
+#     except Exception as e:
+#         print("An unexpected error occurred:", e)
+#         logging.error("An unexpected error occurred: %s", e)
+#         # Handle the unexpected error, such as logging the error or providing a user-friendly error message.

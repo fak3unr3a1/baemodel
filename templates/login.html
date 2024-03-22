@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Include your CSS file -->
+</head>
+<body>
+    <h1>Login</h1>
+    <!-- Sign in form -->
+    <form id="signInForm" action="/signin" method="post">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Sign In</button>
+    </form>
+
+        
+        <!-- Sign up form -->
+    <form id="signUpForm" action="/signup" method="post">
+        <label for="signup_email">Email:</label>
+        <input type="email" id="signup_email" name="email" required>
+        <label for="signup_password">Password:</label>
+        <input type="password" id="signup_password" name="password" required>
+        <button type="submit">Sign Up</button>
+    </form>
+
+
+
+    <!-- Sign in with Google button -->
+    <a href="/google-signin"><img src="google_signin_button.png" alt="Sign in with Google"></a>
+
+    <div id="message"></div>
+
+    <!-- Your JavaScript code for handling form submission and displaying messages can go here -->
+</body>
+</html>

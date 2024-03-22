@@ -13,34 +13,10 @@ form {
     margin-bottom: 20px;
 }
 
-.sphere {
-    max-width: 100%;
-    height: auto;
-    opacity: 0;
-    animation: fadeIn 2s ease-out forwards;
-}
 
-.moveAnimation {
-    animation: moveSphere 2s ease-out forwards;
-}
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
 
-@keyframes moveSphere {
-    0% {
-        transform: translateX(0);
-    }
-    50% {
-        transform: translateX(50px); /* Adjust the movement distance as needed */
-    }
-    100% {
-        transform: translateX(0);
-    }
-}
+
+
+
+

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Back</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Include your CSS file -->
+</head>
+<body>
+    <h1>Welcome Back, {{ name }}!</h1>
+    <h2>Your AI Model</h2>
+    <!-- Add content here to display the user's AI model -->
+    <button onclick="location.href='/index'" type="button">Interact with AI</button>
+    <button onclick="location.href='/settings'" type="button">Settings</button>
+</body>
+</html>

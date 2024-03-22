@@ -1,0 +1,6 @@
+flask
+g4f
+spacy
+pymongo
+
+#python -m spacy download en_core_web_sm
