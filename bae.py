@@ -1,4 +1,4 @@
-# #bae.py
+
 
 
 
@@ -19,11 +19,13 @@ nlp = spacy.load("en_core_web_sm")
 try:
     client = pymongo.MongoClient("mongodb+srv://UNR3A1:JXoO1X4EY6iArT0E@baemodelcluster.yvin3kv.mongodb.net/")
     db = client["chat_history"]  # Connecting to the "chat_history" database
-    collection = db["conversations"]
+    users_db = client["user_database"]  # Connecting to the "user_database" database
 except pymongo.errors.ConnectionFailure as e:
     print("Failed to connect to MongoDB Atlas:", e)
     logging.error("Failed to connect to MongoDB Atlas: %s", e)
-
+    
+    
+    
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
 
@@ -74,14 +76,17 @@ def identify_task(query):
         print("Error identifying task:", e)
         logging.error("Error identifying task: %s", e)
 
-def chat_with_bae(query):
+def chat_with_bae(query, user_email):
     try:
-        if not query.strip():
-            print("Please enter a valid query.")
+        if not query.strip() or not user_email:
+            print("Please enter a valid query and user email.")
             return
 
+        # Determine the collection for the user's chat history based on their email
+        user_chat_collection = users_db[user_email]
+
         # Retrieve relevant context from the database
-        context = get_relevant_context(query)
+        context = get_relevant_context(user_chat_collection, query)
         
         # Check if there is relevant context available
         if context:
@@ -117,7 +122,7 @@ def chat_with_bae(query):
                 print("An emoji is supposed to be here :).")
 
         # Save current query to the conversation history
-        collection.insert_one({"user_query": query, "ai_response": result})
+        user_chat_collection.insert_one({"user_query": query, "ai_response": result})
 
         # Prepare the output data
         output_data = {'assistant_response': result}
@@ -131,14 +136,14 @@ def chat_with_bae(query):
         # If an error occurs, return an error message
         return {'error': f'An error occurred: {str(e)}'}
 
-def get_relevant_context(query):
+def get_relevant_context(user_chat_collection, query):
     try:
         # Retrieve conversation history similar to the query
-        relevant_context = list(collection.find({"$text": {"$search": query}}).limit(3))
+        relevant_context = list(user_chat_collection.find({"$text": {"$search": query}}).limit(3))
 
         # If no exact match found, retrieve the most recent conversation history
         if not relevant_context:
-            relevant_context = list(collection.find().sort("_id", -1).limit(3))
+            relevant_context = list(user_chat_collection.find().sort("_id", -1).limit(3))
 
         return relevant_context
 
@@ -147,28 +152,22 @@ def get_relevant_context(query):
         logging.error("Error retrieving conversation history: %s", e)
         return []
 
-# Ensure that the database collection is properly initialized with required fields
-try:
-    collection.create_index([("user_query", pymongo.TEXT)], name="user_query_index")
-except pymongo.errors.PyMongoError as e:
-    print("Error creating index:", e)
-    logging.error("Error creating index: %s", e)
+# Ensure that each user's chat history collection is properly initialized with required fields
+def initialize_user_chat_collections():
+    try:
+        for user_email in users_db.list_collection_names():
+            user_chat_collection = users_db[user_email]
+            user_chat_collection.create_index([("user_query", pymongo.TEXT)], name="user_query_index")
+    except pymongo.errors.PyMongoError as e:
+        print("Error creating index:", e)
+        logging.error("Error creating index: %s", e)
 
-# Example usage:
-# while True:
-#     query = input('\nGlynn: ')
+# if __name__ == "__main__":
+#     # Initialize user chat history collections
+#     initialize_user_chat_collections()
 
-#     # Determine if the user wants to perform a task or chat with the AI
-#     try:
-#         task_name = identify_task(query)
-#         if task_name:
-#             execute_task(task_name)
-#         else:
-#             chat_with_bae(query)
-#     except KeyboardInterrupt:
-#         print("\nExiting...")
-#         break
-#     except Exception as e:
-#         print("An unexpected error occurred:", e)
-#         logging.error("An unexpected error occurred: %s", e)
-#         # Handle the unexpected error, such as logging the error or providing a user-friendly error message.
+#     # Example usage
+#     while True:
+#         user_email = "cglynn.skip@gmail.com"  # Retrieve the user's email from the session or request data
+#         query = input("User: ")  # User's query
+#         chat_with_bae(query, user_email)

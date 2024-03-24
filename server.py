@@ -13,90 +13,7 @@ import hashlib
 
 
 
-
-
-# server.py
-
 from flask import Flask, render_template, request, jsonify, session, redirect
-import pymongo
-
-app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Set a secret key for session management
-
-
-
-
-
-################################################################################################################################################
-
-
-# # MongoDB client initialization
-# client = pymongo.MongoClient("mongodb+srv://UNR3A1:JXoO1X4EY6iArT0E@baemodelcluster.yvin3kv.mongodb.net/")
-# db = client["user_database"]  # Connecting to the "user_database" database
-# users_collection = db["users"]
-
-# @app.route('/')
-# def login():
-#     if 'email' in session:
-#         return redirect('/home')  # Redirect to home page if user is already logged in
-#     else:
-#         return render_template('login.html')
-
-# @app.route('/signin', methods=['POST'])
-# def signin():
-#     email = request.form['email']
-#     password = request.form['password']
-    
-#     user = users_collection.find_one({'email': email, 'password': password})
-#     if user:
-#         session['email'] = email
-#         return redirect('/home')
-#     else:
-#         return jsonify({'error': 'Invalid email or password'})
-
-# @app.route('/signup', methods=['POST'])
-# def signup():
-#     email = request.form['email']
-#     password = request.form['password']
-    
-#     if users_collection.find_one({'email': email}):
-#         return jsonify({'error': 'Email already registered'})
-#     else:
-#         # Insert the user into the database
-#         users_collection.insert_one({'email': email, 'password': password, 'name': '', 'ai_name': ''})
-#         session['email'] = email
-#         return redirect('/home')
-    
-# db = client["chat_history"]  # Connecting to the "chat_history" database
-
-# # Function to get user-specific chat history collection
-# def get_chat_history_collection(email):
-#     chat_history_collection = db[email]  # Use user's email as collection name
-#     return chat_history_collection
-
-# @app.route('/get_chat_history', methods=['GET'])
-# def get_chat_history():
-#     if 'email' not in session:
-#         return jsonify({'error': 'User not logged in'})
-
-#     email = session['email']
-#     user_chat_history_collection = get_chat_history_collection(email)
-#     # Retrieve chat history messages from the user's collection
-#     chat_history_messages = user_chat_history_collection.find({})
-    
-#     # Process chat history messages and return them
-#     return jsonify({'chat_history': chat_history_messages})
-
-
-
-##############################################################################################################################################3
-
-
-# server.py
-
-from flask import Flask, render_template, request, jsonify, session, redirect
-import pymongo
-import hashlib
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Set a secret key for session management
@@ -108,6 +25,9 @@ chat_history_db = client["chat_history"]  # Connecting to the "chat_history" dat
 
 # Collections
 users_collection = users_db["users"]
+user_db = client["user_database"] 
+# Collections
+users_collection = user_db["users"]
 
 @app.route('/')
 def login():
@@ -192,8 +112,6 @@ def index():
         
 
 
-#####################################################################################################################################33
-
 @app.route('/update_user_info', methods=['POST'])
 def update_user_info():
     email = session['email']
@@ -262,37 +180,6 @@ def clear_data():
 
 
 
-# @app.route('/index')
-# def index():
-#     return render_template('index.html')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-########################################################################################################################
 
 @app.route('/tasks')
 def tasks():
@@ -354,8 +241,7 @@ def submit_repo():
         else:
             return 'Error: Repository link, folder name, or task description not provided.'
 
-
-
+       
 
 
 @app.route('/get_response', methods=['POST'])
@@ -363,24 +249,25 @@ def get_response():
     if request.method == 'POST':
         user_input = request.form['user_input']
         try:
-            # Call the chat_with_bae function to get the AI response
-            response_data = chat_with_bae(user_input)
-            
-            # Check if the response contains an error
-            if 'error' in response_data:
-                return jsonify({'error': response_data['error']})
-
-            # Get the assistant's response from the data
-            assistant_response = response_data['assistant_response']
-            
-            # Return the assistant's response
-            return jsonify({'response': assistant_response})
+            # Check if the user is logged in
+            if 'email' in session:
+                email = session['email']
+                
+                # Determine the collection for the user's chat history based on their email
+                user_chat_collection = users_db[email]
+                
+                # Call the chat_with_bae function to get the AI response
+                response_data = chat_with_bae(user_input, email)
+                
+                # Get the assistant's response from the data
+                assistant_response = response_data['assistant_response']
+                
+                # Return the assistant's response
+                return jsonify({'response': assistant_response})
+            else:
+                return jsonify({'error': 'User not logged in'})
         except Exception as e:
             return jsonify({'error': f'Error processing request: {str(e)}'})
-
-
-
-
 
 
 

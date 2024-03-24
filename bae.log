@@ -1436,3 +1436,600 @@ INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:55:37] "GET /settings HTTP/1.1" 200 
 INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:55:37] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:55:51] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 01:55:51] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:30:36] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:30:37] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:30:37] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:30:43] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:30:43] "GET /static/style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:30:43] "[33mGET /google_signin_button.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:30:43] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:00] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:01] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:01] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:05] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:05] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:16] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:16] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:20] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:20] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:22] "POST /logout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:26] "POST /logout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:33] "POST /clear_data HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:36] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:49] "[32mPOST /signin HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:49] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:49] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:52] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:55] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:55] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:31:59] "POST /clear_data HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:32:07] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:32:07] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:32:11] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:32:11] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:32:13] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:32:14] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:32:14] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:32:15] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:32:16] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:38:17] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:38:19] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:38:19] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:38:19] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:38:21] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:38:21] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:38:31] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:45:53] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:45:55] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:45:55] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:45:58] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:45:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:46:06] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:46:58] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:46:59] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:46:59] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:47:00] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:47:00] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:47:01] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:47:02] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:47:29] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:48:00] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:48:19] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:48:19] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:48:59] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 20:48:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:04:36] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:04:59] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:05:51] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:06:17] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:06:17] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:06:19] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:06:19] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:06:21] "POST /logout HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:06:30] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:07:12] "POST /signup HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:07:14] "POST /signin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:07:24] "POST /signin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:07:54] "POST /signin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:08:04] "[33mGET /google-signin HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:08:14] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:08:14] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:08:14] "[33mGET /google_signin_button.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:08:34] "POST /signin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:08:54] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:08:54] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:08:54] "[33mGET /google_signin_button.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:08:58] "POST /signin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:09:01] "[32mPOST /signup HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:09:01] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:09:01] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:09:10] "[32mPOST /save_user_info HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:09:10] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:09:10] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:09:20] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:09:20] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:09:26] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:10:06] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:10:06] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:10:07] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:10:07] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:10:13] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:10:13] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:10:15] "POST /clear_data HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:10:19] "POST /clear_data HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:10:32] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:10:32] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:10:41] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:12:25] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:12:35] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:18:01] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:18:01] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:18:01] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:18:03] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:18:04] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:18:05] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:18:18] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:18:19] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:33:23] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:33:23] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:33:27] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:33:34] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:34:25] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:34:26] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:34:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:34:28] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:34:29] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:34:29] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:34:40] "GET /index?user_input=tell+me+more+about+yourself HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:34:40] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 21:34:43] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
+INFO:werkzeug: * Restarting with stat
+ERROR:root:An unexpected error occurred: chat_with_bae() missing 1 required positional argument: 'user_email'
+ERROR:root:An unexpected error occurred: chat_with_bae() missing 1 required positional argument: 'user_email'
+ERROR:root:An unexpected error occurred: chat_with_bae() missing 1 required positional argument: 'user_email'
+ERROR:root:Error retrieving conversation history: text index required for $text query (no such collection 'user_database.cglynn.skip@gmail.com'), full error: {'ok': 0.0, 'errmsg': "text index required for $text query (no such collection 'user_database.cglynn.skip@gmail.com')", 'code': 27, 'codeName': 'IndexNotFound', '$clusterTime': {'clusterTime': Timestamp(1711219249, 1), 'signature': {'hash': b'\xfdB2\xf8\xfe\xda\xdfQ\xfdr\x0b\x94\x19\xbf\xb4\x1b\x89\xaf\xd7\xe0', 'keyId': 7291277124688674818}}, 'operationTime': Timestamp(1711219249, 1)}
+ERROR:root:Error retrieving conversation history: text index required for $text query, full error: {'ok': 0.0, 'errmsg': 'text index required for $text query', 'code': 27, 'codeName': 'IndexNotFound', '$clusterTime': {'clusterTime': Timestamp(1711219546, 17), 'signature': {'hash': b'\x9e\x95\xaf\xbc\xcf\x84\x82\xe0f}\x82\xa5\xb5W\xaea~]\x01\x19', 'keyId': 7291277124688674818}}, 'operationTime': Timestamp(1711219546, 17)}
+ERROR:root:Error creating index: An equivalent index already exists with a different name and options. Requested index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "text_index", weights: { $**: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }, existing index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "user_query_index", weights: { user_query: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }, full error: {'ok': 0.0, 'errmsg': 'An equivalent index already exists with a different name and options. Requested index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "text_index", weights: { $**: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }, existing index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "user_query_index", weights: { user_query: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }', 'code': 85, 'codeName': 'IndexOptionsConflict', '$clusterTime': {'clusterTime': Timestamp(1711219841, 36), 'signature': {'hash': b"\x14H'\x98\xfe\x87W\xbf$\xd3&\x1e\xfa\n\xa7\xa5\xac\x96h\xca", 'keyId': 7291277124688674818}}, 'operationTime': Timestamp(1711219841, 36)}
+ERROR:root:Error creating index: An equivalent index already exists with a different name and options. Requested index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "text_index", weights: { $**: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }, existing index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "user_query_index", weights: { user_query: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }, full error: {'ok': 0.0, 'errmsg': 'An equivalent index already exists with a different name and options. Requested index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "text_index", weights: { $**: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }, existing index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "user_query_index", weights: { user_query: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }', 'code': 85, 'codeName': 'IndexOptionsConflict', '$clusterTime': {'clusterTime': Timestamp(1711219841, 67), 'signature': {'hash': b"\x14H'\x98\xfe\x87W\xbf$\xd3&\x1e\xfa\n\xa7\xa5\xac\x96h\xca", 'keyId': 7291277124688674818}}, 'operationTime': Timestamp(1711219841, 65)}
+ERROR:root:Error creating index: An equivalent index already exists with a different name and options. Requested index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "text_index", weights: { $**: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }, existing index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "user_query_index", weights: { user_query: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }, full error: {'ok': 0.0, 'errmsg': 'An equivalent index already exists with a different name and options. Requested index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "text_index", weights: { $**: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }, existing index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "user_query_index", weights: { user_query: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }', 'code': 85, 'codeName': 'IndexOptionsConflict', '$clusterTime': {'clusterTime': Timestamp(1711220288, 44), 'signature': {'hash': b'=\xc2t\xd8\x12\xc6\xcc\xfe}\x0c\x97vC\x082\x0c\xed\x1c\x1f\xe8', 'keyId': 7291277124688674818}}, 'operationTime': Timestamp(1711220288, 44)}
+ERROR:root:Error creating index: An equivalent index already exists with a different name and options. Requested index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "text_index", weights: { $**: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }, existing index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "user_query_index", weights: { user_query: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }, full error: {'ok': 0.0, 'errmsg': 'An equivalent index already exists with a different name and options. Requested index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "text_index", weights: { $**: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }, existing index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "user_query_index", weights: { user_query: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }', 'code': 85, 'codeName': 'IndexOptionsConflict', '$clusterTime': {'clusterTime': Timestamp(1711220307, 10), 'signature': {'hash': b'zv!\x8b~\xe0\xe2\xcep\x90\xa9\x0f\xf0\x0e\xcfCsH\x96\t', 'keyId': 7291277124688674818}}, 'operationTime': Timestamp(1711220307, 10)}
+ERROR:root:Error creating index: An equivalent index already exists with a different name and options. Requested index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "text_index", weights: { $**: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }, existing index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "user_query_index", weights: { user_query: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }, full error: {'ok': 0.0, 'errmsg': 'An equivalent index already exists with a different name and options. Requested index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "text_index", weights: { $**: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }, existing index: { v: 2, key: { _fts: "text", _ftsx: 1 }, name: "user_query_index", weights: { user_query: 1 }, default_language: "english", language_override: "language", textIndexVersion: 3 }', 'code': 85, 'codeName': 'IndexOptionsConflict', '$clusterTime': {'clusterTime': Timestamp(1711220340, 20), 'signature': {'hash': b'\xc8\x1c\xd3]\x9e\xba7\xf9\xd5\xa8\xc9AL\xe9#\xb9\x02\x90;Q', 'keyId': 7291277124688674818}}, 'operationTime': Timestamp(1711220340, 20)}
+ERROR:asyncio:Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001D974326FD0>
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:06:06] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:06:08] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:06:08] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:06:10] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:06:10] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:06:19] "POST /get_response HTTP/1.1" 200 -
+ERROR:root:Error processing chat query: Response payload is not completed
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:07:43] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:08:21] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:08:54] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:08:55] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:08:55] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:08:56] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:08:57] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:08:57] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+ERROR:root:Error retrieving conversation history: text index required for $text query (no such collection 'user_database.glynn.kiprotich@gmail.com'), full error: {'ok': 0.0, 'errmsg': "text index required for $text query (no such collection 'user_database.glynn.kiprotich@gmail.com')", 'code': 27, 'codeName': 'IndexNotFound', '$clusterTime': {'clusterTime': Timestamp(1711224540, 37), 'signature': {'hash': b'\xea\xf55\xe1\xf7l?!\xb3 \xf4\xfa\xe2\xb2#6\xab\xba"\xa8', 'keyId': 7291277124688674818}}, 'operationTime': Timestamp(1711224540, 37)}
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:09:05] "POST /get_response HTTP/1.1" 200 -
+ERROR:root:Error retrieving conversation history: text index required for $text query, full error: {'ok': 0.0, 'errmsg': 'text index required for $text query', 'code': 27, 'codeName': 'IndexNotFound', '$clusterTime': {'clusterTime': Timestamp(1711224654, 23), 'signature': {'hash': b'\xac%A\x82\x00\xb9\xd0\x1a\x05\x9b\xae\xef\x13\xbc`\xcd\xca\xd7\xf0g', 'keyId': 7291277124688674818}}, 'operationTime': Timestamp(1711224654, 23)}
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:10:57] "POST /get_response HTTP/1.1" 200 -
+ERROR:root:Error retrieving conversation history: text index required for $text query, full error: {'ok': 0.0, 'errmsg': 'text index required for $text query', 'code': 27, 'codeName': 'IndexNotFound', '$clusterTime': {'clusterTime': Timestamp(1711224694, 51), 'signature': {'hash': b'/z\x19\x8bk\x85\xf0\xd8\xe7\xec\xad\xea>\xf1\xccu\x80%\xad\xc8', 'keyId': 7291277124688674818}}, 'operationTime': Timestamp(1711224694, 51)}
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:11:40] "POST /get_response HTTP/1.1" 200 -
+ERROR:root:Error retrieving conversation history: text index required for $text query, full error: {'ok': 0.0, 'errmsg': 'text index required for $text query', 'code': 27, 'codeName': 'IndexNotFound', '$clusterTime': {'clusterTime': Timestamp(1711224709, 28), 'signature': {'hash': b'\xd5\x12)\xf9\xbc\xa9\x97\xa7,\x1f \x89O\xdf\xcc^\\<\xec\xdc', 'keyId': 7291277124688674818}}, 'operationTime': Timestamp(1711224709, 28)}
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:11:52] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:12:36] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:12:49] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:13:03] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:22:59] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:22:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:22:59] "[33mGET /google_signin_button.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:23:01] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:23:12] "[32mPOST /signin HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:23:12] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:23:12] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:23:14] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:23:14] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+ERROR:root:Error retrieving conversation history: text index required for $text query (no such collection 'user_database.themost928@gmail.com'), full error: {'ok': 0.0, 'errmsg': "text index required for $text query (no such collection 'user_database.themost928@gmail.com')", 'code': 27, 'codeName': 'IndexNotFound', '$clusterTime': {'clusterTime': Timestamp(1711225399, 37), 'signature': {'hash': b'\xda\xc2\x16$\xfa\xc6\x04\xf3\xf8\x8b\xb7\xac\x11&Y*\xa0\x15\xa9\xd4', 'keyId': 7291277124688674818}}, 'operationTime': Timestamp(1711225399, 37)}
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:23:25] "POST /get_response HTTP/1.1" 200 -
+ERROR:root:Error retrieving conversation history: text index required for $text query, full error: {'ok': 0.0, 'errmsg': 'text index required for $text query', 'code': 27, 'codeName': 'IndexNotFound', '$clusterTime': {'clusterTime': Timestamp(1711225441, 64), 'signature': {'hash': b'\xac\xcf\x91<`3t\xf5L\xb6v\\%\x85\xc6\xd7\xd4\xc1s\xcc', 'keyId': 7291277124688674818}}, 'operationTime': Timestamp(1711225441, 64)}
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:24:05] "POST /get_response HTTP/1.1" 200 -
+ERROR:root:Error retrieving conversation history: text index required for $text query, full error: {'ok': 0.0, 'errmsg': 'text index required for $text query', 'code': 27, 'codeName': 'IndexNotFound', '$clusterTime': {'clusterTime': Timestamp(1711225476, 8), 'signature': {'hash': b'*>\xf1\x95\x07\xae\x98\x97!\xfcrL2\xadb\x8eJ7\x89\xcb', 'keyId': 7291277124688674818}}, 'operationTime': Timestamp(1711225476, 8)}
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:24:50] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:31:46] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:31:46] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+ERROR:root:Error retrieving conversation history: name must be an instance of str
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:32:01] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:35:40] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:35:41] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:35:41] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:35:42] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:35:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:35:47] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+ERROR:root:Error retrieving conversation history: name must be an instance of str
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:45:28] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:45:29] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:45:33] "POST /get_response HTTP/1.1" 200 -
+ERROR:root:Error retrieving conversation history: name must be an instance of str
+ERROR:root:Error retrieving conversation history: name must be an instance of str
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:57:35] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:57:35] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2024 23:57:46] "[35m[1mPOST /get_response HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:05:07] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:05:07] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:05:12] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:05:20] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:07:36] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:10:34] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:10:36] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:10:40] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:10:41] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:10:48] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:11:28] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:11:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:11:32] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:12:04] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:12:06] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:12:06] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:12:08] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:12:08] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:12:13] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:12:16] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:12:16] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:12:16] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:12:17] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:12:19] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:12:19] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:12:23] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:22:49] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:22:49] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:22:59] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:23:13] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:23:14] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:23:15] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:23:16] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:23:17] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:23:20] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:23:24] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:24:32] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:24:34] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:24:34] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:24:38] "[35m[1mPOST /get_response HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+ERROR:asyncio:Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x00000297CBD0A590>
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:46:02] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:46:04] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:46:04] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:46:06] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:46:06] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:46:09] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:47:22] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:47:24] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:47:24] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:47:26] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:47:26] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 00:47:29] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:09:50] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:09:52] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:09:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:09:55] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:09:55] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:09:58] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:10:07] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:10:25] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:12:20] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:12:24] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:12:24] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:12:24] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:12:30] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:12:30] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:12:34] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:14:51] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:14:51] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:14:51] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:14:54] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:14:56] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:14:57] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:15:01] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:15:02] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:32:43] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:32:44] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:32:52] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:32:52] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:33:44] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:34:17] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:34:57] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:35:09] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 11:35:13] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\test.py', reloading
