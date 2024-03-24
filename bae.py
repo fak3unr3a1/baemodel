@@ -29,13 +29,50 @@ except pymongo.errors.ConnectionFailure as e:
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
 
+# import sys
+
+# def execute_task(task_name):
+#     try:
+        
+        
+#         project_folder = os.path.join(os.path.dirname(__file__), "usertasks")
+#         filename = os.path.join(project_folder, task_name, f"main.py")
+        
+        
+#         # Add the directory containing the module to the Python path
+#         module_dir = os.path.join(project_folder, task_name)
+#         sys.path.append(module_dir)
+        
+        
+#         with open(filename, "r") as file:
+#             code = file.read()
+#         exec(code)
+#     except FileNotFoundError as e:
+#         print("Task file not found:", e)
+#         logging.error("Task file not found: %s", e)
+#     except Exception as e:
+#         print("Error executing task:", e)
+#         logging.error("Error executing task: %s", e)
+
+
+import sys
+import importlib.util
+
 def execute_task(task_name):
     try:
-        project_folder = r"C:\Users\cglyn\BAE4\B.A.E\usertasks"
-        filename = os.path.join(project_folder, task_name, f"task.py")  # Adjusted file path
-        with open(filename, "r") as file:
-            code = file.read()
-        exec(code)
+        project_folder = os.path.join(os.path.dirname(__file__), "usertasks")
+        filename = os.path.join(project_folder, task_name, "main.py")
+        
+        module_dir = os.path.join(project_folder, task_name)
+        sys.path.append(module_dir)
+        
+        # Dynamically import the main module
+        spec = importlib.util.spec_from_file_location("main", filename)
+        main_module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(main_module)
+        
+        # Execute the main function within the dynamically imported module
+        main_module.main()
     except FileNotFoundError as e:
         print("Task file not found:", e)
         logging.error("Task file not found: %s", e)
@@ -43,9 +80,12 @@ def execute_task(task_name):
         print("Error executing task:", e)
         logging.error("Error executing task: %s", e)
 
+
 def identify_task(query):
     try:
-        project_folder = r"C:\Users\cglyn\BAE4\B.A.E\usertasks"
+        # project_folder = r"C:\Users\cglyn\BAE4\B.A.E\usertasks"
+        project_folder = os.path.join(os.path.dirname(__file__), "usertasks")
+        
         query_keywords = set(token.text for token in nlp(query) if not token.is_stop)
         best_match_folder = None
         best_match_score = 0.0
@@ -162,12 +202,18 @@ def initialize_user_chat_collections():
         print("Error creating index:", e)
         logging.error("Error creating index: %s", e)
 
-# if __name__ == "__main__":
-#     # Initialize user chat history collections
-#     initialize_user_chat_collections()
+if __name__ == "__main__":
+    # Initialize user chat history collections
+    initialize_user_chat_collections()
 
-#     # Example usage
-#     while True:
-#         user_email = "cglynn.skip@gmail.com"  # Retrieve the user's email from the session or request data
-#         query = input("User: ")  # User's query
-#         chat_with_bae(query, user_email)
+    # Example usage
+    while True:
+        user_email = "cglynn.skip@gmail.com"  # Retrieve the user's email from the session or request data
+        # Determine if the user wants to perform a task or chat with the AI
+        query = input('\nGlynn: ')
+        task_name = identify_task(query)
+        if task_name:
+             execute_task(task_name)
+        else:
+            chat_with_bae(query, user_email)
+        

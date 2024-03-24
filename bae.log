@@ -2036,3 +2036,115 @@ INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\test.py', reloa
 INFO:werkzeug: * Restarting with stat
 WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 142-160-373
+ERROR:root:Error executing task: No module named 'screenshot_capture'
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 14:52:07] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 14:52:08] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 14:52:09] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 14:52:09] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 14:52:10] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 14:52:10] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 14:52:12] "GET /tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 14:52:12] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 14:52:57] "POST /submit_repo HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 14:53:03] "POST /submit_installation HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 14:59:49] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+ERROR:root:Error processing chat query: 500, message='Internal Server Error', url=URL('https://huggingface.co/chat/conversation/6600163f0a7697a00659a11d')
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:02:37] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:04:29] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:04:31] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:04:31] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:04:33] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:04:33] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:04:43] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:04:44] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:04:47] "GET /tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:04:47] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:07:08] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:07:09] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:07:09] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:07:10] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:07:11] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:07:31] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:07:33] "GET /tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:07:33] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:08:20] "POST /submit_repo HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:08:26] "POST /submit_installation HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 15:08:46] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:43:12] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:43:15] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:43:15] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:43:17] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:43:17] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:44:50] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:46:10] "GET /tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:46:10] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:47:12] "POST /submit_repo HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:47:18] "POST /submit_installation HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:47:46] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:48:49] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:55:04] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:55:12] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:55:40] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:55:57] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:56:52] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:56:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:56:53] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:56:54] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:56:54] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:56:55] "GET /tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:56:55] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:57:14] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 19:57:48] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 20:00:34] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Mar/2024 20:00:53] "POST /get_response HTTP/1.1" 200 -
+ERROR:asyncio:Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001F835AAFE10>
+ERROR:root:Error executing task: No module named 'screenshot_capture'
+ERROR:root:Error executing task: No module named 'screenshot_capture'
+ERROR:root:Error executing task: name 'capture_screenshot' is not defined
+ERROR:root:Error executing task: No module named 'screenshot'
+ERROR:root:Error executing task: No module named 'screenshot_capture'
