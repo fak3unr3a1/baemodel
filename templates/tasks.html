@@ -9,41 +9,79 @@
 </head>
 <style>
     #submitForm {
-        background-color: rgba(249, 249, 249, 0.01);
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: 0 auto;
+        border-radius: 20px;
     }
-    .bottom-position {
-        position: fixed;
-        bottom: 20px;
-        width: calc(100% - 160px);
-        left: 50%; /* Center horizontally */
-        transform: translateX(-50%);
+    #submitForm label {
+        display: block;
+        margin-bottom: 10px;
+        border-radius: 6px;
     }
-    
-
-
-
-
+    #submitForm input,
+    #submitForm textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        border-radius: 6px;
+    }
+    #submitForm button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 6px;
+    }
+    #submitForm button:hover {
+        background-color: #0056b3;
+    }
+    #results_container {
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #f0f0f0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    #results_container p {
+        margin: 0;
+    }
 </style>
 <body>
     <h1>Tasks Page</h1>
     <h1>Ensure your code runs from one module and name it main.py</h1>
 
-    <!-- Form for submitting repository link, folder name, task description, and installation command -->
-    <form id="submitForm">
-        <label for="repo_link">Repository Link:</label>
-        <input type="text" id="repo_link" name="repo_link" required>
+    <!-- Button to return to index.html -->
+    <button onclick="location.href='/index'" type="button">Return to AI model</button>
+
+    <!-- Form for submitting repository link, folder name, task description, main module name, and installation command -->
+    <form id="submitForm" onsubmit="return validateForm()">
+        <label for="repo_link">Repository Link (GitHub only):</label>
+        <input type="text" id="repo_link" placeholder="insert your repo link"name="repo_link" required>
+
         <label for="folder_name">Task Name:</label>
         <input type="text" id="folder_name" name="folder_name" required>
 
         <!-- Additional fields -->
-        <label for="task_description">Task Description(to make BAE model to understand task):</label>
-        <textarea id="task_description" name="task_description" required></textarea>
+        <label for="task_description">Task Description (more than 15 words):</label>
+        <textarea id="task_description" name="task_description" required placeholder="also explain how the user might use it"></textarea>
 
-        <label for="installation_command">Installation Command(if required):</label>
-        <input type="text" id="installation_command" name="installation_command" required>
+        <label for="main_module_name">Main Module Name:</label>
+        <input type="text" id="main_module_name"placeholder="e.g. main.py" name="main_module_name" required>
+
+        <label for="installation_command">Installation Command (if required):</label>
+        <input type="text" id="installation_command" name="installation_command"placeholder="e.g.pip install -r requirements.txt">
 
         <!-- Button to submit repository data and installation command -->
-        <button type="button" onclick="submitRepoAndInstall()">Submit Repository and Install libraries</button>
+        <button type="submit">Submit Repository and Install Libraries</button>
     </form>
 
     <!-- Display the results -->
@@ -51,55 +89,78 @@
 
     <!-- JavaScript for handling repository and installation submission -->
     <script>
+        function validateForm() {
+            var repoLink = document.getElementById('repo_link').value;
+            // Regular expression to match GitHub repository links
+            var githubRegex = /^(https?:\/\/)?(www\.)?github\.com\/\S+/;
+            if (!githubRegex.test(repoLink)) {
+                alert('Please enter a valid GitHub repository link.');
+                return false;
+            }
+            var taskDescription = document.getElementById('task_description').value;
+            var wordCount = taskDescription.trim().split(/\s+/).length;
+            if (wordCount < 15) {
+                alert('Task description should contain more than 15 words.');
+                return false;
+            }
+            var mainModuleName = document.getElementById('main_module_name').value;
+            if (!mainModuleName.endsWith('.py')) {
+                alert('Main module name should end with ".py".');
+                return false;
+            }
+            return true;
+        }
+
+        document.getElementById('submitForm').onsubmit = function(event) {
+            event.preventDefault(); // Prevent form submission for now
+            var isValid = validateForm(); // Validate form
+            if (isValid) {
+                submitRepoAndInstall(); // If valid, submit repository data and installation command
+            }
+        };
+
         function submitRepoAndInstall() {
             var repoLink = document.getElementById('repo_link').value;
             var folderName = document.getElementById('folder_name').value;
             var taskDescription = document.getElementById('task_description').value;
+            var mainModuleName = document.getElementById('main_module_name').value;
             var installationCommand = document.getElementById('installation_command').value;
     
-            if (repoLink && folderName && taskDescription) {
-                var xhrRepo = new XMLHttpRequest();
-                xhrRepo.open('POST', '/submit_repo', true);
-                xhrRepo.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhrRepo.onreadystatechange = function () {
-                    if (xhrRepo.readyState == 4 && xhrRepo.status == 200) {
-                        // Handle response from submitting repository data if needed
-                        console.log(xhrRepo.responseText);
-                        
-                        // Check if an installation command is provided
-                        if (installationCommand) {
-                            // Submit installation command only if provided
-                            var xhrInstall = new XMLHttpRequest();
-                            xhrInstall.open('POST', '/submit_installation', true);
-                            xhrInstall.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                            xhrInstall.onreadystatechange = function () {
-                                if (xhrInstall.readyState == 4) {
-                                    if (xhrInstall.status == 200) {
-                                        // Handle successful response from submitting installation command
-                                        console.log(xhrInstall.responseText);
-                                    } else {
-                                        // Handle error response from submitting installation command
-                                        console.error('Error:', xhrInstall.status);
-                                    }
+            var xhrRepo = new XMLHttpRequest();
+            xhrRepo.open('POST', '/submit_repo', true);
+            xhrRepo.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhrRepo.onreadystatechange = function () {
+                if (xhrRepo.readyState == 4 && xhrRepo.status == 200) {
+                    // Handle response from submitting repository data if needed
+                    console.log(xhrRepo.responseText);
+                    
+                    // Check if an installation command is provided
+                    if (installationCommand) {
+                        // Submit installation command only if provided
+                        var xhrInstall = new XMLHttpRequest();
+                        xhrInstall.open('POST', '/submit_installation', true);
+                        xhrInstall.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhrInstall.onreadystatechange = function () {
+                            if (xhrInstall.readyState == 4) {
+                                if (xhrInstall.status == 200) {
+                                    // Handle successful response from submitting installation command
+                                    console.log(xhrInstall.responseText);
+                                } else {
+                                    // Handle error response from submitting installation command
+                                    console.error('Error:', xhrInstall.status);
                                 }
-                            };
-                            // Send installation command to the server
-                            xhrInstall.send('installation_command=' + encodeURIComponent(installationCommand));
-                        }
+                            }
+                        };
+                        // Send installation command to the server
+                        xhrInstall.send('installation_command=' + encodeURIComponent(installationCommand));
                     }
-                };
-                // Send repository data to the server
-                var formData = 'repo_link=' + repoLink + '&folder_name=' + folderName + '&task_description=' + encodeURIComponent(taskDescription);
-                xhrRepo.send(formData);
-                
-                // Clear inputs after submitting
-                document.getElementById('repo_link').value = '';
-                document.getElementById('folder_name').value = '';
-                document.getElementById('task_description').value = '';
-                document.getElementById('installation_command').value = '';
-            } else {
-                alert('Please provide all required information.');
-            }
+                    // Display success message
+                    document.getElementById('results_container').innerHTML = '<p>Task submitted successfully!</p>';
+                }
+            };
+            // Send repository data to the server
+            var formData = 'repo_link=' + repoLink + '&folder_name=' + folderName + '&task_description=' + encodeURIComponent(taskDescription) + '&main_module_name=' + mainModuleName;
+            xhrRepo.send(formData);
         }
     </script>
     

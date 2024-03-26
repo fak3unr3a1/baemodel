@@ -22,7 +22,7 @@
                 box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Initial shadow */
             }
             50% {
-                box-shadow: 0 0 30px rgba(255, 255, 255, 0.8); /* Brighter and thicker shadow */
+                box-shadow: 0 0 30px rgb(13, 68, 95, 0.8); /* Brighter and thicker shadow */
             }
             100% {
                 box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Return to initial shadow */
@@ -36,14 +36,15 @@
         /* Apply animation to AI response */
         #ai_response_container p {
             font-family: Arial, sans-serif;
-            font-size: 16px; /* Adjust font size as needed */
-            line-height: 1.6;
+            font-size: 23px; /* Adjust font size as needed */
+            line-height: 2.0;
             padding: 10px; /* Add padding for spacing */
             max-height: 300px;
             border-radius: 5px; /* Add rounded corners */
             background-color: #f0f0f0; /* Add a light background color */
             margin: 10px 0;
             overflow-y: auto;
+            border-radius: 6px;
             
             
             margin-bottom: 80px;
@@ -64,11 +65,14 @@
             background-color: rgba(249, 249, 249, 0.01);
             word-wrap: break-word;
             overflow-wrap: break-word;
+            border-radius: 20px;
         }
         /* Apply animation to loading animation */
         #user_input.loading {
             animation: glowing 1s infinite;
         }
+
+        
 
         
     
@@ -78,10 +82,11 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(249, 249, 249, 0.01); /* Adjust background color as needed */
-            padding: 0.05px 20px 20px;
+            background-color: rgba(249, 249, 249, 0.08); /* Adjust background color as needed */
+            padding: 0.05px 1px 1px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             z-index: 1000; /* Ensure it's above other content */
+            border-radius: 16px;
         }
 
         #user_ai_section {
@@ -118,11 +123,13 @@
             padding: 10px; /* Padding for spacing */
             margin-bottom: 20px; /* Margin to separate from other content */
             overflow-x: auto; /* Enable horizontal scrolling */
+            border-radius: 6px;
         }
 
         /* Styles for code text */
         .code-container pre {
             margin: 0; /* Reset margin */
+            border-radius: 6px;
         }
 
         /* Apply styles to code text */
@@ -130,6 +137,7 @@
             font-family: 'Courier New', Courier, monospace; /* Use monospaced font for code */
             font-size: 14px; /* Adjust font size as needed */
             color: #333; /* Set text color */
+            border-radius: 6px;
         }
 
         /* CSS class to position the textarea at the bottom */
@@ -139,6 +147,7 @@
             width: calc(100% - 160px);
             left: 50%; /* Center horizontally */
             transform: translateX(-50%);
+            border-radius: 6px;
         }
 
         /* Styles for AI response containing code */
@@ -162,19 +171,12 @@
             border-radius: 5px;
             cursor: pointer;
             display: none; /* Initially hidden */
+            
         }
     </style>
 </head>
 <body>
-     <!-- Container for top buttons and title -->
-     <div class="top-buttons-container">
-        <h1>Welcome to Your BAEs Web Interface</h1>
-        <div class="top-buttons">
-            <a href="tasks"><button type="button">Create a task</button></a>
-            <a href="/home"><button>Go to Home Page</button></a>
-            <a href="/home"><button type="button" onclick="getAvailableTasks()">View Available Tasks</button></a>
-        </div>
-    </div>
+     
 
     <!-- Container for top buttons and title -->
     <div class="top-buttons-container">
@@ -195,6 +197,9 @@
     <!-- Display the AI response -->
     <div id="ai_response_container" style="margin-bottom: 20px;"></div>
 
+    <!-- Task completion message container -->
+    <div id="task_completion_message_container"></div>
+
     <!-- Container to display the list of available tasks -->
     <div id="task_list_container"></div>
 </div>
@@ -202,14 +207,14 @@
 <!-- Container for AI response code -->
 
 
-<!-- Scroll to bottom button -->
-<button id="scrollToBottomBtn" onclick="scrollToBottom()">Scroll to Bottom</button>
+    <!-- Scroll to bottom button -->
+    <button id="scrollToBottomBtn" onclick="scrollToBottom()">Scroll to Bottom</button>
 
 
     
 
     <!-- Textarea for user input -->
-    <textarea id="user_input" name="user_input" required oninput="resizeTextarea(this)" style="position: fixed; bottom: 20px; width: calc(100% - 160px); max-height: 50vh;"></textarea>
+    <textarea id="user_input" name="user_input" required oninput="resizeTextarea(this)" placeholder="Talk to your bae"style="position: fixed; bottom: 20px; width: calc(100% - 160px); max-height: 50vh;"></textarea>
 
         
 
@@ -368,6 +373,21 @@
                 var aiResponseContainer = document.createElement('div');
                 aiResponseContainer.classList.add('ai-container');
                 
+                // Check if the response contains task completion message
+                if (response.hasOwnProperty('task_completion_message')) {
+                    // If it does, create a paragraph for the task completion message
+                    var taskCompletionParagraph = document.createElement('p');
+                    taskCompletionParagraph.textContent = response.task_completion_message;
+                    // Append the task completion message to the task completion message container
+                    document.getElementById('task_completion_message_container').appendChild(taskCompletionParagraph);
+                }
+                
+                // Check if the response contains code snippets
+                if (response.hasOwnProperty('response')) {
+                    // Extract AI response from the JSON object
+                    response = response.response;
+                }
+                
                 // Check if the response contains code snippets
                 if (response.includes('```')) {
                     // If it contains code, split the response into text and code parts
@@ -383,7 +403,7 @@
                     var codeElement = document.createElement('pre');
                     codeElement.textContent = parts[1].trim(); // Trim to remove leading/trailing spaces
                     codeContainer.appendChild(codeElement);
-        
+
                     // Add a copy button
                     var copyButton = document.createElement('button');
                     copyButton.textContent = 'Copy';
@@ -392,15 +412,15 @@
                         copyCodeToClipboard(parts[1].trim());
                     };
                     codeContainer.appendChild(copyButton);
-        
+
                     aiResponseContainer.appendChild(codeContainer);
                 } else {
                     // If it doesn't contain code, create a paragraph for the entire response
                     var responseParagraph = document.createElement('p');
-                    responseParagraph.textContent = response;
+                    responseParagraph.innerHTML = makeLinksClickable(response); // Make links clickable
                     aiResponseContainer.appendChild(responseParagraph);
                 }
-        
+
                 // Append the AI response container to the user input container
                 userContainer.appendChild(aiResponseContainer);
             } catch (error) {
@@ -409,6 +429,14 @@
                 window.location.reload();
             }
         }
+
+        // Function to make links clickable
+        function makeLinksClickable(text) {
+            return text.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
+        }
+
+        
+
 
         function copyCodeToClipboard(code) {
             // Create a textarea element to hold the code
@@ -474,42 +502,43 @@
         }
 
 
-        function getAvailableTasks() {
-            try {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/get_user_tasks', true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    displayAvailableTasks(response.user_tasks);
-                }
-            };
-            xhr.send();
-        }
-        catch (error) {
-            console.error('An error occurred:', error);
-        }
-        }
-    
-        function displayAvailableTasks(tasks) {
-            try {
-            var taskListContainer = document.getElementById('task_list_container');
-            taskListContainer.innerHTML = ''; // Clear previous content
-            
-            if (tasks.length === 0) {
-                taskListContainer.innerHTML = '<p>No tasks available.</p>';
-            } else {
-                var taskList = '<ul>';
-                tasks.forEach(function(task) {
-                    taskList += '<li>' + task + '</li>';
-                });
-                taskList += '</ul>';
-                taskListContainer.innerHTML = taskList;
+        // Function to retrieve available tasks from the server
+function getAvailableTasks() {
+    try {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/get_user_tasks', true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = JSON.parse(xhr.responseText);
+                displayAvailableTasks(response.user_tasks);
             }
-        } catch (error) {
-            console.error('An error occurred:', error);
+        };
+        xhr.send();
+    } catch (error) {
+        console.error('An error occurred:', error);
+    }
+}
+
+// Function to display available tasks on the webpage
+function displayAvailableTasks(tasks) {
+    try {
+        var taskListContainer = document.getElementById('task_list_container');
+        taskListContainer.innerHTML = ''; // Clear previous content
+        
+        if (tasks.length === 0) {
+            taskListContainer.innerHTML = '<p>No tasks available.</p>';
+        } else {
+            var taskList = '<ul>';
+            tasks.forEach(function(task) {
+                taskList += '<li>' + task.name + '</li>'; // Display the task name
+            });
+            taskList += '</ul>';
+            taskListContainer.innerHTML = taskList;
         }
-        }
+    } catch (error) {
+        console.error('An error occurred:', error);
+    }
+}
 
         // Function to scroll to the bottom of the page
         function scrollToBottom() {
@@ -530,6 +559,32 @@
                 scrollToBottomBtn.style.display = 'block';
             }
         });
+
+        // Function to handle keydown event on the text area
+        function handleKeyDown(event) {
+            // Check if the pressed key is "Enter" and the "Shift" key is also pressed
+            if (event.key === 'Enter' && event.shiftKey) {
+                // Prevent the default behavior (inserting a newline)
+                event.preventDefault();
+                
+                // Get the current cursor position
+                var cursorPosition = this.selectionStart;
+                
+                // Get the text before and after the cursor position
+                var textBeforeCursor = this.value.substring(0, cursorPosition);
+                var textAfterCursor = this.value.substring(cursorPosition);
+                
+                // Insert a newline character at the cursor position
+                this.value = textBeforeCursor + '\n' + textAfterCursor;
+                
+                // Move the cursor to the next line
+                this.selectionStart = this.selectionEnd = cursorPosition + 1;
+            }
+        }
+
+        // Add event listener to the text area for the keydown event
+        document.getElementById('user_input').addEventListener('keydown', handleKeyDown);
+
 
         // Event listener to submit the form when "Enter" key is pressed
         document.getElementById('user_input').addEventListener('keypress', handleKeyPress);

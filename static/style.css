@@ -1,31 +1,85 @@
+/* Body */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif; /* Change the font to Roboto */
     margin: 20px;
-    background-color: black;
-    color: white;
+    background-color: #1b1a1ae4; /* Light gray background */
+    color: #9b9a9a; /* Dark gray text color */
+    line-height: 1.6; /* Improved readability */
 }
 
+/* Headings */
 h1 {
-    color: #488a1c;
+    
+    font-family: 'Montserrat', sans-serif; /* Change font to Montserrat */
 }
 
+/* Form */
 form {
     margin-bottom: 20px;
+    padding: 20px; /* Increase padding for better spacing */
+    background-color: #fff; /* White background */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+}
+
+/* Input fields */
+input[type="text"] {
     padding: 10px;
-    background-color: #d3c9c9; /* White background */
-    border: 1px solid #380085; /* Gray border */
+    border: 1px solid #ddd; /* Light gray border */
     border-radius: 5px; /* Rounded corners */
 }
 
-
-body {
-    background-color: #000000; /* Light gray background */
-    color: #158e11; /* Dark gray text color */
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px; /* Adjust scrollbar width */
 }
-#user_input {
-    color: #158e11; /* Text color for user input */
-    background-color: #158e11; /* Background color for user input */
-    border: 1px solid #b13535; /* Border color for user input */
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Light gray background */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; /* Dark gray thumb */
+    border-radius: 10px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Dark gray thumb on hover */
+}
+
+
+button {
+    position: relative;
+    overflow: hidden;
+    height: 1.9rem;
+    padding: 0 1.5rem;
+    border-radius: 1.5rem;
+    background: linear-gradient(82.3deg, rgb(16, 89, 200) 10.8%, rgba(202, 37, 95, 0.664) 94.3%);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a transition for smoother hover effect */
+}
+
+button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0; /* Start with width 0, will expand on hover */
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
+    transition: width 0.3s ease; /* Add transition for width change */
+}
+
+button:hover::before {
+    width: 100%; /* Expand the pseudo-element to cover the button on hover */
+}
+
+.button-content {
+    position: relative;
+    z-index: 1;
 }
 
 

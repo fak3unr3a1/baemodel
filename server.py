@@ -222,12 +222,12 @@ def submit_repo():
         repo_link = request.form.get('repo_link')
         folder_name = request.form.get('folder_name')  # Get the specified folder name
         task_description = request.form.get('task_description')  # Get the task description
-        if repo_link and folder_name and task_description:
+        main_module_name = request.form.get('main_module_name')  # Get the main module name
+
+        if repo_link and folder_name and task_description and main_module_name:
             try:
                 # Clone the repository into the specified folder
-                # base_directory = r'C:\Users\cglyn\BAE4\B.A.E\usertasks'
                 base_directory = os.path.join(os.path.dirname(__file__), "usertasks")
-                
                 target_folder = os.path.join(base_directory, folder_name)
                 os.makedirs(target_folder, exist_ok=True)
                 os.system(f'git clone {repo_link} {target_folder}')
@@ -237,15 +237,22 @@ def submit_repo():
                 with open(description_file_path, 'w') as desc_file:
                     desc_file.write(task_description)
 
+                # Save the main module name to a text file within the folder
+                main_module_file_path = os.path.join(target_folder, 'main_module.txt')
+                with open(main_module_file_path, 'w') as main_module_file:
+                    main_module_file.write(main_module_name)
+
                 return 'Repository submitted successfully!'
             except Exception as e:
                 return f'Error: {str(e)}'
         else:
-            return 'Error: Repository link, folder name, or task description not provided.'
+            return 'Error: Repository link, folder name, task description, or main module name not provided.'
 
        
 
 # from bae import task_name
+
+
 @app.route('/get_response', methods=['POST'])
 def get_response():
     if request.method == 'POST':
@@ -260,17 +267,17 @@ def get_response():
                 
                 task_name = identify_task(user_input)
                 if task_name:
-                    execute_task(task_name)
+                    # Execute the identified task
+                    task_completion_message = execute_task(task_name)
+                    # Provide feedback to the user
+                    response_data = chat_with_bae(user_input, email)
+                    assistant_response = response_data['assistant_response']
+                    return jsonify({'response': assistant_response, 'task_completion_message': task_completion_message})
                 else:
-                   response_data = chat_with_bae(user_input, email)
-                # Call the chat_with_bae function to get the AI response
-                # response_data = chat_with_bae(user_input, email)
-                
-                # Get the assistant's response from the data
-                assistant_response = response_data['assistant_response']
-                
-                # Return the assistant's response
-                return jsonify({'response': assistant_response})
+                    # No task identified, continue with regular chat interaction
+                    response_data = chat_with_bae(user_input, email)
+                    assistant_response = response_data['assistant_response']
+                    return jsonify({'response': assistant_response})
             else:
                 return jsonify({'error': 'User not logged in'})
         except Exception as e:
@@ -284,10 +291,11 @@ def get_response():
 def submit_task():
     if request.method == 'POST':
         user_input = request.form['user_input']
+        main_module_name = request.form['main_module_name']  # Get the main module name from the form data
         task_name = identify_task(user_input)
         if task_name:
             try:
-                # Execute the identified task
+                # Execute the identified task with the specified main module name
                 execute_task(task_name)
                 return jsonify({'task_executed': task_name})
             except Exception as e:
@@ -343,6 +351,8 @@ def get_user_tasks():
         return jsonify({'user_tasks': user_tasks})
     except Exception as e:
         return jsonify({'error': f'Error retrieving user tasks: {str(e)}'})
+
+
 
     
 ##example usage

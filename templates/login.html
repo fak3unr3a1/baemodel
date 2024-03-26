@@ -3,37 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Sliding Sign up/Login Form</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Include your CSS file -->
 </head>
+<style>
+    * {
+        box-sizing: border-box;
+     }
+    
+    
+    
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+    
+    main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        margin: 100px auto 0;
+        max-width: 800px;
+        overflow: hidden;
+    }
+    
+    main > * {
+        grid-row: 1 / 2;
+    }
+    
+    .login, .signup {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+        padding: 40% 0;
+        color: #fff;
+        font-size: 23px;
+        background-color: #d3c9c9; /* Use the same color as in your style.css */
+    }
+    
+    .login > button, .signup > button {
+        border: none;
+        background-color: #fff;
+        color: #333; /* Use the same color as in your style.css */
+    }
+    
+    .login {
+        grid-column: 1 / 2;
+    }
+    
+    .signup {
+        grid-column: 2 / 3;
+    }
+    
+    .login-form {
+        grid-column: 1 / 2;
+        transform: translateX(-100%);
+    }
+    
+    .signup-form {
+        grid-column: 2 / 3;
+        transform: translateX(100%);
+    }
+    
+    
+    
+    form.active {
+        transform: translateX(0);
+    }
+    
+    .back-layer {
+        grid-column: 1 / 3;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        clip-path: inset(0 50% 0 0);
+        background-color: #fff;
+        z-index: 5;
+        transition: clip-path 0.3s;
+    }
+    
+    input {
+        display: block;
+        height: 40px;
+        width: 300px;
+        border-radius: 15px;
+        padding-left: 15px;
+        border: 1px solid #ddd; /* Light gray border */
+        margin-bottom: 20px;
+        margin-top: 5px;
+        outline: none;
+        color: #333; /* Dark gray text color */
+    }
+    
+    input:focus {
+        border-color: #5c6bc0; /* Purple border color on focus */
+    }
+    
+    label {
+        font-weight: 600;
+    }
+    
+    
+    
+
+    
+
+</style>
 <body>
-    <h1>Login</h1>
-    <!-- Sign in form -->
-    <form id="signInForm" action="/signin" method="post">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">Sign In</button>
-    </form>
+    <main>
+        <div class="signup">
+            <span>Not a member?</span>
+            <button type="button">Sign up</button>
+        </div>
 
-        
-        <!-- Sign up form -->
-    <form id="signUpForm" action="/signup" method="post">
-        <label for="signup_email">Email:</label>
-        <input type="email" id="signup_email" name="email" required>
-        <label for="signup_password">Password:</label>
-        <input type="password" id="signup_password" name="password" required>
-        <button type="submit">Sign Up</button>
-    </form>
+        <div class="login">
+            <span>Already have an account?</span>
+            <button type="button">Login</button>
+        </div>
+
+        <div class="back-layer">
+            <!-- Login form -->
+            <form action="/signin" method="post" class="login-form active">
+                <h2>Login</h2>
+                <label for="lemail">Email</label>
+                <input type="email" id="lemail" name="email" placeholder="person@email.com" required>
+                <label for="lpassword">Password</label>
+                <input type="password" id="lpassword" name="password" placeholder="******" required>
+                <button type="submit">Login</button>
+            </form>
+    
+            <!-- Sign up form -->
+            <form action="/signup" method="post" class="signup-form">
+                <h2>Sign Up</h2>
+                
+                <label for="semail">Email</label>
+                <input type="email" id="semail" name="email" placeholder="person@email.com" required>
+                <label for="spassword">Password</label>
+                <input type="password" id="spassword" name="password" placeholder="******" required>
+                <button type="submit">Sign up</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Your JavaScript code for handling form switching and submission can go here -->
+    <script>
+          const loginForm = document.querySelector('.login-form'),
+  signupForm = document.querySelector('.signup-form'),
+  backLayer = document.querySelector('.back-layer');
+  
+  document.querySelector('.login button').addEventListener('pointerdown', () => {
+      signupForm.classList.remove('active');
+      loginForm.classList.add('active');
+      backLayer.style.clipPath = '';
+  });
+
+  document.querySelector('.signup button').addEventListener('pointerdown', () => {
+      loginForm.classList.remove('active');
+      signupForm.classList.add('active');
+      backLayer.style.clipPath = 'inset(0 0 0 50%)';
+  });
 
 
-
-    <!-- Sign in with Google button -->
-    <a href="/google-signin"><img src="google_signin_button.png" alt="Sign in with Google"></a>
-
-    <div id="message"></div>
-
-    <!-- Your JavaScript code for handling form submission and displaying messages can go here -->
+    </script>
 </body>
 </html>

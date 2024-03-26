@@ -58,19 +58,26 @@ def similar(a, b):
 import sys
 import importlib.util
 
+
 def execute_task(task_name):
     try:
-        project_folder = os.path.join(os.path.dirname(__file__), "usertasks")
-        filename = os.path.join(project_folder, task_name, "main.py")
+        project_folder = os.path.join(os.path.dirname(__file__), "usertasks", task_name)
         
-        module_dir = os.path.join(project_folder, task_name)
-        sys.path.append(module_dir)
+        # Read the main module name from main_module.txt
+        main_module_file = os.path.join(project_folder, "main_module.txt")
+        with open(main_module_file, 'r') as f:
+            main_module_name = f.read().strip()  # Read the main module name and remove any leading/trailing whitespace
         
+        # Add the project folder to sys.path to allow importing modules from it
+        sys.path.append(project_folder)
+        
+        filename = os.path.join(project_folder, f"{main_module_name}")
+
         # Dynamically import the main module
-        spec = importlib.util.spec_from_file_location("main", filename)
+        spec = importlib.util.spec_from_file_location(main_module_name, filename)
         main_module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(main_module)
-        
+
         # Execute the main function within the dynamically imported module
         main_module.main()
     except FileNotFoundError as e:
@@ -81,9 +88,11 @@ def execute_task(task_name):
         logging.error("Error executing task: %s", e)
 
 
+
+
 def identify_task(query):
     try:
-        # project_folder = r"C:\Users\cglyn\BAE4\B.A.E\usertasks"
+        
         project_folder = os.path.join(os.path.dirname(__file__), "usertasks")
         
         query_keywords = set(token.text for token in nlp(query) if not token.is_stop)
@@ -206,14 +215,14 @@ def initialize_user_chat_collections():
 #     # Initialize user chat history collections
 #     initialize_user_chat_collections()
 
-#     # Example usage
-#     while True:
-#         user_email = "cglynn.skip@gmail.com"  # Retrieve the user's email from the session or request data
-#         # Determine if the user wants to perform a task or chat with the AI
-#         query = input('\nGlynn: ')
-#         task_name = identify_task(query)
-#         if task_name:
-#              execute_task(task_name)
-#         else:
-#             chat_with_bae(query, user_email)
+    # # Example usage
+    # while True:
+    #     user_email = "cglynn.skip@gmail.com"  # Retrieve the user's email from the session or request data
+    #     # Determine if the user wants to perform a task or chat with the AI
+    #     query = input('\nGlynn: ')
+    #     task_name = identify_task(query)
+    #     if task_name:
+    #          execute_task(task_name)
+    #     else:
+    #         chat_with_bae(query, user_email)
         
