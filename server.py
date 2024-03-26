@@ -245,7 +245,7 @@ def submit_repo():
 
        
 
-from bae import task_name
+# from bae import task_name
 @app.route('/get_response', methods=['POST'])
 def get_response():
     if request.method == 'POST':
@@ -257,6 +257,8 @@ def get_response():
                 
                 # Determine the collection for the user's chat history based on their email
                 user_chat_collection = users_db[email]
+                
+                task_name = identify_task(user_input)
                 if task_name:
                     execute_task(task_name)
                 else:
@@ -313,34 +315,6 @@ def submit_installation():
 
 
 
-
-
-
-# @app.route('/get_user_tasks', methods=['GET'])
-# def get_user_tasks():
-#     try:
-#         user_tasks_folder = r'C:\Users\cglyn\BAE4\B.A.E\usertasks'
-#         user_tasks = []
-
-#         # Iterate through each task folder
-#         for task_folder in os.listdir(user_tasks_folder):
-#             task_path = os.path.join(user_tasks_folder, task_folder)
-#             if os.path.isdir(task_path):
-#                 # Check if the task folder contains a task_description.txt file
-#                 description_file = os.path.join(task_path, 'task_description.txt')
-#                 if os.path.exists(description_file):
-#                     # Read the task description from the file
-#                     with open(description_file, 'r') as f:
-#                         task_description = f.read()
-#                 else:
-#                     task_description = "No description available"
-
-#                 # Append the task name and description to the user_tasks list
-#                 user_tasks.append({'name': task_folder, 'description': task_description})
-
-#         return jsonify({'user_tasks': user_tasks})
-#     except Exception as e:
-#         return jsonify({'error': f'Error retrieving user tasks: {str(e)}'})
 
 # Define the base directory for user tasks
 base_directory = os.path.join(os.path.dirname(__file__), "usertasks")

@@ -202,18 +202,18 @@ def initialize_user_chat_collections():
         print("Error creating index:", e)
         logging.error("Error creating index: %s", e)
 
-if __name__ == "__main__":
-    # Initialize user chat history collections
-    initialize_user_chat_collections()
+# if __name__ == "__main__":
+#     # Initialize user chat history collections
+#     initialize_user_chat_collections()
 
-    # Example usage
-    while True:
-        user_email = "cglynn.skip@gmail.com"  # Retrieve the user's email from the session or request data
-        # Determine if the user wants to perform a task or chat with the AI
-        query = input('\nGlynn: ')
-        task_name = identify_task(query)
-        if task_name:
-             execute_task(task_name)
-        else:
-            chat_with_bae(query, user_email)
+#     # Example usage
+#     while True:
+#         user_email = "cglynn.skip@gmail.com"  # Retrieve the user's email from the session or request data
+#         # Determine if the user wants to perform a task or chat with the AI
+#         query = input('\nGlynn: ')
+#         task_name = identify_task(query)
+#         if task_name:
+#              execute_task(task_name)
+#         else:
+#             chat_with_bae(query, user_email)
         

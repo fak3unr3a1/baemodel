@@ -6,12 +6,28 @@ body {
 }
 
 h1 {
-    color: #333;
+    color: #488a1c;
 }
 
 form {
     margin-bottom: 20px;
+    padding: 10px;
+    background-color: #d3c9c9; /* White background */
+    border: 1px solid #380085; /* Gray border */
+    border-radius: 5px; /* Rounded corners */
 }
+
+
+body {
+    background-color: #000000; /* Light gray background */
+    color: #158e11; /* Dark gray text color */
+}
+#user_input {
+    color: #158e11; /* Text color for user input */
+    background-color: #158e11; /* Background color for user input */
+    border: 1px solid #b13535; /* Border color for user input */
+}
+
 
 
 

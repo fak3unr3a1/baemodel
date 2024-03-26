@@ -6,56 +6,476 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your BAEs Web Interface</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Define CSS animation for streaming effect */
+        @keyframes streamingEffect {
+            from { width: 10; } /* Start with 10 width */
+            to { width: 100%; } /* End with full width */
+        }
+
+        @keyframes shrinkAnimation {
+            from { height: auto; }
+            to { height: 40px; }
+        }
+        @keyframes glowing {
+            0% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Initial shadow */
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(255, 255, 255, 0.8); /* Brighter and thicker shadow */
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Return to initial shadow */
+            }
+        }
+        /* Apply animation to the textarea while waiting for AI response */
+        #user_input.loading {
+            animation: glowing 1s infinite;
+        }
+    
+        /* Apply animation to AI response */
+        #ai_response_container p {
+            font-family: Arial, sans-serif;
+            font-size: 16px; /* Adjust font size as needed */
+            line-height: 1.6;
+            padding: 10px; /* Add padding for spacing */
+            max-height: 300px;
+            border-radius: 5px; /* Add rounded corners */
+            background-color: #f0f0f0; /* Add a light background color */
+            margin: 10px 0;
+            overflow-y: auto;
+            
+            
+            margin-bottom: 80px;
+        }
+    
+        /* Enlarge input field based on content and enable word wrap */
+        #user_input {
+            position: fixed;
+            bottom: 20px; /* Adjust the distance from the bottom as needed */
+            width: calc(100% - 160px); /* Adjust the width as needed */
+            max-height: 50vh;
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%);
+            padding: 10px;
+            resize: vertical;
+            box-sizing: border-box;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: rgba(249, 249, 249, 0.01);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        /* Apply animation to loading animation */
+        #user_input.loading {
+            animation: glowing 1s infinite;
+        }
+
+        
+    
+        /* Positioning for top buttons container */
+        .top-buttons-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(249, 249, 249, 0.01); /* Adjust background color as needed */
+            padding: 0.05px 20px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000; /* Ensure it's above other content */
+        }
+
+        #user_ai_section {
+            padding-top: 110px; /* Adjust as needed to create space below the top button container */
+        }
+
+        /* Apply animation to AI response */
+        .ai-container p {
+            animation: streamingEffect 1s ease; /* Apply streaming effect animation */
+        }
+
+        /* Apply animation to user input */
+        .user-container p {
+            animation: shrinkAnimation 0.5s ease; /* Apply shrink animation */
+        }
+
+        /* Apply styles to user input */
+        .user-container p {
+            font-family: Arial, sans-serif; /* Use a commonly readable font */
+            font-size: 16px; /* Adjust font size as needed */
+            line-height: 1.6; /* Increase line height for better readability */
+            padding: 10px; /* Add padding for spacing */
+            margin: 10px 0; /* Add margin for spacing between responses */
+            background-color: #eaf7ff; /* Add a light background color */
+            border-radius: 5px; /* Add rounded corners */
+        }
+
+
+        /* Styles for code container */
+        .code-container {
+            background-color: #f7f7f7; /* Light background color */
+            border: 1px solid #ccc; /* Border for separation */
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px; /* Padding for spacing */
+            margin-bottom: 20px; /* Margin to separate from other content */
+            overflow-x: auto; /* Enable horizontal scrolling */
+        }
+
+        /* Styles for code text */
+        .code-container pre {
+            margin: 0; /* Reset margin */
+        }
+
+        /* Apply styles to code text */
+        #ai_code {
+            font-family: 'Courier New', Courier, monospace; /* Use monospaced font for code */
+            font-size: 14px; /* Adjust font size as needed */
+            color: #333; /* Set text color */
+        }
+
+        /* CSS class to position the textarea at the bottom */
+        .bottom-position {
+            position: fixed;
+            bottom: 20px;
+            width: calc(100% - 160px);
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%);
+        }
+
+        /* Styles for AI response containing code */
+        .code-response {
+            font-family: "Courier New", Courier, monospace; /* Use monospace font for code */
+            background-color: #f9f9f9; /* Light gray background */
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc; /* Add border for better visibility */
+            border-radius: 5px;
+        }
+
+        #scrollToBottomBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #007bff; /* Button background color */
+            color: #fff; /* Button text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none; /* Initially hidden */
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Your BAEs Web Interface</h1>
+     <!-- Container for top buttons and title -->
+     <div class="top-buttons-container">
+        <h1>Welcome to Your BAEs Web Interface</h1>
+        <div class="top-buttons">
+            <a href="tasks"><button type="button">Create a task</button></a>
+            <a href="/home"><button>Go to Home Page</button></a>
+            <a href="/home"><button type="button" onclick="getAvailableTasks()">View Available Tasks</button></a>
+        </div>
+    </div>
 
-    <!-- User input form -->
-    <form id="userInputForm">
-        <label for="user_input">User Input:</label>
-        <input type="text" id="user_input" name="user_input" required>
-        <button type="button" onclick="getUserResponse()">Submit</button>
-        <!-- Add a button to fetch and display available tasks -->
-        <button type="button" onclick="getAvailableTasks()">View Available Tasks</button>
-    </form>
+    <!-- Container for top buttons and title -->
+    <div class="top-buttons-container">
+        <h1>Welcome to Your BAEs Web Interface</h1>
+        <div class="top-buttons">
+            <a href="tasks"><button type="button">Create a task</button></a>
+            <a href="/home"><button>Go to Home Page</button></a>
+            <a href="/home"><button type="button" onclick="getAvailableTasks()">View Available Tasks</button></a>
+        </div>
+    </div>
+
+    <!-- Move the user and AI interaction section below the top button container -->
+<div id="user_ai_section" style="padding-top: 110px;">
+
+    <!-- Display user input -->
+    <div id="user_input_container" style="margin-bottom: 20px;"></div>
 
     <!-- Display the AI response -->
-    <div id="ai_response_container"></div>
+    <div id="ai_response_container" style="margin-bottom: 20px;"></div>
 
     <!-- Container to display the list of available tasks -->
     <div id="task_list_container"></div>
+</div>
+
+<!-- Container for AI response code -->
 
 
-    <!-- Button to navigate to tasks page -->
-    <a href="tasks"><button type="button">Create a task</button></a>
+<!-- Scroll to bottom button -->
+<button id="scrollToBottomBtn" onclick="scrollToBottom()">Scroll to Bottom</button>
 
-    <a href="/home"><button>Go to Home Page</button></a>
+
+    
+
+    <!-- Textarea for user input -->
+    <textarea id="user_input" name="user_input" required oninput="resizeTextarea(this)" style="position: fixed; bottom: 20px; width: calc(100% - 160px); max-height: 50vh;"></textarea>
+
+        
 
     <!-- JavaScript for handling AJAX request and updating AI response -->
     <script>
-        function getUserResponse() {
-            var userInput = document.getElementById('user_input').value;
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/get_response', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    updateAIResponse(response.response);
-                }
-            };
-            xhr.send('user_input=' + userInput);
+        // Array to store user inputs and AI responses
+        var userResponses = [];
+
+        // Function to reset the input field and animation
+        function resetInputField() {
+            try {
+                document.getElementById('user_input').value = ''; // Clear input field
+                document.getElementById('user_input').style.width = '100px'; // Reset input field width
+            }
+            catch (error) {
+                console.error('An error occurred:', error);
+            }
         
-            
         }
 
-        function updateAIResponse(response) {
+        // Function to disable the textarea
+        function disableInput() {
+            document.getElementById('user_input').disabled = true;
+        }
+
+        // Function to enable the textarea
+        function enableInput() {
+            document.getElementById('user_input').disabled = false;
+        }
+
+        // Function to handle user input
+        function handleUserInput() {
+            try {
+                // Get user input
+                var userInput = document.getElementById('user_input').value;
+                // Display the user input
+                var userInputContainer = document.getElementById('user_input_container');
+                var userContainer = document.createElement('div');
+                userContainer.classList.add('user-container');
+                userContainer.innerHTML = "<p>User: " + userInput + "</p>";
+                userInputContainer.appendChild(userContainer);
+                // Clear the input field
+                document.getElementById('user_input').value = '';
+                // Start loading animation
+                document.getElementById('user_input').classList.add('loading');
+                // Disable the textarea to prevent further input
+                disableInput();
+                // Get AI response
+                getUserResponse(userInput, userContainer);
+            } catch (error) {
+                console.error('An error occurred:', error);
+            }
+        }
+
+        function identifyCodeSnippets(response) {
+            // Regular expression to match code snippets enclosed within triple backticks
+            var codeRegex = /```([\s\S]+?)```/g;
+            
+            // Extract code snippets from the response
+            var codeSnippets = response.match(codeRegex);
+            
+            // Check if any code snippets were found
+            if (codeSnippets !== null) {
+                // Loop through each code snippet
+                codeSnippets.forEach(function(snippet) {
+                    // Remove the triple backticks from the code snippet
+                    var code = snippet.replace(/```/g, '');
+                    
+                    // Create a container element for the code snippet
+                    var codeContainer = document.createElement('div');
+                    codeContainer.classList.add('code-snippet-container');
+                    
+                    // Create a <code> element to hold the code
+                    var codeElement = document.createElement('code');
+                    codeElement.textContent = code;
+                    
+                    // Append the code element to the container
+                    codeContainer.appendChild(codeElement);
+                    
+                    // Append the container to the AI response container or wherever you want to display it
+                    document.getElementById('ai_response_container').appendChild(codeContainer);
+                });
+            }
+        }
+
+        function displayAIResponse(response) {
+            // Check if the response contains code
+            if (response.includes('```')) {
+                // If it contains code, wrap it in a code-response container
+                document.getElementById('ai_response_container').innerHTML += '<div class="code-response">' + response + '</div>';
+            } else {
+                // If it doesn't contain code, display it as a regular AI response
+                document.getElementById('ai_response_container').innerHTML += '<div class="ai-response">' + response + '</div>';
+            }
+        }
+
+        
+
+        // Function to handle form submission
+        function handleFormSubmission() {
+            try {
+                // Get user input
+                var userInput = document.getElementById('user_input').value;
+                // Disable the textarea to prevent further input
+                document.getElementById('user_input').disabled = true;
+                // Start loading animation
+                document.getElementById('user_input').classList.add('loading');
+                // Submit the form
+                getUserResponse(userInput);
+                // Move the textarea to the bottom and shrink its size
+                document.getElementById('user_input').classList.add('bottom-position');
+                // Clear the input field
+                document.getElementById('user_input').value = '';
+                // Reset the input field width
+                document.getElementById('user_input').style.width = '200px';
+                // Keep the textarea at the bottom of the screen
+                document.getElementById('user_input').style.bottom = '20px';
+                // Reset the input field
+                resetInputField();
+                // Scroll the page to the bottom
+                window.scrollTo(0, document.body.scrollHeight);
+            } catch (error) {
+                console.error('An error occurred:', error);
+            }
+        }
+
+        // Function to get AI response
+        function getUserResponse(userInput, userContainer) {
+            try {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/get_response', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        // Update AI response on the webpage
+                        updateAIResponse(response.response, userContainer);
+                    }
+                };
+                xhr.send('user_input=' + userInput);
+            } catch (error) {
+                console.error('An error occurred:', error);
+                // Reload the webpage
+                window.location.reload();
+            }
+        }
+
+        // Function to update AI response with animation
+        function updateAIResponse(response, userContainer) {
+            try {
+                // Stop loading animation
+                document.getElementById('user_input').classList.remove('loading');
+                // Re-enable the textarea to allow further input
+                enableInput();
+                // Create AI response container
+                var aiResponseContainer = document.createElement('div');
+                aiResponseContainer.classList.add('ai-container');
+                
+                // Check if the response contains code snippets
+                if (response.includes('```')) {
+                    // If it contains code, split the response into text and code parts
+                    var parts = response.split('```');
+                    // Create a paragraph for the text part
+                    var textParagraph = document.createElement('p');
+                    textParagraph.textContent = parts[0];
+                    aiResponseContainer.appendChild(textParagraph);
+                    // Create a container for the code snippet
+                    var codeContainer = document.createElement('div');
+                    codeContainer.classList.add('code-container');
+                    // Create a pre element for the code
+                    var codeElement = document.createElement('pre');
+                    codeElement.textContent = parts[1].trim(); // Trim to remove leading/trailing spaces
+                    codeContainer.appendChild(codeElement);
+        
+                    // Add a copy button
+                    var copyButton = document.createElement('button');
+                    copyButton.textContent = 'Copy';
+                    copyButton.onclick = function() {
+                        // Copy the code to the clipboard
+                        copyCodeToClipboard(parts[1].trim());
+                    };
+                    codeContainer.appendChild(copyButton);
+        
+                    aiResponseContainer.appendChild(codeContainer);
+                } else {
+                    // If it doesn't contain code, create a paragraph for the entire response
+                    var responseParagraph = document.createElement('p');
+                    responseParagraph.textContent = response;
+                    aiResponseContainer.appendChild(responseParagraph);
+                }
+        
+                // Append the AI response container to the user input container
+                userContainer.appendChild(aiResponseContainer);
+            } catch (error) {
+                console.error('An error occurred:', error);
+                // Reload the webpage
+                window.location.reload();
+            }
+        }
+
+        function copyCodeToClipboard(code) {
+            // Create a textarea element to hold the code
+            var textarea = document.createElement('textarea');
+            textarea.value = code;
+            document.body.appendChild(textarea);
+            // Select the code inside the textarea
+            textarea.select();
+            // Copy the selected code to the clipboard
+            document.execCommand('copy');
+            // Remove the textarea element
+            document.body.removeChild(textarea);
+            // Optionally, provide feedback to the user (e.g., show a tooltip)
+            alert('Code copied to clipboard!');
+        }
+
+        // Function to handle "Enter" key press
+        function handleKeyPress(event) {
+            try {
+                // Check if the pressed key is "Enter" (key code 13)
+                if (event.keyCode === 13) {
+                    // Prevent the default form submission
+                    event.preventDefault();
+                    // Call the function to handle user input
+                    handleUserInput();
+                }
+            } catch (error) {
+                console.error('An error occurred:', error);
+            }
+        }
+
+        
+        
+
+        function resizeTextarea(textarea) {
+            textarea.style.height = 'auto'; // Reset the height to auto
+            textarea.style.height = textarea.scrollHeight + 'px'; // Set the height to fit the content
+            textarea.style.width = 'auto'; // Reset the width to auto
+            textarea.style.width = Math.max(textarea.scrollWidth, document.documentElement.clientWidth - 160) + 'px'; // Set the width to fit the content or the window width minus 160px
             var aiResponseContainer = document.getElementById('ai_response_container');
-            aiResponseContainer.innerHTML = '<p>' + response + '</p>';
+            var inputHeight = textarea.offsetHeight;
+            aiResponseContainer.style.marginBottom = inputHeight + 20 + 'px';
+        }
+        
+        
+        
+
+        function displayStoredData() {
+            try {
+            var storedDataContainer = document.getElementById('stored_data_container');
+            storedDataContainer.innerHTML = ''; // Clear previous content
+            var storedDataList = '<ul>';
+            // Loop through userResponses array and generate list items
+            userResponses.forEach(function (item, index) {
+                storedDataList += '<li><strong>User Input:</strong> ' + item.input + '<br><strong>BAEs Response:</strong> ' + item.response + '</li>';
+            });
+            storedDataList += '</ul>';
+            storedDataContainer.innerHTML = storedDataList;
+        }
+        catch (error) {
+            console.error('An error occurred:', error);
+        }
         }
 
 
         function getAvailableTasks() {
+            try {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', '/get_user_tasks', true);
             xhr.onreadystatechange = function () {
@@ -66,8 +486,13 @@
             };
             xhr.send();
         }
+        catch (error) {
+            console.error('An error occurred:', error);
+        }
+        }
     
         function displayAvailableTasks(tasks) {
+            try {
             var taskListContainer = document.getElementById('task_list_container');
             taskListContainer.innerHTML = ''; // Clear previous content
             
@@ -81,7 +506,34 @@
                 taskList += '</ul>';
                 taskListContainer.innerHTML = taskList;
             }
+        } catch (error) {
+            console.error('An error occurred:', error);
         }
+        }
+
+        // Function to scroll to the bottom of the page
+        function scrollToBottom() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+
+        // Function to show or hide the scroll to bottom button based on user's position on the page
+        window.addEventListener('scroll', function() {
+            var scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+                // User is at the bottom of the page
+                scrollToBottomBtn.style.display = 'none';
+            } else {
+                // User is away from the bottom of the page
+                scrollToBottomBtn.style.display = 'block';
+            }
+        });
+
+        // Event listener to submit the form when "Enter" key is pressed
+        document.getElementById('user_input').addEventListener('keypress', handleKeyPress);
+
     </script>
 </body>
 </html>
