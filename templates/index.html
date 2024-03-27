@@ -72,22 +72,47 @@
             animation: glowing 1s infinite;
         }
 
+        #background-text {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            
+            color: linear-gradient(82.3deg, rgb(16, 89, 200) 10.8%, rgba(202, 37, 95, 0.664) 94.3%);
+            text-align: center;
+            opacity: 1;
+            transition: opacity 0.5s ease; /* Add a smooth transition effect */
+            z-index: 999; /* Ensure it's below other content */
+        }
+
+        /* Hide background text when user interacts with the page */
+        .user-interacted #background-text {
+            opacity: 0;
+        }
+
         
 
         
     
-        /* Positioning for top buttons container */
         .top-buttons-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(249, 249, 249, 0.08); /* Adjust background color as needed */
+            background-color: transparent; /* Set initial background color to transparent */
             padding: 0.05px 1px 1px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             z-index: 1000; /* Ensure it's above other content */
             border-radius: 16px;
+            opacity: 0; /* Set initial opacity to 0 to make it transparent */
+            transition: opacity 0.3s ease; /* Add a smooth transition effect */
         }
+        
+        .top-buttons-container:hover {
+            opacity: 1; /* Change opacity to 1 when hovered over */
+        }
+        
 
         #user_ai_section {
             padding-top: 110px; /* Adjust as needed to create space below the top button container */
@@ -188,6 +213,10 @@
         </div>
     </div>
 
+    <div id="background-text">
+        Welcome to Your BAEs Web Interface
+    </div>
+
     <!-- Move the user and AI interaction section below the top button container -->
 <div id="user_ai_section" style="padding-top: 110px;">
 
@@ -244,6 +273,16 @@
         function enableInput() {
             document.getElementById('user_input').disabled = false;
         }
+
+        // Function to add a class when the user interacts with the page
+        function setUserInteracted() {
+            document.body.classList.add('user-interacted');
+        }
+
+        // Add event listeners for various user interactions
+        
+        document.addEventListener('keypress', setUserInteracted);
+        document.addEventListener('scroll', setUserInteracted);
 
         // Function to handle user input
         function handleUserInput() {
