@@ -2,5 +2,7 @@ flask
 g4f
 spacy
 pymongo
+spacy[allennlp]==3.0.0
+
 
 #python -m spacy download en_core_web_sm
