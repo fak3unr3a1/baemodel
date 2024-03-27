@@ -4356,3 +4356,6 @@ INFO:werkzeug:127.0.0.1 - - [27/Mar/2024 23:15:49] "POST /get_response HTTP/1.1"
 INFO:werkzeug:127.0.0.1 - - [27/Mar/2024 23:15:52] "GET /index HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [27/Mar/2024 23:15:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
 INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
