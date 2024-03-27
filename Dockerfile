@@ -7,6 +7,17 @@ WORKDIR /app
 # Copy requirements.txt file
 COPY requirements.txt .
 
+# Copy the builder.py, bae.py and usertasks directory
+COPY builder.py .
+COPY bae.py .
+COPY usertasks /app/usertasks
+
+# Copy the templates directory containing HTML files
+COPY templates /app/templates
+
+# Copy the static directory containing CSS and other static files
+COPY static /app/static
+
 # Install Python dependencies
 RUN pip install -r requirements.txt
 
