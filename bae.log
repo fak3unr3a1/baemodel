@@ -4389,3 +4389,14 @@ WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 142-160-373
 INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
 INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [28/Mar/2024 13:05:56] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [28/Mar/2024 13:05:56] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [28/Mar/2024 13:06:07] "POST /get_response HTTP/1.1" 200 -
