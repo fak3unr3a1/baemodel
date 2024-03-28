@@ -3,6 +3,7 @@ g4f
 spacy
 pymongo
 spacy
+urllib3==1.26.7
 
 
 #python -m spacy download en_core_web_sm && pip install -r requirements.txt
