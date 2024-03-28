@@ -17,17 +17,19 @@ from flask import Flask, render_template, request, jsonify, session, redirect
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Set a secret key for session management
-
-# MongoDB client initialization
-client = pymongo.MongoClient("mongodb+srv://UNR3A1:JXoO1X4EY6iArT0E@baemodelcluster.yvin3kv.mongodb.net/")
-users_db = client["user_database"]  # Connecting to the "user_database" database
-chat_history_db = client["chat_history"]  # Connecting to the "chat_history" database
-
-# Collections
-users_collection = users_db["users"]
-user_db = client["user_database"] 
-# Collections
-users_collection = user_db["users"]
+try:
+    # MongoDB client initialization
+    client = pymongo.MongoClient("mongodb+srv://UNR3A1:JXoO1X4EY6iArT0E@baemodelcluster.yvin3kv.mongodb.net/")
+    users_db = client["user_database"]  # Connecting to the "user_database" database
+    chat_history_db = client["chat_history"]  # Connecting to the "chat_history" database
+    
+    # Collections
+    users_collection = users_db["users"]
+    user_db = client["user_database"] 
+    # Collections
+    users_collection = user_db["users"]
+except pymongo.errors.ConnectionFailure as e:
+    print("Error connecting to MongoDB Atlas:", e)
 
 @app.route('/')
 def login():
