@@ -170,9 +170,10 @@ def chat_with_bae(query, user_email):
             except UnicodeEncodeError:
                 print("An emoji is supposed to be here :).")
 
-        # Save current query to the conversation history
-        user_chat_collection.insert_one({"user_query": query, "ai_response": result})
-
+        from datetime import datetime
+        # Save current query with timestamp to the conversation history
+        timestamp = datetime.now()
+        user_chat_collection.insert_one({"user_query": query, "ai_response": result, "timestamp": timestamp})
         # Prepare the output data
         output_data = {'assistant_response': result}
         
