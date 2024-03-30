@@ -8,6 +8,7 @@ import pymongo
 import g4f
 from difflib import SequenceMatcher
 import logging
+import mimetypes
 
 # Configure logging
 logging.basicConfig(filename='bae.log', level=logging.ERROR)
@@ -55,11 +56,16 @@ def similar(a, b):
 #         logging.error("Error executing task: %s", e)
 
 
-import sys
-import importlib.util
 
+
+import os
+import importlib.util
+import shutil
+import sys
 
 def execute_task(task_name):
+    result_dest_path = None  # Initialize result_dest_path to None
+    
     try:
         project_folder = os.path.join(os.path.dirname(__file__), "usertasks", task_name)
         
@@ -76,18 +82,42 @@ def execute_task(task_name):
         # Dynamically import the main module
         spec = importlib.util.spec_from_file_location(main_module_name, filename)
         main_module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(main_module)
-
+        spec.loader.exec_module(main_module)        
+        
         # Execute the main function within the dynamically imported module
-        main_module.main()
+        result = main_module.main()
+       
+        
+        # Create a folder for executed tasks if it doesn't exist
+        executed_tasks_folder = os.path.join(os.path.dirname(__file__), "executed_tasks")
+        os.makedirs(executed_tasks_folder, exist_ok=True)
+        
+        # Move the result to the executed tasks folder
+        if result:
+            # Assuming result is a file path
+            result_file_name = os.path.basename(result)
+            result_dest_path = os.path.join(executed_tasks_folder, result_file_name)
+            
+            # Handle existing files
+            if os.path.exists(result_dest_path):
+                print("File already exists in the destination folder. Renaming...")
+                result_file_name = "new_" + result_file_name
+                result_dest_path = os.path.join(executed_tasks_folder, result_file_name)
+            
+            shutil.move(result, result_dest_path)
+            print("File moved successfully to:", result_dest_path)  # Print the destination path for debugging
+        
+        # Return the path where the result is saved
+        return result_dest_path
+        
     except FileNotFoundError as e:
         print("Task file not found:", e)
         logging.error("Task file not found: %s", e)
+        return {'output_type': 'error', 'error_message': f'Task file not found: {e}'}
     except Exception as e:
         print("Error executing task:", e)
         logging.error("Error executing task: %s", e)
-
-
+        return {'output_type': 'error', 'error_message': f'Error executing task: {e}'}
 
 
 def identify_task(query):
@@ -212,18 +242,18 @@ def initialize_user_chat_collections():
         print("Error creating index:", e)
         logging.error("Error creating index: %s", e)
 
-# if __name__ == "__main__":
-#     # Initialize user chat history collections
-#     initialize_user_chat_collections()
+if __name__ == "__main__":
+    # Initialize user chat history collections
+    initialize_user_chat_collections()
 
-    # # Example usage
-    # while True:
-    #     user_email = "cglynn.skip@gmail.com"  # Retrieve the user's email from the session or request data
-    #     # Determine if the user wants to perform a task or chat with the AI
-    #     query = input('\nGlynn: ')
-    #     task_name = identify_task(query)
-    #     if task_name:
-    #          execute_task(task_name)
-    #     else:
-    #         chat_with_bae(query, user_email)
+    # Example usage
+    while True:
+        user_email = "cglynn.skip@gmail.com"  # Retrieve the user's email from the session or request data
+        # Determine if the user wants to perform a task or chat with the AI
+        query = input('\nGlynn: ')
+        task_name = identify_task(query)
+        if task_name:
+             execute_task(task_name)
+        else:
+            chat_with_bae(query, user_email)
         

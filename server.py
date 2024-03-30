@@ -116,8 +116,18 @@ def index():
     if 'email' not in session:
         return render_template('login.html')  # Render login page if user not logged in
     else:
-        # Render index.html for user interaction with AI
-        return render_template('index.html')    
+        email = session['email']
+        user = users_collection.find_one({'email': email})
+        if user:
+            if 'name' in user:
+                # User has provided name, render index.html with the user's name
+                return render_template('index.html', name=user['name'], ai_name=user['ai_name'])
+            else:
+                # User has not provided name, render index.html without the name
+                return render_template('index.html')
+        else:
+            return render_template('login.html')  # Render login page if user not found
+   
         
 
 
@@ -168,13 +178,13 @@ def update_ai_name():
         users_collection.update_one({'email': email}, {'$set': {'ai_name': new_ai_name}})
         return jsonify({'message': 'AI name updated successfully'})
     else:
-        return jsonify({'error': 'User not logged in'})
+        return redirect(url_for('login'))
 
 # Route to logout
 @app.route('/logout', methods=['POST'])
 def logout():
     session.pop('email', None)
-    return jsonify({'message': 'Logout successful'})
+    return redirect(url_for('login'))
 
 # Route to clear user data
 @app.route('/clear_data', methods=['POST'])
@@ -184,15 +194,31 @@ def clear_data():
         # Clear user data from the database (implement as needed)
         return jsonify({'message': 'User data cleared successfully'})
     else:
-        return jsonify({'error': 'User not logged in'})
+        return redirect(url_for('login'))
+        
 
 
 
 
 
+
+# Route for tasks page
 @app.route('/tasks')
 def tasks():
-    return render_template('tasks.html')
+    if 'email' not in session:
+        return redirect(url_for('login'))  # Redirect to login page if user is not logged in
+
+    # Retrieve user information from session
+    email = session['email']
+    user = users_collection.find_one({'email': email})
+    if user:
+        
+        ai_name = user.get('ai_name', '')
+        return render_template('tasks.html', ai_name=user['ai_name'])
+    else:
+        # User not found in database, redirect to login
+        return redirect(url_for('login'))
+
 
 @app.route('/build_task', methods=['POST'])
 def build_task():
@@ -262,9 +288,10 @@ def submit_repo():
 # from bae import task_name
 
 
+from flask import session
+
 @app.route('/get_response', methods=['POST'])
 def get_response():
-    
     if request.method == 'POST':
         user_input = request.form['user_input']
         try:
@@ -282,16 +309,24 @@ def get_response():
                     # Provide feedback to the user
                     response_data = chat_with_bae(user_input, email)
                     assistant_response = response_data['assistant_response']
+                    
+                    # Save the data to session
+                    session['response'] = {'assistant_response': assistant_response, 'task_completion_message': task_completion_message}
+                    
                     return jsonify({'response': assistant_response, 'task_completion_message': task_completion_message})
                 else:
                     # No task identified, continue with regular chat interaction
                     response_data = chat_with_bae(user_input, email)
                     assistant_response = response_data['assistant_response']
+                    
+                    
+                    
                     return jsonify({'response': assistant_response})
             else:
                 return jsonify({'error': 'User not logged in'})
         except Exception as e:
             return jsonify({'error': f'Error processing request: {str(e)}'})
+
 
 
 
@@ -361,6 +396,11 @@ def get_user_tasks():
         return jsonify({'user_tasks': user_tasks})
     except Exception as e:
         return jsonify({'error': f'Error retrieving user tasks: {str(e)}'})
+
+
+
+
+
 
 
 

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Tasks Page</title>
+    <title>Ability Page</title>
 </head>
 <style>
     #submitForm {
@@ -56,23 +56,24 @@
     }
 </style>
 <body>
-    <h1>Tasks Page</h1>
-    <h1>Ensure your code runs from one module and name it main.py</h1>
+    <h1>Ability Page</h1>
+    <h2>Add An Ability You Would Like {{ai_name}} To Perform</h2>
 
     <!-- Button to return to index.html -->
-    <button onclick="location.href='/index'" type="button">Return to AI model</button>
+    <button onclick="location.href='/index'" type="button">To AI Model</button>
+    <a href="/home"><button>To Home Page</button></a>
 
-    <!-- Form for submitting repository link, folder name, task description, main module name, and installation command -->
+    <!-- Form for submitting repository link, folder name, Ability description, main module name, and installation command -->
     <form id="submitForm" onsubmit="return validateForm()">
         <label for="repo_link">Repository Link (GitHub only):</label>
         <input type="text" id="repo_link" placeholder="insert your repo link"name="repo_link" required>
 
-        <label for="folder_name">Task Name:</label>
+        <label for="folder_name">Ability Name:</label>
         <input type="text" id="folder_name" name="folder_name" required>
 
         <!-- Additional fields -->
-        <label for="task_description">Task Description (more than 15 words):</label>
-        <textarea id="task_description" name="task_description" required placeholder="also explain how the user might use it"></textarea>
+        <label for="task_description">Ability Description (more than 15 words):</label>
+        <textarea id="task_description" name="task_description" required placeholder="explain how you might use it e.g. {{ai_name}} take a screenshot"></textarea>
 
         <label for="main_module_name">Main Module Name:</label>
         <input type="text" id="main_module_name"placeholder="e.g. main.py" name="main_module_name" required>
@@ -100,7 +101,7 @@
             var taskDescription = document.getElementById('task_description').value;
             var wordCount = taskDescription.trim().split(/\s+/).length;
             if (wordCount < 15) {
-                alert('Task description should contain more than 15 words.');
+                alert('Ability description should contain more than 15 words.');
                 return false;
             }
             var mainModuleName = document.getElementById('main_module_name').value;
@@ -155,7 +156,7 @@
                         xhrInstall.send('installation_command=' + encodeURIComponent(installationCommand));
                     }
                     // Display success message
-                    document.getElementById('results_container').innerHTML = '<p>Task submitted successfully!</p>';
+                    document.getElementById('results_container').innerHTML = '<p>Ability submitted successfully!</p>';
                 }
             };
             // Send repository data to the server

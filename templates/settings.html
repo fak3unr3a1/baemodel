@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Settings</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Additional styles for transparent form with border and circular shape */
+        form {
+            background-color: transparent;
+            border: 0.5px solid darkred; /* Change border color as desired */
+            border-radius: 35px; /* Adjust border-radius for circular shape */
+            padding: 20px;
+            margin-bottom: 20px;
+            display: inline-block; /* Display forms in a row */
+        }
+    </style>
 </head>
 <body>
     <h1>User Settings</h1>
@@ -13,19 +24,37 @@
     <p>Username: {{ username }}</p>
     <p>AI Name: {{ ai_name }}</p>
 
-    <h2>Update AI Name</h2>
+    <h2>Change AI Name</h2>
     <form action="/update_ai_name" method="post">
         <label for="new_ai_name">New AI Name:</label>
         <input type="text" id="new_ai_name" name="new_ai_name" required>
         <button type="submit">Update</button>
     </form>
 
-    <h2>Actions</h2>
-    <form action="/logout" method="post">
-        <button type="submit">Logout</button>
+    <h2>Danger Zone</h2>
+    <!-- Logout button with confirmation dialog -->
+    <form id="logout-form" action="/logout" method="post">
+        <button type="button" class="scary-button" onclick="confirmLogout()">Logout</button>
     </form>
-    <form action="/clear_data" method="post">
-        <button type="submit">Clear Data</button>
+
+    <!-- Clear data button with confirmation dialog -->
+    <form id="clear-data-form" action="/clear_data" method="post">
+        <button type="button" class="scary-button" onclick="confirmClearData()">Clear Data</button>
     </form>
+
+    <!-- JavaScript for confirmation dialogs -->
+    <script>
+        function confirmLogout() {
+            if (confirm("Are you sure you want to logout?")) {
+                document.getElementById("logout-form").submit();
+            }
+        }
+
+        function confirmClearData() {
+            if (confirm("Are you sure you want to clear all data? This action cannot be undone!")) {
+                document.getElementById("clear-data-form").submit();
+            }
+        }
+    </script>
 </body>
 </html>

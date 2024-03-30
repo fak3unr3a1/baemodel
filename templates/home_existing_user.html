@@ -12,5 +12,62 @@
     <!-- Add content here to display the user's AI model -->
     <button onclick="location.href='/index'" type="button">Interact with AI</button>
     <button onclick="location.href='/settings'" type="button">Settings</button>
+
+    <!-- Use the button directly to trigger the getAvailableTasks() function -->
+    <button id="viewTasksButton" type="button">View Available Abilities</button>
+
+    <a href="tasks"><button type="button">Create An Ability</button></a>
+
+    <!-- Container to display the list of available tasks -->
+    <div id="task_list_container"></div>
+
+    <!-- Task completion message container -->
+    <div id="task_completion_message_container"></div>
+
+
+    <script>
+        // Add an event listener to the button to trigger getAvailableTasks()
+        document.getElementById('viewTasksButton').addEventListener('click', function() {
+            getAvailableTasks();
+        });
+
+        // Function to retrieve available tasks from the server
+        function getAvailableTasks() {
+            try {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', '/get_user_tasks', true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        displayAvailableTasks(response.user_tasks);
+                    }
+                };
+                xhr.send();
+            } catch (error) {
+                console.error('An error occurred:', error);
+            }
+        }
+
+        // Function to display available tasks on the webpage
+        function displayAvailableTasks(tasks) {
+            try {
+                var taskListContainer = document.getElementById('task_list_container');
+                taskListContainer.innerHTML = ''; // Clear previous content
+                
+                if (tasks.length === 0) {
+                    taskListContainer.innerHTML = '<p>No Abilitys available.</p>';
+                } else {
+                    var taskList = '<ul>';
+                    tasks.forEach(function(task) {
+                        taskList += '<li>' + task.name + '</li>'; // Display the task name
+                    });
+                    taskList += '</ul>';
+                    taskListContainer.innerHTML = taskList;
+                }
+            } catch (error) {
+                console.error('An error occurred:', error);
+            }
+        }
+    </script>
 </body>
 </html>
