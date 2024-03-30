@@ -4636,3 +4636,4 @@ INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 13:20:55] "GET / HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 13:20:55] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 13:21:10] "GET / HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 13:21:10] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\usertasks\\Screenshot\\main.py', reloading
