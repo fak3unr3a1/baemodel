@@ -14,12 +14,19 @@ import datetime
 
 
 from flask import Flask, render_template, request, jsonify, session, redirect
+from pymongo import MongoClient
 
+
+MONGODB_URI_SRV = 'mongodb+srv://UNR3A1:JXoO1X4EY6iArT0E@baemodelcluster.yvin3kv.mongodb.net/'
+uri = os.environ.get('MONGODB_URI_SRV')
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Set a secret key for session management
 try:
     # MongoDB client initialization
-    client = pymongo.MongoClient("mongodb+srv://UNR3A1:JXoO1X4EY6iArT0E@baemodelcluster.yvin3kv.mongodb.net/")
+    # client = pymongo.MongoClient("mongodb+srv://UNR3A1:JXoO1X4EY6iArT0E@baemodelcluster.yvin3kv.mongodb.net/")
+    
+    # MongoDB client initialization
+    client = MongoClient(uri)
     users_db = client["user_database"]  # Connecting to the "user_database" database
     chat_history_db = client["chat_history"]  # Connecting to the "chat_history" database
     
