@@ -103,7 +103,31 @@
     label {
         font-weight: 600;
     }
-    
+    @media screen and (max-width: 768px) {
+        main {
+          grid-template-columns: 1fr; /* Set a single column layout for mobile */
+        }
+      
+        .login, .signup {
+          padding: 20px; /* Adjust padding for better spacing */
+          width: 100%; /* Make sure both sections take up the full width */
+          text-align: center; /* Center the content */
+        }
+      
+        .login, .signup, .back-layer {
+          position: relative; /* Set position to relative for proper stacking */
+        }
+      
+        .back-layer {
+          clip-path: none; /* Remove clip-path to display both forms */
+          display: block; /* Ensure the back-layer takes up full width */
+        }
+      
+        .login-form, .signup-form {
+          transform: none; /* Reset the transform to display forms properly */
+        }
+      }
+      
     
     
 

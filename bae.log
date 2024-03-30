@@ -4492,3 +4492,85 @@ INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 08:09:16] "[36mGET /static/style.css H
 INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 08:09:21] "GET /index HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 08:09:21] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 08:09:32] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 08:48:33] "GET /get_user_tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 08:48:34] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 08:48:34] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:14:36] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:14:36] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:14:36] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:14:39] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:14:39] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:14:53] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:15:49] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:15:50] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:16:07] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:17:28] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:36:29] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:36:29] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:37:08] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:38:17] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:44:31] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:44:32] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:44:48] "POST /signin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:16] "POST /signin HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:27] "[32mPOST /signup HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:27] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:27] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:36] "[32mPOST /save_user_info HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:36] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:36] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:41] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:41] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:44] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:44] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:51] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:52] "GET /get_user_tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:53] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:54] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:56] "GET /tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:45:57] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:55:45] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:55:45] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:55:47] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 11:55:47] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
