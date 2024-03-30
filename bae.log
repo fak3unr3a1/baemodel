@@ -4637,3 +4637,14 @@ INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 13:20:55] "[36mGET /static/style.css H
 INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 13:21:10] "GET / HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 13:21:10] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
 INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\usertasks\\Screenshot\\main.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 13:22:57] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 13:22:57] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 13:23:35] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 13:23:35] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 13:23:59] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 13:23:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 13:24:09] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 13:24:09] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
