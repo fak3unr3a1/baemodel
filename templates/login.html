@@ -9,13 +9,21 @@
 <style>
     * {
         box-sizing: border-box;
+        border-radius: 25px;
      }
+     body {
+        background-image: url("{{ url_for('static', filename='backgroundowl.jpg') }}");
+        background-size: cover;
+        background-position: center;
+        border-radius: 25px;
+    }
     
     
     
     a {
         text-decoration: none;
         color: inherit;
+        border-radius: 25px;
     }
     
     main {
@@ -25,10 +33,12 @@
         margin: 100px auto 0;
         max-width: 800px;
         overflow: hidden;
+        border-radius: 25px;
     }
     
     main > * {
         grid-row: 1 / 2;
+        border-radius: 25px;
     }
     
     .login, .signup {
@@ -41,36 +51,43 @@
         color: #fff;
         font-size: 23px;
         background-color: #d3c9c9; /* Use the same color as in your style.css */
+        border-radius: 25px;
     }
     
     .login > button, .signup > button {
         border: none;
         background-color: #fff;
         color: #333; /* Use the same color as in your style.css */
+        border-radius: 25px;
     }
     
     .login {
         grid-column: 1 / 2;
+        border-radius: 25px;
     }
     
     .signup {
         grid-column: 2 / 3;
+        border-radius: 25px;
     }
     
     .login-form {
         grid-column: 1 / 2;
         transform: translateX(-100%);
+        border-radius: 25px;
     }
     
     .signup-form {
         grid-column: 2 / 3;
         transform: translateX(100%);
+        border-radius: 25px;
     }
     
     
     
     form.active {
         transform: translateX(0);
+        border-radius: 25px;
     }
     
     .back-layer {
@@ -81,6 +98,7 @@
         background-color: #fff;
         z-index: 5;
         transition: clip-path 0.3s;
+        border-radius: 25px;
     }
     
     input {
@@ -94,6 +112,7 @@
         margin-top: 5px;
         outline: none;
         color: #333; /* Dark gray text color */
+        border-radius: 25px;
     }
     
     input:focus {
@@ -112,22 +131,33 @@
           padding: 20px; /* Adjust padding for better spacing */
           width: 100%; /* Make sure both sections take up the full width */
           text-align: center; /* Center the content */
+          border-radius: 25px;
         }
       
         .login, .signup, .back-layer {
           position: relative; /* Set position to relative for proper stacking */
+          border-radius: 25px;
         }
       
         .back-layer {
           clip-path: none; /* Remove clip-path to display both forms */
           display: block; /* Ensure the back-layer takes up full width */
+          border-radius: 25px;
         }
       
         .login-form, .signup-form {
           transform: none; /* Reset the transform to display forms properly */
+          border-radius: 25px;
         }
       }
-      
+      .terms a {
+        color: blue; /* Set the color of the anchor tag within the .terms class to blue */
+    }
+    
+    .terms a:hover {
+        color: darkblue; /* Optionally change the color on hover */
+    }
+    
     
     
 
@@ -135,6 +165,11 @@
 
 </style>
 <body>
+
+    <!-- Add the image at the top of the page -->
+    <img src="{{ url_for('static', filename='backgroundowl.jpg') }}" alt="Background Owl" style="width: 100%;">
+    <!-- Make sure the path to 'backgroundowl.jpg' is correct -->
+
     <main>
         <div class="signup">
             <span>YO! You new? Welcome 😊</span>
@@ -157,6 +192,9 @@
                 <label for="lpassword">Password</label>
                 <input type="password" id="lpassword" name="password" placeholder="******" required>
                 <button type="submit">Login</button>
+                <div class="terms">
+                    By logging in, you agree to our <a href="/terms-of-service" target="_blank">Terms of Service</a>.
+                </div>
             </form>
     
             <!-- Sign up form -->
@@ -169,7 +207,12 @@
                 <label for="spassword">Password</label>
                 <input type="password" id="spassword" name="password" placeholder="******" required>
                 <button type="submit">Sign up</button>
+                <div class="terms">
+                    By signing up, you agree to our <a href="/terms-of-service" target="_blank">Terms of Service</a>.
+                </div>
             </form>
+
+            
         </div>
     </main>
 

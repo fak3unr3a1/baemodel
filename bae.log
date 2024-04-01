@@ -5562,3 +5562,484 @@ INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 23:11:02] "GET /tasks HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 23:11:02] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 23:11:06] "GET /index HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [30/Mar/2024 23:11:06] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+ERROR:root:Error displaying conversation history: 'timestamp'
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:23:58] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:23:58] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:23:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:23:58] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:24:03] "[35m[1mGET /conversation_history HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:24:04] "GET /conversation_history?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:24:04] "GET /conversation_history?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:24:04] "GET /conversation_history?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:24:04] "[36mGET /conversation_history?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:25:32] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:25:32] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:25:32] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:25:37] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:27:55] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:28:08] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:28:08] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:28:10] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:28:11] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:28:15] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:30:22] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:31:43] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:31:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:32:18] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:32:18] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:35:08] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:35:08] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:35:13] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:35:13] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:36:36] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:36:36] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:36:41] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:36:41] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:38:03] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:38:03] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:38:46] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:38:46] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:39:15] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:39:15] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:39:28] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:39:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:39:30] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:39:30] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:41:18] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:41:18] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:41:41] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:41:41] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:42:18] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:42:18] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:42:28] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:42:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:42:47] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:42:47] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:43:19] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:43:19] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:43:23] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:43:23] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:43:50] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:43:50] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:43:52] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:43:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:45:39] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:45:39] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:45:50] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:45:50] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:46:37] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:46:37] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:48:59] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:48:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:50:28] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:50:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:50:28] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:50:29] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:50:45] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:51:30] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:51:30] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:51:40] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:51:55] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:52:10] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:52:10] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:53:20] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:53:21] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:53:26] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:53:26] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:53:28] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:53:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:53:34] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:53:34] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:54:04] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:54:04] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:55:47] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:55:47] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:56:14] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:56:14] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:56:50] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:56:50] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:56:54] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:56:54] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:57:00] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:57:00] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:57:12] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:57:12] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:57:22] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [31/Mar/2024 23:57:22] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 13:54:51] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 13:54:51] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\bae.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:35:12] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:35:12] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:35:12] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:35:20] "GET /tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:35:20] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:35:32] "POST /remove_task HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:42:08] "GET /tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:42:08] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:42:10] "POST /remove_task HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:43:31] "POST /submit_repo HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:43:43] "POST /submit_installation HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:43:57] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:43:57] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:44:00] "GET /get_user_tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:44:05] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:44:05] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:44:17] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:44:33] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:44:37] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:44:37] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:44:38] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:44:39] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:46:18] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:46:18] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:46:45] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:46:45] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:47:10] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:47:10] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:47:14] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:47:14] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:47:52] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:47:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:47:53] "GET /tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:47:53] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:47:59] "POST /remove_task HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:48:05] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:48:05] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:48:06] "GET /get_user_tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:48:16] "GET /tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:48:16] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:50:18] "GET /tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:50:18] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:50:22] "GET /tasks?task_name=screenshot HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:50:22] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:50:27] "GET /tasks?task_name=screenshot HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:50:27] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:50:29] "GET /tasks?task_name=screenshot HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:50:29] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:51:49] "GET /tasks?repo_link=https://github.com/fak3unr3a1/SCREENSHOT.git&folder_name=Screenshot&task_description=take+a+screenshot%0D%0Aarthur+can+you+take+a+screenshot%0D%0AThis+task+is+used+to+take+screenshots&main_module_name=main.py&installation_command=pip+install+-r+requirements.txt HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:51:49] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:51:59] "GET /tasks?repo_link=https://github.com/fak3unr3a1/SCREENSHOT.git&folder_name=Screenshot&task_description=take+a+screenshot%0D%0Aarthur+can+you+take+a+screenshot%0D%0AThis+task+is+used+to+take+screenshots&main_module_name=main.py&installation_command=pip+install+-r+requirements.txt HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:51:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:52:14] "POST /remove_task HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:53:15] "POST /submit_repo HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\usertasks\\Screenshot\\screenshot_capture.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:53:28] "POST /submit_installation HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:53:37] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:53:37] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:53:41] "GET /get_user_tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:53:59] "GET /tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:53:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:55:04] "GET /tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:55:04] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:55:07] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:55:07] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:55:09] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:55:09] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:55:58] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:55:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:56:07] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:56:07] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:56:08] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:56:09] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:56:10] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 15:56:10] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:05:18] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:05:18] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:05:47] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:08:11] "GET /tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:08:12] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:08:48] "GET /tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:08:48] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:09:04] "GET /tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:09:04] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:09:15] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:09:15] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:36:59] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:36:59] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:36:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:37:02] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:37:02] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:37:05] "[32mPOST /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:37:05] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:37:06] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:37:06] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:38:21] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:38:21] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:38:21] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:39:23] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:39:23] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:39:23] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:40:58] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:40:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:40:58] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:41:10] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:41:11] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:41:11] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:41:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:42:08] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:42:56] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:43:51] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:43:51] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:43:51] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:45:23] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:45:23] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:45:24] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:07] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:07] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:07] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.13:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 142-160-373
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:26] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:26] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:26] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:33] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:33] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:33] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:36] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:36] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:36] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:39] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:39] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:39] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:42] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:42] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:42] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:47] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:47] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:47] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:49] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:51] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:51] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:54] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:54] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:57] "[32mPOST /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:57] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:57] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:57] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:59] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:59] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:47:59] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:48:22] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:48:22] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:48:22] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:48:24] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:48:24] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:48:24] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:48:24] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:48:40] "[33mGET /google_signin_button.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:48:40] "GET /static/style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:48:41] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:48:46] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:48:46] "GET /static/style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:48:46] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:48:47] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:48:47] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:52:58] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:52:58] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:52:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:52:58] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:54:58] "[32mPOST /signin HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:54:58] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:54:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:55:00] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:55:00] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:55:16] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:55:16] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:56:25] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:56:25] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:56:37] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:56:37] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:56:45] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:56:45] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:56:50] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:56:50] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:58:03] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:58:03] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:59:45] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:59:45] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:59:51] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 16:59:51] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:01:30] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:01:30] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:02:14] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:02:14] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:03:07] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:03:07] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:03:10] "GET /get_user_tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:03:16] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:03:16] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:12:32] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:12:32] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:12:44] "GET /tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:12:44] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:12:58] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:12:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:13:03] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:13:03] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:13:06] "GET /get_user_tasks HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:13:13] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:13:13] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:13:31] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:22:48] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:22:48] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:22:48] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:23:12] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:23:12] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:23:16] "[32mPOST /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:23:17] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:23:17] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:23:17] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:23:26] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:23:36] "[32mPOST /signin HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:23:36] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:23:36] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:24:31] "GET /settings HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:24:31] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:24:36] "[32mPOST /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:24:36] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:24:37] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:24:37] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:26:39] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:26:39] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:26:39] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:27:21] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:27:21] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:27:21] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:28:15] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:28:15] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:28:15] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:28:21] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:28:21] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:28:21] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:28:26] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:28:26] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:28:26] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:28:30] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:28:30] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:28:31] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:40:31] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:40:31] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:40:31] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:40:53] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:40:53] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:40:54] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:41:09] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:41:09] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:41:10] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:41:22] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:41:22] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:41:22] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:41:34] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:41:34] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:41:34] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:41:53] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:41:53] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 17:41:54] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 18:53:39] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 18:53:39] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 18:53:39] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [01/Apr/2024 18:53:45] "[33mGET /terms-of-service HTTP/1.1[0m" 404 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
+INFO:werkzeug: * Restarting with stat

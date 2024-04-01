@@ -18,7 +18,11 @@
     </style>
 </head>
 <body>
-    <h1>User Settings</h1>
+
+    
+    <h1> Settings</h1>
+
+    <a href="/home"><button>Back to Home Page</button></a>
     <h2>User Information</h2>
     <p>Email: {{ email }}</p>
     <p>Username: {{ username }}</p>
@@ -37,10 +41,7 @@
         <button type="button" class="scary-button" onclick="confirmLogout()">Logout</button>
     </form>
 
-    <!-- Clear data button with confirmation dialog -->
-    <form id="clear-data-form" action="/clear_data" method="post">
-        <button type="button" class="scary-button" onclick="confirmClearData()">Clear Data</button>
-    </form>
+    
 
     <!-- JavaScript for confirmation dialogs -->
     <script>

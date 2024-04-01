@@ -56,12 +56,14 @@
     }
 </style>
 <body>
-    <h1>Ability Page</h1>
+    <h1>Abilities Page</h1>
     <h2>Add An Ability You Would Like {{ai_name}} To Perform</h2>
 
     <!-- Button to return to index.html -->
     <button onclick="location.href='/index'" type="button">To AI Model</button>
     <a href="/home"><button>To Home Page</button></a>
+
+    
 
     <!-- Form for submitting repository link, folder name, Ability description, main module name, and installation command -->
     <form id="submitForm" onsubmit="return validateForm()">
@@ -72,8 +74,8 @@
         <input type="text" id="folder_name" name="folder_name" required>
 
         <!-- Additional fields -->
-        <label for="task_description">Ability Description (more than 15 words):</label>
-        <textarea id="task_description" name="task_description" required placeholder="explain how you might use it e.g. {{ai_name}} take a screenshot"></textarea>
+        <label for="task_description">Ability Description: (more than 15 words):</label>
+        <textarea id="task_description" name="task_description" required placeholder="Explain how you might use it e.g. {{ai_name}} take a screenshot"></textarea>
 
         <label for="main_module_name">Main Module Name:</label>
         <input type="text" id="main_module_name"placeholder="e.g. main.py" name="main_module_name" required>
@@ -87,6 +89,17 @@
 
     <!-- Display the results -->
     <div id="results_container"></div>
+
+    <!-- Add a button to remove a task -->
+    <div id="remove_task_container">
+        <h2>Remove a Task</h2>
+        <form id="removeTaskForm" onsubmit="return removeTask()">
+            <label for="task_name">Task Name:</label>
+            <input type="text" id="task_name" name="task_name" placeholder="Enter task name" required>
+            <button type="submit">Remove Task</button>
+        </form>
+        <div id="remove_task_result"></div>
+    </div>
 
     <!-- JavaScript for handling repository and installation submission -->
     <script>
@@ -162,6 +175,39 @@
             // Send repository data to the server
             var formData = 'repo_link=' + repoLink + '&folder_name=' + folderName + '&task_description=' + encodeURIComponent(taskDescription) + '&main_module_name=' + mainModuleName;
             xhrRepo.send(formData);
+        }
+
+
+        function removeTask() {
+            var taskName = document.getElementById('task_name').value;
+        
+            // Display a confirmation dialog before proceeding
+            var confirmDelete = confirm("Are you sure you want to delete this task?");
+            if (!confirmDelete) {
+                // User canceled the deletion, do nothing
+                return false;
+            }
+        
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/remove_task', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        // Handle successful response
+                        var response = JSON.parse(xhr.responseText);
+                        document.getElementById('remove_task_result').innerHTML = '<p>' + response.message + '</p>';
+                    } else {
+                        // Handle error response
+                        document.getElementById('remove_task_result').innerHTML = '<p>Error: ' + xhr.status + '</p>';
+                    }
+                }
+            };
+            xhr.send('task_name=' + encodeURIComponent(taskName));
+        
+            // Prevent form submission
+            return false;
+
         }
     </script>
     

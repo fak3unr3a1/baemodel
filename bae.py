@@ -154,6 +154,54 @@ def identify_task(query):
     except Exception as e:
         print("Error identifying task:", e)
         logging.error("Error identifying task: %s", e)
+        
+
+
+import os
+import shutil
+import stat
+
+def remove_task(task_name):
+    try:
+        # Construct path to the task folder
+        task_folder = os.path.join(os.path.dirname(__file__), "usertasks", task_name)
+        
+        # Check if the task folder exists
+        if os.path.exists(task_folder):
+            # Iterate through each file and directory within the task folder
+            for root, dirs, files in os.walk(task_folder, topdown=False):
+                for name in files:
+                    file_path = os.path.join(root, name)
+                    os.chmod(file_path, stat.S_IWRITE)  # Set file permissions to allow deletion
+                    os.remove(file_path)  # Remove the file
+                
+                for name in dirs:
+                    dir_path = os.path.join(root, name)
+                    os.chmod(dir_path, stat.S_IWRITE)  # Set directory permissions to allow deletion
+                    os.rmdir(dir_path)  # Remove the directory
+            
+            # After deleting all files and subdirectories, remove the main task folder
+            os.rmdir(task_folder)
+            
+            return f"Task '{task_name}' removed successfully."
+        else:
+            return f"Task '{task_name}' does not exist."
+    except Exception as e:
+        error_message = f"Error removing task '{task_name}': {e}"
+        return error_message
+
+# Example usage
+# result_message = remove_task(".hidden_Screenshot")
+# print(result_message)  # Output the result message
+
+
+
+# Example usage
+# hide_task(".hidden_Screenshot")
+
+
+
+
 
 def chat_with_bae(query, user_email):
     try:
@@ -241,19 +289,39 @@ def initialize_user_chat_collections():
     except pymongo.errors.PyMongoError as e:
         print("Error creating index:", e)
         logging.error("Error creating index: %s", e)
-
-if __name__ == "__main__":
-    # Initialize user chat history collections
-    initialize_user_chat_collections()
-
-    # Example usage
-    while True:
-        user_email = "cglynn.skip@gmail.com"  # Retrieve the user's email from the session or request data
-        # Determine if the user wants to perform a task or chat with the AI
-        query = input('\nGlynn: ')
-        task_name = identify_task(query)
-        if task_name:
-             execute_task(task_name)
-        else:
-            chat_with_bae(query, user_email)
         
+
+def display_conversation_history(user_email):
+    try:
+        # Determine the collection for the user's chat history based on their email
+        user_chat_collection = users_db[user_email]
+
+        # Retrieve the conversation history from the database
+        conversation_history = list(user_chat_collection.find().sort("_id", 1))
+
+        # Print the conversation history
+        for entry in conversation_history:
+            print("User:", entry.get("user_query", ""))
+            print("AI:", entry.get("ai_response", ""))
+            print("Timestamp:", entry.get("timestamp", "Timestamp not available"))
+            print()  # Add a newline for better readability
+    except Exception as e:
+        print("Error displaying conversation history:", e)
+        logging.error("Error displaying conversation history: %s", e)
+
+
+# if __name__ == "__main__":
+#     # Initialize user chat history collections
+#     initialize_user_chat_collections()
+
+#     # Example usage
+#     while True:
+#         user_email = "glynn.kiprotich@gmail.com"  # Retrieve the user's email from the session or request data
+#         # Determine if the user wants to perform a task or chat with the AI
+#         query = input('\nGlynn: ')
+#         task_name = identify_task(query)
+#         if task_name:
+#              execute_task(task_name)
+#         else:
+#             chat_with_bae(query, user_email)
+#         # display_conversation_history(user_email)

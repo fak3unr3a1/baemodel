@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversation History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Include your CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .top-buttons-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: transparent;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            border-radius: 16px;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .top-buttons-container:hover {
+            opacity: 1;
+        }
+
+        .conversation-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .conversation-list li {
+            margin-bottom: 20px;
+        }
+
+        .conversation-list li strong {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* Style for the scroll button */
+        .scroll-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: rgba(249, 249, 249, 0.001)            color: #fff; /* Button text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            
+        }
+
+        .scroll-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-buttons-container">
+        <h1>{{ ai_name }}'s Conversation History</h1>
+        <div class="top-buttons">
+            <a href="/home"><button>Back to Home Page</button></a>
+            <button onclick="location.href='/index'" type="button">Interact with AI</button>
+
+        </div>
+    </div>
+    <div class="container">
+        {% if conversation_history %}
+            <ul class="conversation-list">
+                {% for entry in conversation_history %}
+                    <li>
+                        <strong>User:</strong> {{ entry.user_query }}<br>
+                        <strong>{{ ai_name }}:</strong> {{ entry.ai_response }}<br>
+                        <strong>Timestamp:</strong> {{ entry.timestamp }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No conversation history available.</p>
+        {% endif %}
+    </div>
+
+    <!-- Scroll button to scroll to the bottom -->
+    <button class="scroll-button" onclick="scrollToBottom()">↓</button>
+
+    <script>
+        // Function to scroll to the bottom of the page
+        function scrollToBottom() {
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        // Scroll to the bottom of the page when the page loads
+        window.onload = function() {
+            scrollToBottom();
+        };
+    </script>
+</body>
+</html>

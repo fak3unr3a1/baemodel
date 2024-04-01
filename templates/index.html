@@ -208,8 +208,9 @@
     <div class="top-buttons-container">
         <h1>{{ai_name}}'s Web Interface</h1>
         <div class="top-buttons">
-            <a href="/home"><button>Back to Home Page</button></a>
-            <a href="tasks"><button type="button">Create an Ability</button></a>            
+            <a href="/home"><button>Back To Home Page</button></a>
+            <a href="tasks"><button type="button">Abilities Page</button></a>  
+            <button onclick="location.href='/conversation_history'" type="button">View Conversation History</button>          
         </div>
     </div>
 
@@ -241,7 +242,7 @@
 
 
     <!-- Scroll to bottom button -->
-    <button id="scrollToBottomBtn" onclick="scrollToBottom()">Scroll to Bottom</button>
+    <button id="scrollToBottomBtn" onclick="scrollToBottom()">↓</button>
 
 
     
@@ -438,38 +439,51 @@
                 }
                 
                 // Check if the response contains code snippets
-                if (response.includes('```')) {
-                    // If it contains code, split the response into text and code parts
-                    var parts = response.split('```');
-                    // Create a paragraph for the text part
-                    var textParagraph = document.createElement('p');
-                    textParagraph.textContent = parts[0];
-                    aiResponseContainer.appendChild(textParagraph);
-                    // Create a container for the code snippet
-                    var codeContainer = document.createElement('div');
-                    codeContainer.classList.add('code-container');
-                    // Create a pre element for the code
-                    var codeElement = document.createElement('pre');
-                    codeElement.textContent = parts[1].trim(); // Trim to remove leading/trailing spaces
-                    codeContainer.appendChild(codeElement);
-        
-                    // Add a copy button
-                    var copyButton = document.createElement('button');
-                    copyButton.textContent = 'Copy';
-                    copyButton.onclick = function() {
-                        // Copy the code to the clipboard
-                        copyCodeToClipboard(parts[1].trim());
-                    };
-                    codeContainer.appendChild(copyButton);
-        
-                    aiResponseContainer.appendChild(codeContainer);
-                } else {
-                    // If it doesn't contain code, create a paragraph for the entire response
-                    var responseParagraph = document.createElement('p');
-                    responseParagraph.innerHTML = makeLinksClickable(response); // Make links clickable
-                    aiResponseContainer.appendChild(responseParagraph);
+            if (response.includes('```')) {
+                // If it contains code, split the response into text and code parts
+                var parts = response.split('```');
+                // Create a paragraph for the text part
+                var textParagraph = document.createElement('p');
+                textParagraph.textContent = parts[0];
+                aiResponseContainer.appendChild(textParagraph);
+                
+                // Check if there is a language specified
+                var codeParts = parts[1].trim().split('\n');
+                var language = codeParts.length > 1 ? codeParts[0].trim() : null;
+                var codeSnippet = codeParts.slice(language ? 1 : 0).join('\n').trim();
+
+                // Create a container for the code snippet
+                var codeContainer = document.createElement('div');
+                codeContainer.classList.add('code-container');
+                // Create a pre element for the code
+                var codeElement = document.createElement('pre');
+                codeElement.textContent = codeSnippet;
+                codeContainer.appendChild(codeElement);
+
+                // Add a copy button
+                var copyButton = document.createElement('button');
+                copyButton.textContent = 'Copy';
+                copyButton.onclick = function() {
+                    // Copy the code to the clipboard
+                    copyCodeToClipboard(codeSnippet);
+                };
+                codeContainer.appendChild(copyButton);
+
+                aiResponseContainer.appendChild(codeContainer);
+
+                // Add language if available
+                if (language) {
+                    var languageElement = document.createElement('span');
+                    languageElement.textContent = 'Language: ' + language;
+                    aiResponseContainer.appendChild(languageElement);
                 }
-        
+            } else {
+                // If it doesn't contain code, create a paragraph for the entire response
+                var responseParagraph = document.createElement('p');
+                responseParagraph.innerHTML = makeLinksClickable(response); // Make links clickable
+                aiResponseContainer.appendChild(responseParagraph);
+            }
+
                 // Append the AI response container to the user input container
                 userContainer.appendChild(aiResponseContainer);
             } catch (error) {

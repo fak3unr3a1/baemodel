@@ -5,18 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Back</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Include your CSS file -->
+    <style>
+        .button-container {
+            text-align: center;
+            margin-top: 20px; /* Adjust margin as needed */
+            padding: 10px 20px; /* Add some padding to the buttons */
+        }
+
+        h1{
+        text-align: center
+        }
+        h2{
+            text-align: center
+        }
+
+        ul {
+            list-style-type: none; /* Remove list bullet points */
+            padding: 0; /* Remove default padding */
+        }
+        ul li {
+            margin-bottom: 5px; /* Add margin between list items */
+        }
+
+        button {
+            padding: 10px 20px; /* Add some padding to the buttons */
+
+        }
+
+
+    </style>
 </head>
 <body>
     <h1>Welcome Back, {{ name }}!</h1>
     <h2>Your AI Model</h2>
     <!-- Add content here to display the user's AI model -->
-    <button onclick="location.href='/index'" type="button">Interact with AI</button>
-    <button onclick="location.href='/settings'" type="button">Settings</button>
-
-    <!-- Use the button directly to trigger the getAvailableTasks() function -->
-    <button id="viewTasksButton" type="button">View Available Abilities</button>
-
-    <a href="tasks"><button type="button">Create An Ability</button></a>
+    <div class="button-container">
+        <button onclick="location.href='/index'" type="button">Interact with AI</button>
+        <button onclick="location.href='/settings'" type="button">Settings</button>
+        <!-- Add a button to view conversation history -->
+        <!-- Use the button directly to trigger the getAvailableTasks() function -->
+        <button id="viewTasksButton" type="button">View Available Abilities</button>
+        <a href="tasks"><button type="button">Abilities Page</button></a>
+    </div>
 
     <!-- Container to display the list of available tasks -->
     <div id="task_list_container"></div>

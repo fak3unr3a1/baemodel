@@ -396,15 +396,60 @@ def get_user_tasks():
         return jsonify({'user_tasks': user_tasks})
     except Exception as e:
         return jsonify({'error': f'Error retrieving user tasks: {str(e)}'})
-
-
-
-
-
-
-
-
     
+    
+    
+from bae import remove_task
+
+@app.route('/remove_task', methods=['POST'])
+def remove_task_route():
+    if request.method == 'POST':
+        task_name = request.form['task_name']  # Get the task name from the request
+        if task_name:
+            try:
+                # Call the remove_task function to delete the specified task
+                result_message = remove_task(task_name)
+                return jsonify({'message': result_message})  # Return the result message from remove_task
+            except Exception as e:
+                return jsonify({'error': f'Error removing task "{task_name}": {str(e)}'})
+        else:
+            return jsonify({'error': 'Task name not provided.'})
+
+
+
+
+from bae import users_db, display_conversation_history 
+
+# Route to display conversation history
+@app.route('/conversation_history')
+def conversation_history():
+    try:
+        # Check if the user is logged in
+        if 'email' in session:
+            email = session['email']
+
+            # Determine the collection for the user's chat history based on their email
+            user_chat_collection = users_db[email]
+            user = users_collection.find_one({'email': email})
+
+
+            # Retrieve the conversation history from the database
+            conversation_history = list(user_chat_collection.find().sort("_id", 1))
+
+            # Render the conversation history template with the retrieved data
+            return render_template('conversation_history.html', conversation_history=conversation_history , ai_name=user['ai_name'])
+        else:
+            # If user is not logged in, redirect to login page
+            return redirect(url_for('login'))
+    except Exception as e:
+        # Handle any errors that may occur
+        return jsonify({'error': str(e)})
+
+@app.route('/terms-of-service')
+def terms_of_service():
+    return render_template('terms_of_service.html')
+
+
 ##example usage
 
 if __name__ == '__main__':
