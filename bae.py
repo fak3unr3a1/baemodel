@@ -30,30 +30,7 @@ except pymongo.errors.ConnectionFailure as e:
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
 
-# import sys
 
-# def execute_task(task_name):
-#     try:
-        
-        
-#         project_folder = os.path.join(os.path.dirname(__file__), "usertasks")
-#         filename = os.path.join(project_folder, task_name, f"main.py")
-        
-        
-#         # Add the directory containing the module to the Python path
-#         module_dir = os.path.join(project_folder, task_name)
-#         sys.path.append(module_dir)
-        
-        
-#         with open(filename, "r") as file:
-#             code = file.read()
-#         exec(code)
-#     except FileNotFoundError as e:
-#         print("Task file not found:", e)
-#         logging.error("Task file not found: %s", e)
-#     except Exception as e:
-#         print("Error executing task:", e)
-#         logging.error("Error executing task: %s", e)
 
 
 
@@ -308,6 +285,46 @@ def display_conversation_history(user_email):
     except Exception as e:
         print("Error displaying conversation history:", e)
         logging.error("Error displaying conversation history: %s", e)
+        
+        
+
+ 
+
+
+import os
+import pygame
+import speech_recognition as sr
+
+import pygame.mixer as mixer
+
+def speak(text):
+    voice = "en-GB-RyanNeural"
+
+    # Generate the output file
+    output_file = "output.mp3"
+
+    # Run the TTS command
+    command = f'edge-tts --voice "{voice}" --text "{text}" --write-media "{output_file}"'
+    os.system(command)
+
+    pygame.init()
+    pygame.mixer.init()
+
+    try:
+        pygame.mixer.music.load(output_file)
+
+        # Wait for the previous playback to finish
+        pygame.mixer.music.play()
+        while pygame.mixer.music.get_busy():
+            pygame.time.Clock().tick(10)
+
+    except Exception as e:
+        print(e)
+
+    finally:
+        pygame.mixer.music.stop()
+        pygame.mixer.quit()       
+
 
 
 # if __name__ == "__main__":

@@ -23,6 +23,13 @@ form {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
 }
 
+/* Customize the appearance of highlighted text */
+::selection {
+    background-color: #807d76; /* Orange background color */
+    
+}
+
+
 /* Input fields */
 input[type="text"] {
     padding: 10px;

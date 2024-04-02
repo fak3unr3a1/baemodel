@@ -87,15 +87,48 @@ def home():
     else:
         email = session['email']
         user = users_collection.find_one({'email': email})
+        user_chat_collection = users_db[email]        
+          
+        
+        
         if user:
             if 'name' in user and 'ai_name' in user and user['name'] != '' and user['ai_name'] != '':
                 # User has already provided name and AI name, render home_existing_user.html
-                return render_template('home_existing_user.html', name=user['name'])
+                 # Retrieve the conversation history from the database
+                conversation_history = list(user_chat_collection.find().sort("_id", 1))
+                return render_template('home_existing_user.html', name=user['name'], conversation_history=conversation_history , ai_name=user['ai_name'])
             else:
                 # User needs to provide name and AI name
                 return render_template('home_new_user.html')
         else:
             return render_template('login.html')  # Render login page if user not found
+    
+from bae import users_db, display_conversation_history 
+
+# Route to display conversation history
+@app.route('/conversation_history')
+def conversation_history():
+    try:
+        # Check if the user is logged in
+        if 'email' in session:
+            email = session['email']
+
+            # Determine the collection for the user's chat history based on their email
+            user_chat_collection = users_db[email]
+            user = users_collection.find_one({'email': email})
+
+
+            # Retrieve the conversation history from the database
+            conversation_history = list(user_chat_collection.find().sort("_id", 1))
+
+            # Render the conversation history template with the retrieved data
+            return render_template('conversation_history.html', conversation_history=conversation_history , ai_name=user['ai_name'])
+        else:
+            # If user is not logged in, redirect to login page
+            return redirect(url_for('login'))
+    except Exception as e:
+        # Handle any errors that may occur
+        return jsonify({'error': str(e)})
 
         
         
@@ -313,7 +346,7 @@ def get_response():
                     # Save the data to session
                     session['response'] = {'assistant_response': assistant_response, 'task_completion_message': task_completion_message}
                     
-                    return jsonify({'response': assistant_response, 'task_completion_message': task_completion_message})
+                    # return jsonify({'response': assistant_response, 'task_completion_message': task_completion_message})
                 else:
                     # No task identified, continue with regular chat interaction
                     response_data = chat_with_bae(user_input, email)
@@ -418,32 +451,7 @@ def remove_task_route():
 
 
 
-from bae import users_db, display_conversation_history 
 
-# Route to display conversation history
-@app.route('/conversation_history')
-def conversation_history():
-    try:
-        # Check if the user is logged in
-        if 'email' in session:
-            email = session['email']
-
-            # Determine the collection for the user's chat history based on their email
-            user_chat_collection = users_db[email]
-            user = users_collection.find_one({'email': email})
-
-
-            # Retrieve the conversation history from the database
-            conversation_history = list(user_chat_collection.find().sort("_id", 1))
-
-            # Render the conversation history template with the retrieved data
-            return render_template('conversation_history.html', conversation_history=conversation_history , ai_name=user['ai_name'])
-        else:
-            # If user is not logged in, redirect to login page
-            return redirect(url_for('login'))
-    except Exception as e:
-        # Handle any errors that may occur
-        return jsonify({'error': str(e)})
 
 @app.route('/terms-of-service')
 def terms_of_service():

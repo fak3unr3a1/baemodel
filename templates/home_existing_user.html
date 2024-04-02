@@ -32,6 +32,37 @@
             padding: 10px 20px; /* Add some padding to the buttons */
 
         }
+        .top-buttons-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: transparent; /* Set initial background color to transparent */
+            padding: 0.05px 1px 1px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000; /* Ensure it's above other content */
+            border-radius: 16px;
+            transition: opacity 0.3s ease; /* Add a smooth transition effect */
+        }
+        .top-buttons-container:hover {
+            opacity: 1; /* Change opacity to 1 when hovered over */
+        }
+
+        .scroll-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: rgba(249, 249, 249, 0.001)            color: #fff; /* Button text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            
+        }
+
+        .scroll-button:hover {
+            background-color: #0056b3;
+        }
 
 
     </style>
@@ -40,7 +71,7 @@
     <h1>Welcome Back, {{ name }}!</h1>
     <h2>Your AI Model</h2>
     <!-- Add content here to display the user's AI model -->
-    <div class="button-container">
+    <div class="top-buttons-container">
         <button onclick="location.href='/index'" type="button">Interact with AI</button>
         <button onclick="location.href='/settings'" type="button">Settings</button>
         <!-- Add a button to view conversation history -->
@@ -54,6 +85,40 @@
 
     <!-- Task completion message container -->
     <div id="task_completion_message_container"></div>
+
+    <div class="container">
+        {% if conversation_history %}
+            <ul class="conversation-list">
+                {% for entry in conversation_history %}
+                    <li>
+                        <strong>User:</strong> {{ entry.user_query }}<br>
+                        <strong>{{ ai_name }}:</strong> {{ entry.ai_response }}<br>
+                        <strong>Timestamp:</strong> {{ entry.timestamp }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No conversation history available.</p>
+        {% endif %}
+    </div>
+
+
+
+    <!-- Scroll button to scroll to the bottom -->
+    <button class="scroll-button" onclick="scrollToBottom()">↓</button>
+
+    <!-- Ad container -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9723851544098708"
+        crossorigin="anonymous"></script>
+    <ins class="adsbygoogle"
+        style="display:block; text-align:center;"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-9723851544098708"
+        data-ad-slot="7420803719"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 
 
     <script>
@@ -99,6 +164,71 @@
                 console.error('An error occurred:', error);
             }
         }
+
+        // Function to scroll to the bottom of the page with animation
+function scrollToBottom() {
+    const scrollHeight = document.documentElement.scrollHeight;
+    const viewportHeight = window.innerHeight;
+    const scrollDuration = 1000; // Adjust the duration of the scroll animation (in milliseconds)
+
+    // Calculate the distance to scroll
+    const distance = scrollHeight - viewportHeight;
+
+    // Calculate how many pixels to scroll per frame
+    const scrollStep = Math.PI / (scrollDuration / 15);
+    let count = 0, currPos = 0;
+
+    // Start scrolling animation
+    requestAnimationFrame(step);
+
+    function step() {
+        if (currPos < distance) {
+            // Increment count to animate scroll step
+            count += 1;
+            // Calculate new position using sinusoidal easing function
+            const newPos = Math.round(distance * 0.5 * (1 - Math.cos(count * scrollStep)));
+            // Scroll to new position
+            window.scrollTo(0, newPos);
+            // Update current position
+            currPos = newPos;
+            // Continue animation
+            requestAnimationFrame(step);
+        } else {
+            // Scroll to the bottom of the page
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+    }
+}
+
+// Function to scroll to the top of the page with animation
+function scrollToTop() {
+    const scrollDuration = 1000; // Adjust the duration of the scroll animation (in milliseconds)
+
+    // Calculate how many pixels to scroll per frame
+    const scrollStep = Math.PI / (scrollDuration / 15);
+    let count = 0;
+
+    // Start scrolling animation
+    requestAnimationFrame(step);
+
+    function step() {
+        if (window.pageYOffset > 0) {
+            // Increment count to animate scroll step
+            count += 1;
+            // Calculate new position using sinusoidal easing function
+            const newPos = Math.round(window.pageYOffset * 0.5 * (1 - Math.cos(count * scrollStep)));
+            // Scroll to new position
+            window.scrollTo(0, newPos);
+            // Continue animation
+            requestAnimationFrame(step);
+        } else {
+            // Scroll to the top of the page
+            window.scrollTo(0, 0);
+        }
+    }
+}
+
+
     </script>
 </body>
 </html>
