@@ -291,39 +291,8 @@ def display_conversation_history(user_email):
  
 
 
-import os
-import pygame
-import speech_recognition as sr
 
-import pygame.mixer as mixer
 
-def speak(text):
-    voice = "en-GB-RyanNeural"
-
-    # Generate the output file
-    output_file = "output.mp3"
-
-    # Run the TTS command
-    command = f'edge-tts --voice "{voice}" --text "{text}" --write-media "{output_file}"'
-    os.system(command)
-
-    pygame.init()
-    pygame.mixer.init()
-
-    try:
-        pygame.mixer.music.load(output_file)
-
-        # Wait for the previous playback to finish
-        pygame.mixer.music.play()
-        while pygame.mixer.music.get_busy():
-            pygame.time.Clock().tick(10)
-
-    except Exception as e:
-        print(e)
-
-    finally:
-        pygame.mixer.music.stop()
-        pygame.mixer.quit()       
 
 
 
