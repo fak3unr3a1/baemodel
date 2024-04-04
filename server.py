@@ -80,28 +80,50 @@ def signup():
  
 
 
+from flask import Flask, request, render_template, session
+
+
+# Define the user-agent string for the AdSense crawler
+ADSENSE_USER_AGENT = "Mediapartners-Google"
+
 @app.route('/home')
 def home():
-    if 'email' not in session:
-        return render_template('login.html')  # Render login page if user not logged in
-    else:
-        email = session['email']
-        user = users_collection.find_one({'email': email})
-        user_chat_collection = users_db[email]        
-          
-        
-        
-        if user:
-            if 'name' in user and 'ai_name' in user and user['name'] != '' and user['ai_name'] != '':
-                # User has already provided name and AI name, render home_existing_user.html
-                 # Retrieve the conversation history from the database
-                conversation_history = list(user_chat_collection.find().sort("_id", 1))
-                return render_template('home_existing_user.html', name=user['name'], conversation_history=conversation_history , ai_name=user['ai_name'])
-            else:
-                # User needs to provide name and AI name
-                return render_template('home_new_user.html')
+  # Check if the request is from the AdSense crawler
+    user_agent = request.headers.get("User-Agent")
+    if user_agent == ADSENSE_USER_AGENT:
+        # Fetch the user's email address from the session
+        email = session.get('email')
+        if email:
+            # Fetch the user's chat history from the database based on their email address
+            user_chat_collection = users_db[email]
+            conversation_history = list(user_chat_collection.find().sort("_id", 1))
+            # Render the template with the user's chat history
+            return render_template('conversation_history.html', conversation_history=conversation_history)
         else:
-            return render_template('login.html')  # Render login page if user not found
+            # If the user is not logged in, return a message or redirect to login page
+            return "User is not logged in"
+    else:
+        # Serve regular content for other users
+        if 'email' not in session:
+            return render_template('login.html')  # Render login page if user not logged in
+        else:
+            email = session['email']
+            user = users_collection.find_one({'email': email})
+            user_chat_collection = users_db[email]
+            
+            if user:
+                if 'name' in user and 'ai_name' in user and user['name'] != '' and user['ai_name'] != '':
+                    # User has already provided name and AI name, render home_existing_user.html
+                    # Retrieve the conversation history from the database
+                    conversation_history = list(user_chat_collection.find().sort("_id", 1))
+                    return render_template('home_existing_user.html', name=user['name'], conversation_history=conversation_history, ai_name=user['ai_name'])
+                else:
+                    # User needs to provide name and AI name
+                    return render_template('home_new_user.html')
+            else:
+                return render_template('login.html')  # Render login page if user not found
+
+
     
 from bae import users_db, display_conversation_history 
 

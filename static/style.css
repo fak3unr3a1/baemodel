@@ -1,6 +1,6 @@
 /* Body */
 body {
-    font-family: 'Roboto', sans-serif; /* Change the font to Roboto */
+    font-family: 'Verdana', sans-serif; /* Change the font to Roboto */
     margin: 20px;
     background-color: #1b1a1ae4; /* Light gray background */
     color: #9b9a9a; /* Dark gray text color */
@@ -10,7 +10,7 @@ body {
 /* Headings */
 h1 {
     
-    font-family: 'Montserrat', sans-serif; /* Change font to Montserrat */
+    font-family: 'Verdana', sans-serif; /* Change font to Montserrat */
 }
 
 /* Form */
@@ -40,6 +40,7 @@ input[type="text"] {
 /* Scrollbar */
 ::-webkit-scrollbar {
     width: 10px; /* Adjust scrollbar width */
+    background: #1399ad;
 }
 
 ::-webkit-scrollbar-track {

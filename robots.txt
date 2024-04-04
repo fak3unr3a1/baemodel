@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /login
+Disallow: /account
+Disallow: /admin
+
+User-agent: AdSense
+Allow: /home
