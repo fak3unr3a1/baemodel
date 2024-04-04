@@ -38,9 +38,14 @@ try:
 except pymongo.errors.ConnectionFailure as e:
     print("Error connecting to MongoDB Atlas:", e)
 
+ADSENSE_USER_AGENT = "Mediapartners-Google"
+
 @app.route('/')
 def login():
-    if 'email' in session:
+    user_agent = request.headers.get("User-Agent")
+    if user_agent == ADSENSE_USER_AGENT:
+        return redirect('/home')
+    elif 'email' in session:
         return redirect('/home')  # Redirect to home page if user is already logged in
     else:
         return render_template('login.html')

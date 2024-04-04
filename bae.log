@@ -6779,3 +6779,4 @@ INFO:werkzeug:127.0.0.1 - - [04/Apr/2024 17:43:26] "GET /home HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [04/Apr/2024 17:43:27] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [04/Apr/2024 17:43:44] "GET /index HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [04/Apr/2024 17:43:44] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
