@@ -62,7 +62,7 @@ button {
     overflow: hidden;
     height: 1.9rem;
     padding: 0 1.5rem;
-    border-radius: 1.5rem;
+    border-radius: 25%;
     background: linear-gradient(82.3deg, rgb(16, 89, 200) 10.8%, rgba(202, 37, 95, 0.664) 94.3%);
     color: #fff;
     border: none;

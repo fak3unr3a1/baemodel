@@ -1,0 +1,41 @@
+<!-- creatorlogin.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Include your CSS file -->
+</head>
+<body>
+    <h1>Creator Login</h1>
+
+    <!-- Creator login form -->
+    <form action="/creator-signin" method="post">
+        <h2>Login</h2>
+        <label for="cemail">Email</label>
+        <input type="email" id="cemail" name="email" placeholder="Your email" required>
+        <label for="cpassword">Password</label>
+        <input type="password" id="cpassword" name="password" placeholder="Your password" required>
+        <button type="submit">Login</button>
+    </form>
+
+    <!-- Creator signup form -->
+    <form action="/creator-signup" method="post">
+        <h2>Sign Up</h2>
+        <label for="cname">Name</label>
+        <input type="text" id="cname" name="name" placeholder="Your name" required>
+        <label for="csemail">Email</label>
+        <input type="email" id="csemail" name="email" placeholder="Your email" required>
+        <label for="cphone">Phone Number</label>
+        <input type="tel" id="cphone" name="phone" placeholder="Your phone number" required>
+        <label for="ccountry">Country</label>
+        <input type="text" id="ccountry" name="country" placeholder="Your country" required>
+        <label for="caddress">Address</label>
+        <input type="text" id="caddress" name="address" placeholder="Your address" required>
+        <label for="cspassword">Password</label>
+        <input type="password" id="cspassword" name="password" placeholder="Your password" required>
+        <button type="submit">Sign up</button>
+    </form>
+</body>
+</html>

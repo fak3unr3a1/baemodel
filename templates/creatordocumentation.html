@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Creator Documentation</title>
+</head>
+<body>
+    <h1>Creator Documentation</h1>
+    <h2>Submitting Tasks and Abilities</h2>
+    <p>To submit a task or ability for the AI model, creators utilize several routes:</p>
+    <ul>
+        <li><code>/submit_task</code>: Use this route to submit a task along with its main module name.</li>
+        <li><code>/submit_repo</code>: This route is for submitting a GitHub repository link, along with the necessary metadata such as folder name, task description, and main module name.</li>
+        <li><code>/submit_installation</code>: Use this route to submit an installation command if required for the task.</li>
+    </ul>
+
+    <h2>Potential Errors and Troubleshooting</h2>
+    <p>Creators might encounter various errors while submitting their tasks. Here are some common issues and how to resolve them:</p>
+    <ul>
+        <li><strong>Task Identification:</strong> Ensure that the task can be identified correctly using the <code>identify_task</code> function. If the task is not identified, creators will receive an error indicating the task was not recognized.</li>
+        <li><strong>Repository Submission:</strong> Make sure all required fields, including repository link, folder name, task description, and main module name, are provided when submitting a repository. Failure to provide any of these fields will result in an error.</li>
+        <li><strong>Folder Creation:</strong> Check if the specified folder for the task can be created successfully. If there are any issues with folder creation, creators will receive an error message indicating the problem.</li>
+        <li><strong>File Writing:</strong> Verify that the task description, main module name, and creator's email are written to their respective files within the task folder. Any errors encountered during file writing will be reported to the creator.</li>
+        <li><strong>UUID Generation:</strong> Ensure that the UUID for the task is generated and saved successfully. If there are any issues with UUID generation or saving, creators will receive an error message.</li>
+        <li><strong>Installation Command:</strong> If an installation command is required for the task, make sure it is provided correctly. Any errors during installation will be reported to the creator.</li>
+    </ul>
+
+    <h2>Writing Code for Tasks</h2>
+    <p>When writing code for tasks or abilities, creators should follow these guidelines:</p>
+    <ul>
+        <li>Define a main function in the main module with the signature <code>main(query=None)</code>. This function will be executed when the task is invoked.</li>
+        <li>Handle exceptions and errors gracefully within the task code to provide meaningful error messages to users.</li>
+        <li>Ensure that the task can be executed independently and does not rely on external factors unless explicitly stated in the task description.</li>
+    </ul>
+
+    <h1>Task Execution Process</h1>
+    <ol>
+        <li><strong>Task Enablement:</strong> Before executing a task, the AI model checks if the task is enabled for the user. This ensures that users can only execute tasks that have been specifically enabled for them.</li>
+        <li><strong>Loading Task Code:</strong> The AI model dynamically loads the main module associated with the task. Creators need to ensure that their task code is structured within a main module and follows the specified function signature (<code>main(query=None)</code>).</li>
+        <li><strong>Execution:</strong> Once the main module is loaded, the AI model calls the <code>main()</code> function of the module. Creators can define their task logic within this function, processing user input (<code>query</code>) if necessary.</li>
+        <li><strong>Result Handling:</strong> After executing the task, the AI model handles the result accordingly. If the task produces an output file, it is moved to a designated folder for executed tasks.</li>
+    </ol>
+
+    <h1>Tips for Writing Task Code</h1>
+    <ol>
+        <li><strong>Main Module Structure:</strong> Creators should organize their task code within a main module file. This file should contain a <code>main()</code> function that encapsulates the task logic.</li>
+        <li><strong>Error Handling:</strong> It's crucial to implement robust error handling within the task code. This ensures that any errors encountered during task execution are properly reported to the AI model and ultimately to the user.</li>
+        <li><strong>Independent Execution:</strong> Tasks should be designed to execute independently, without reliance on external factors unless explicitly specified in the task description. This ensures consistent behavior and portability across different environments.</li>
+        <li><strong>Task Enablement Check:</strong> Creators should be mindful of task enablement when designing their tasks. If a task requires specific enablement conditions, such as user permissions or prerequisites, these should be clearly documented and enforced within the task code.</li>
+    </ol>
+
+    <p>By following these guidelines and understanding the potential errors, creators can effectively contribute tasks and abilities to the AI model.</p>
+</body>
+</html>

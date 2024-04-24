@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your BAEs Web Interface</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <meta name="google-adsense-account" content="ca-pub-9723851544098708">
     <style>
         /* Define CSS animation for streaming effect */
         @keyframes streamingEffect {
@@ -37,7 +36,7 @@
         /* Apply animation to AI response */
         #ai_response_container p {
             font-family: Verdana, sans-serif;
-            font-size: 23px; /* Adjust font size as needed */
+            font-size: 37px; /* Adjust font size as needed */
             line-height: 2.0;
             padding: 10px; /* Add padding for spacing */
             max-height: 300px;
@@ -212,7 +211,10 @@
         <h1>{{ai_name}}'s Web Interface</h1>
         <div class="top-buttons">
             <a href="/home"><button>Back To Home Page</button></a>
-            <a href="tasks"><button type="button">Abilities Page</button></a>  
+            <a href="/store"><button type="button">View Store</button></a>
+            <a href="tasks"><button type="button">Abilities Page</button></a>
+
+  
         </div>
     </div>
 
@@ -312,10 +314,47 @@
                 
                 // Display stored data
                 displayStoredData(); // Call the function to display stored data
+                sendUserInputToServer(userInput);
+
             } catch (error) {
                 console.error('An error occurred:', error);
             }
         }
+
+        function sendUserInputToServer(userInput) {
+            // Make an AJAX request to the server
+            $.ajax({
+                type: "POST",
+                url: "/get_response",
+                data: { user_input: userInput },
+                success: function(response) {
+                    if (response.error) {
+                        // Display error message to the user without refreshing the page
+                        displayErrorMessage(response.error);
+                    } else if (response.response) {
+                        // Display the response from the server to the user without refreshing the page
+                        displayAIResponse(response.response);
+                    } else {
+                        // Handle other cases if needed
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Handle AJAX errors if needed
+                    console.error("Error:", error);
+                }
+            });
+        }
+        
+        function displayErrorMessage(errorMessage) {
+            // Create a div element to hold the error message
+            var errorContainer = document.createElement('div');
+            errorContainer.classList.add('error-container');
+            errorContainer.textContent = errorMessage;
+            
+            // Append the error message to the AI response container
+            document.getElementById('ai_response_container').appendChild(errorContainer);
+        }
+        
 
         function identifyCodeSnippets(response) {
             // Regular expression to match code snippets enclosed within triple backticks
@@ -440,59 +479,63 @@
                 }
                 
                 // Check if the response contains code snippets
-            if (response.includes('```')) {
-                // If it contains code, split the response into text and code parts
-                var parts = response.split('```');
-                // Create a paragraph for the text part
-                var textParagraph = document.createElement('p');
-                textParagraph.textContent = parts[0];
-                aiResponseContainer.appendChild(textParagraph);
-                
-                // Check if there is a language specified
-                var codeParts = parts[1].trim().split('\n');
-                var language = codeParts.length > 1 ? codeParts[0].trim() : null;
-                var codeSnippet = codeParts.slice(language ? 1 : 0).join('\n').trim();
-
-                // Create a container for the code snippet
-                var codeContainer = document.createElement('div');
-                codeContainer.classList.add('code-container');
-                // Create a pre element for the code
-                var codeElement = document.createElement('pre');
-                codeElement.textContent = codeSnippet;
-                codeContainer.appendChild(codeElement);
-
-                // Add a copy button
-                var copyButton = document.createElement('button');
-                copyButton.textContent = 'Copy';
-                copyButton.onclick = function() {
-                    // Copy the code to the clipboard
-                    copyCodeToClipboard(codeSnippet);
-                };
-                codeContainer.appendChild(copyButton);
-
-                aiResponseContainer.appendChild(codeContainer);
-
-                // Add language if available
-                if (language) {
-                    var languageElement = document.createElement('span');
-                    languageElement.textContent = 'Language: ' + language;
-                    aiResponseContainer.appendChild(languageElement);
+                if (response.includes('```')) {
+                    // If it contains code, split the response into text and code parts
+                    var parts = response.split('```');
+                    // Create a paragraph for the text part
+                    var textParagraph = document.createElement('p');
+                    textParagraph.textContent = parts[0];
+                    aiResponseContainer.appendChild(textParagraph);
+                    
+                    // Check if there is a language specified
+                    var codeParts = parts[1].trim().split('\n');
+                    var language = codeParts.length > 1 ? codeParts[0].trim() : null;
+                    var codeSnippet = codeParts.slice(language ? 1 : 0).join('\n').trim();
+        
+                    // Create a container for the code snippet
+                    var codeContainer = document.createElement('div');
+                    codeContainer.classList.add('code-container');
+                    // Create a pre element for the code
+                    var codeElement = document.createElement('pre');
+                    codeElement.textContent = codeSnippet;
+                    codeContainer.appendChild(codeElement);
+        
+                    // Add a copy button
+                    var copyButton = document.createElement('button');
+                    copyButton.textContent = 'Copy';
+                    copyButton.onclick = function() {
+                        // Copy the code to the clipboard
+                        copyCodeToClipboard(codeSnippet);
+                    };
+                    codeContainer.appendChild(copyButton);
+        
+                    aiResponseContainer.appendChild(codeContainer);
+        
+                    // Add language if available
+                    if (language) {
+                        var languageElement = document.createElement('span');
+                        languageElement.textContent = 'Language: ' + language;
+                        aiResponseContainer.appendChild(languageElement);
+                    }
+                } else {
+                    // If it doesn't contain code, create a paragraph for the entire response
+                    var responseParagraph = document.createElement('p');
+                    responseParagraph.innerHTML = makeLinksClickable(response); // Make links clickable
+                    aiResponseContainer.appendChild(responseParagraph);
                 }
-            } else {
-                // If it doesn't contain code, create a paragraph for the entire response
-                var responseParagraph = document.createElement('p');
-                responseParagraph.innerHTML = makeLinksClickable(response); // Make links clickable
-                aiResponseContainer.appendChild(responseParagraph);
-            }
-
+        
                 // Append the AI response container to the user input container
                 userContainer.appendChild(aiResponseContainer);
             } catch (error) {
                 console.error('An error occurred:', error);
-                // Reload the webpage
-                window.location.reload();
+                // Display an error message to the user without refreshing the page
+                displayErrorMessage("Tried to process your request :)");
             }
         }
+        
+
+
+        
         
 
 
@@ -500,6 +543,7 @@
         function makeLinksClickable(text) {
             return text.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
         }
+
 
         
 

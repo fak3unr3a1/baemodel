@@ -10,13 +10,13 @@
 <style>
     * {
         box-sizing: border-box;
-        border-radius: 25px;
+        border-radius: 15px;
      }
      body {
         background-image: url("{{ url_for('static', filename='backgroundowl.jpg') }}");
         background-size: cover;
         background-position: center;
-        border-radius: 25px;
+        border-radius: 15px;
     }
     
     
@@ -24,7 +24,7 @@
     a {
         text-decoration: none;
         color: inherit;
-        border-radius: 25px;
+        border-radius: 15px;
     }
     
     main {
@@ -34,12 +34,12 @@
         margin: 100px auto 0;
         max-width: 800px;
         overflow: hidden;
-        border-radius: 25px;
+        border-radius: 15px;
     }
     
     main > * {
         grid-row: 1 / 2;
-        border-radius: 25px;
+        border-radius: 15px;
     }
     
     .login, .signup {
@@ -52,43 +52,43 @@
         color: #fff;
         font-size: 23px;
         background-color: #d3c9c9; /* Use the same color as in your style.css */
-        border-radius: 25px;
+        border-radius: 15px;
     }
     
     .login > button, .signup > button {
         border: none;
         background-color: #fff;
         color: #333; /* Use the same color as in your style.css */
-        border-radius: 25px;
+        border-radius: 15px;
     }
     
     .login {
         grid-column: 1 / 2;
-        border-radius: 25px;
+        border-radius: 15px;
     }
     
     .signup {
         grid-column: 2 / 3;
-        border-radius: 25px;
+        border-radius: 15px;
     }
     
     .login-form {
         grid-column: 1 / 2;
         transform: translateX(-100%);
-        border-radius: 25px;
+        border-radius: 15px;
     }
     
     .signup-form {
         grid-column: 2 / 3;
         transform: translateX(100%);
-        border-radius: 25px;
+        border-radius: 15px;
     }
     
     
     
     form.active {
         transform: translateX(0);
-        border-radius: 25px;
+        border-radius: 15px;
     }
     
     .back-layer {
@@ -99,7 +99,7 @@
         background-color: #fff;
         z-index: 5;
         transition: clip-path 0.3s;
-        border-radius: 25px;
+        border-radius: 15px;
     }
     
     input {
@@ -113,7 +113,7 @@
         margin-top: 5px;
         outline: none;
         color: #333; /* Dark gray text color */
-        border-radius: 25px;
+        border-radius: 15px;
     }
     
     input:focus {
@@ -132,23 +132,23 @@
           padding: 20px; /* Adjust padding for better spacing */
           width: 100%; /* Make sure both sections take up the full width */
           text-align: center; /* Center the content */
-          border-radius: 25px;
+          border-radius: 15px;
         }
       
         .login, .signup, .back-layer {
           position: relative; /* Set position to relative for proper stacking */
-          border-radius: 25px;
+          border-radius: 15px;
         }
       
         .back-layer {
           clip-path: none; /* Remove clip-path to display both forms */
           display: block; /* Ensure the back-layer takes up full width */
-          border-radius: 25px;
+          border-radius: 15px;
         }
       
         .login-form, .signup-form {
           transform: none; /* Reset the transform to display forms properly */
-          border-radius: 25px;
+          border-radius: 15px;
         }
       }
       .terms a {
@@ -168,7 +168,9 @@
 <body>
 
     <!-- Add the image at the top of the page -->
-    <img src="{{ url_for('static', filename='backgroundowl.jpg') }}" alt="Background Owl" style="width: 100%;">
+
+    <img src="{{ url_for('static', filename='images/f06ffbda-0c5b-4bd8-a53e-168fdfc2d669.jpg') }}" alt="Terms Image alt="Background Owl" style="width: 100%;"">
+
     <!-- Make sure the path to 'backgroundowl.jpg' is correct -->
 
     <main>
@@ -212,6 +214,7 @@
                     By signing up, you agree to our <a href="/terms-of-service" target="_blank">Terms of Service</a>.
                 </div>
             </form>
+
 
             
         </div>

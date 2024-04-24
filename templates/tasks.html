@@ -58,6 +58,7 @@
 <body>
     <h1>Abilities Page</h1>
     <h2>Add An Ability You Would Like {{ai_name}} To Perform</h2>
+    <p>"main module should look like this 'main(query=None)' for the parameter of the task"</p>
 
     <!-- Button to return to index.html -->
     <button onclick="location.href='/index'" type="button">To AI Model</button>
@@ -65,27 +66,35 @@
 
     
 
-    <!-- Form for submitting repository link, folder name, Ability description, main module name, and installation command -->
     <form id="submitForm" onsubmit="return validateForm()">
         <label for="repo_link">Repository Link (GitHub only):</label>
-        <input type="text" id="repo_link" placeholder="insert your repo link"name="repo_link" required>
-
+        <input type="text" id="repo_link" name="repo_link" placeholder="Insert your GitHub repo link" required>
+    
         <label for="folder_name">Ability Name:</label>
-        <input type="text" id="folder_name" name="folder_name" required>
+        <input type="text" id="folder_name" name="folder_name" placeholder="Enter the name of your ability" required>
 
-        <!-- Additional fields -->
-        <label for="task_description">Ability Description: (more than 15 words):</label>
-        <textarea id="task_description" name="task_description" required placeholder="Explain how you might use it e.g. {{ai_name}} take a screenshot"></textarea>
 
+        <label for="task_description">Ability Description:</label>
+        <textarea id="task_description" name="task_description" placeholder="Describe how the ability works (15+ words)" required></textarea>
+    
         <label for="main_module_name">Main Module Name:</label>
-        <input type="text" id="main_module_name"placeholder="e.g. main.py" name="main_module_name" required>
-
+        <input type="text" id="main_module_name" name="main_module_name" placeholder="Enter the name of your main module (e.g., main.py)" required>
+    
         <label for="installation_command">Installation Command (if required):</label>
-        <input type="text" id="installation_command" name="installation_command"placeholder="e.g.pip install -r requirements.txt">
+        <input type="text" id="installation_command" name="installation_command" placeholder="Enter installation command (e.g., pip install -r requirements.txt)">
+       <!-- Generated UUID field -->
+       <input type="hidden" id="task_uuid" name="task_uuid">
 
-        <!-- Button to submit repository data and installation command -->
+       <input type="hidden" id="user_email" value="{{ session.email }}">
+
+        
+
+        
+
+    
         <button type="submit">Submit Repository and Install Libraries</button>
     </form>
+    
 
     <!-- Display the results -->
     <div id="results_container"></div>
@@ -100,6 +109,17 @@
         </form>
         <div id="remove_task_result"></div>
     </div>
+
+    <!-- Display submitted tasks -->
+    <h2>Submitted Tasks</h2>
+    <ul>
+        {% for task in user_tasks %}
+            <li>
+                Task Name: {{ task.name }} <br>
+                Task Description: {{ task.description }} <br>
+            </li>
+        {% endfor %}
+    </ul>
 
     <!-- JavaScript for handling repository and installation submission -->
     <script>
@@ -133,49 +153,105 @@
             }
         };
 
+        function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0,
+                    v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        function generateUUID() {
+            var uuid = uuidv4(); // Assuming you have included a library for generating UUIDs
+            document.getElementById('task_uuid').value = uuid; // Set the value of the hidden input field
+        }
+        // Call the generateUUID() function after all HTML elements are loaded
+        window.onload = function() {
+            generateUUID();
+        };        
+
         function submitRepoAndInstall() {
             var repoLink = document.getElementById('repo_link').value;
             var folderName = document.getElementById('folder_name').value;
             var taskDescription = document.getElementById('task_description').value;
             var mainModuleName = document.getElementById('main_module_name').value;
             var installationCommand = document.getElementById('installation_command').value;
-    
+        
+            // Retrieve the user's email from the hidden input field
+            var userEmail = document.getElementById('user_email').value;
+            console.log(userEmail); // Add this line to verify the email retrieval
+        
+            // Create a new XMLHttpRequest object for submitting repository data
             var xhrRepo = new XMLHttpRequest();
             xhrRepo.open('POST', '/submit_repo', true);
             xhrRepo.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        
+            // Define the callback function for handling the response from submitting repository data
             xhrRepo.onreadystatechange = function () {
                 if (xhrRepo.readyState == 4 && xhrRepo.status == 200) {
-                    // Handle response from submitting repository data if needed
-                    console.log(xhrRepo.responseText);
+                    var response = JSON.parse(xhrRepo.responseText);
+                    console.log(response); // Check the response structure in the console
+                    // Display success message along with task UUID
+                    document.getElementById('results_container').innerHTML = '<p>Repository submitted successfully! Your Tasks UUID: ' + response.task_uuid + '</p>';
                     
-                    // Check if an installation command is provided
-                    if (installationCommand) {
-                        // Submit installation command only if provided
-                        var xhrInstall = new XMLHttpRequest();
-                        xhrInstall.open('POST', '/submit_installation', true);
-                        xhrInstall.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                        xhrInstall.onreadystatechange = function () {
-                            if (xhrInstall.readyState == 4) {
-                                if (xhrInstall.status == 200) {
-                                    // Handle successful response from submitting installation command
-                                    console.log(xhrInstall.responseText);
-                                } else {
-                                    // Handle error response from submitting installation command
-                                    console.error('Error:', xhrInstall.status);
+                    // Save the unique code to a .txt file
+                    var xhrSaveUUID = new XMLHttpRequest();
+                    xhrSaveUUID.open('POST', '/save_uuid', true);
+                    xhrSaveUUID.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        
+                    // Define the callback function for handling the response from saving the UUID
+                    xhrSaveUUID.onreadystatechange = function () {
+                        if (xhrSaveUUID.readyState == 4) {
+                            if (xhrSaveUUID.status == 200) {
+                                // Handle successful response from saving the UUID
+                                console.log(xhrSaveUUID.responseText);
+        
+                                // Check if an installation command is provided
+                                if (installationCommand) {
+                                    // Submit installation command only if provided
+                                    var xhrInstall = new XMLHttpRequest();
+                                    xhrInstall.open('POST', '/submit_installation', true);
+                                    xhrInstall.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        
+                                    // Define the callback function for handling the response from submitting installation command
+                                    xhrInstall.onreadystatechange = function () {
+                                        if (xhrInstall.readyState == 4) {
+                                            if (xhrInstall.status == 200) {
+                                                // Handle successful response from submitting installation command
+                                                console.log(xhrInstall.responseText);
+                                            } else {
+                                                // Handle error response from submitting installation command
+                                                console.error('Error:', xhrInstall.status);
+                                            }
+                                        }
+                                    };
+                                    // Send installation command to the server
+                                    xhrInstall.send('installation_command=' + encodeURIComponent(installationCommand));
                                 }
+                            } else {
+                                // Handle error response from saving the UUID
+                                console.error('Error:', xhrSaveUUID.status);
                             }
-                        };
-                        // Send installation command to the server
-                        xhrInstall.send('installation_command=' + encodeURIComponent(installationCommand));
-                    }
-                    // Display success message
-                    document.getElementById('results_container').innerHTML = '<p>Ability submitted successfully!</p>';
+                        }
+                    };
+                    // Send the folder name, task UUID, and user email to the server for saving
+                    xhrSaveUUID.send('folder_name=' + folderName + '&task_uuid=' + response.task_uuid + '&user_email=' + userEmail);
                 }
             };
+        
             // Send repository data to the server
-            var formData = 'repo_link=' + repoLink + '&folder_name=' + folderName + '&task_description=' + encodeURIComponent(taskDescription) + '&main_module_name=' + mainModuleName;
+            // Append user's email to the form data
+            var formData = 'repo_link=' + repoLink + '&folder_name=' + folderName + '&task_description=' + encodeURIComponent(taskDescription) + '&main_module_name=' + mainModuleName + '&user_email=' + userEmail;
             xhrRepo.send(formData);
+            generateUUID(); // Assuming this function generates a UUID for each task
         }
+        
+        
+
+
+        
+
+
 
 
         function removeTask() {

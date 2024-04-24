@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 95px;
+            color: white;
+            cursor: pointer;
+        }
+
+  
+
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            padding: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        ul li:last-child {
+            border-bottom: none;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div class="container">
+        <h1>Task Store</h1>
+        <div style="text-align: center;">
+            <a href="/home"><button>Back To Home Page</button></a>
+            <button onclick="location.href='/index'" type="button">Interact with AI</button>
+        </div>
+
+        <!-- Search bar -->
+        <div style="text-align: center;">
+            <input type="text" id="searchInput" placeholder="Search by UUID or Ability Name">
+            <button onclick="searchTasks()">Search</button>
+        </div>
+
+        <!-- Display folders with description and uuid -->
+        <ul>
+            {% for folder in folders %}
+            <li>
+                <strong>Ability Name:</strong> {{ folder.name }}<br>
+                <strong>Description:</strong> {{ folder.description }}<br>
+                <strong>UUID:</strong> {{ folder.uuid }}<br>
+                <button onclick="enableTask('{{ folder.uuid }}')">Enable Task</button>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Add a form for enabling tasks -->
+        <form id="enableTaskForm" method="post">
+            <!-- This is where the enabled task folders will be copied -->
+        </form>
+    </div>
+
+    <script>
+// Function to send a POST request to enable a task
+function enableTask(taskUUID) {
+    // Extract only the UUID without any additional text
+    taskUUID = taskUUID.trim();
+
+    console.log(taskUUID); // Log the task UUID before sending the request
+    // Send a POST request to enable the task
+    fetch('/enable_task', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json' // Change content type to JSON
+        },
+        body: JSON.stringify({task_uuid: taskUUID}) // Pass task_uuid in the request body as JSON
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Response from server:', data); // Log the response from the server
+        if (data.success) {
+            alert('Task enabled successfully');
+            // Optionally, you can reload the page to reflect the changes
+            location.reload();
+        } else {
+            // Check if the error message indicates that the task is already enabled
+            if (data.error.includes('already enabled')) {
+                alert('Task already enabled for the user');
+            } else {
+                alert('Error enabling task: ' + data.error);
+            }
+        }
+    })
+    .catch(error => {
+        console.error('An error occurred while enabling the task:', error); // Log any errors that occur
+        alert('An error occurred while enabling the task: ' + error);
+    });
+}
+
+
+
+
+           // Function to search for tasks
+    function searchTasks() {
+        var input, filter, ul, li, i, txtValue;
+        input = document.getElementById('searchInput');
+        filter = input.value.toUpperCase();
+        ul = document.getElementsByTagName('ul')[0]; // Get the first <ul> element
+        li = ul.getElementsByTagName('li');
+        for (i = 0; i < li.length; i++) {
+            txtValue = li[i].textContent || li[i].innerText; // Get all text content within the <li>
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+    </script>
+</body>
+</html>

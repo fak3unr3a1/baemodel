@@ -1,223 +1,121 @@
-
-
-
-
+# from flask import Flask, render_template, request, jsonify
+# import speech_recognition as sr
+# from gtts import gTTS
 # import os
-# import spacy
-# import pymongo
-# import g4f
-# from difflib import SequenceMatcher
-# import logging
-
-# # Configure logging
-# logging.basicConfig(filename='bae.log', level=logging.ERROR)
-
-# # Load the English language model for spaCy
-# nlp = spacy.load("en_core_web_sm")
-
-# # Connect to MongoDB Atlas
-# try:
-#     client = pymongo.MongoClient("mongodb+srv://UNR3A1:JXoO1X4EY6iArT0E@baemodelcluster.yvin3kv.mongodb.net/")
-#     db = client["chat_history"]  # Connecting to the "chat_history" database
-#     users_db = client["user_database"]  # Connecting to the "user_database" database
-# except pymongo.errors.ConnectionFailure as e:
-#     print("Failed to connect to MongoDB Atlas:", e)
-#     logging.error("Failed to connect to MongoDB Atlas: %s", e)
-    
-    
-    
-# def similar(a, b):
-#     return SequenceMatcher(None, a, b).ratio()
-
-# def execute_task(task_name):
-#     try:
-#         project_folder = r"C:\Users\cglyn\BAE4\B.A.E\usertasks"
-#         filename = os.path.join(project_folder, task_name, f"task.py")  # Adjusted file path
-#         with open(filename, "r") as file:
-#             code = file.read()
-#         exec(code)
-#     except FileNotFoundError as e:
-#         print("Task file not found:", e)
-#         logging.error("Task file not found: %s", e)
-#     except Exception as e:
-#         print("Error executing task:", e)
-#         logging.error("Error executing task: %s", e)
-
-# def identify_task(query):
-#     try:
-#         project_folder = r"C:\Users\cglyn\BAE4\B.A.E\usertasks"
-#         query_keywords = set(token.text for token in nlp(query) if not token.is_stop)
-#         best_match_folder = None
-#         best_match_score = 0.0
-
-#         for folder_name in os.listdir(project_folder):
-#             folder_path = os.path.join(project_folder, folder_name)
-#             if os.path.isdir(folder_path):
-#                 description_file = os.path.join(folder_path, 'task_description.txt')
-#                 if os.path.exists(description_file):
-#                     # Read the task description from the file
-#                     with open(description_file, 'r') as desc_file:
-#                         description = desc_file.read()
-                    
-#                     # Preprocess the task description
-#                     desc_doc = nlp(description)
-#                     desc_keywords = set(token.text for token in desc_doc if not token.is_stop)
-                    
-#                     # Calculate similarity between query and task description
-#                     score = len(query_keywords.intersection(desc_keywords)) / len(query_keywords.union(desc_keywords))
-                    
-#                     # Update best match folder
-#                     if score > best_match_score:
-#                         best_match_folder = folder_name
-#                         best_match_score = score
-
-#         return best_match_folder
-#     except Exception as e:
-#         print("Error identifying task:", e)
-#         logging.error("Error identifying task: %s", e)
-
-# def chat_with_bae(query, user_email):
-#     try:
-#         if not query.strip() or not user_email:
-#             print("Please enter a valid query and user email.")
-#             return
-
-#         # Determine the collection for the user's chat history based on their email
-#         user_chat_collection = users_db[user_email]
-
-#         # Retrieve relevant context from the database
-#         context = get_relevant_context(user_chat_collection, query)
-        
-#         # Check if there is relevant context available
-#         if context:
-#             # Extract the previous query and response
-#             previous_query = context[0]["user_query"]
-#             previous_response = context[0]["ai_response"]
-            
-#             # Use the previous query and response to provide context for the current query
-#             response = g4f.ChatCompletion.create(
-#                 model=g4f.models.mixtral_8x7b,
-#                 messages=[
-#                     {"role": "user", "content": previous_query},
-#                     {"role": "assistant", "content": previous_response},
-#                     {"role": "user", "content": query}
-#                 ],
-#                 stream=True,
-#             )
-#         else:
-#             # If no relevant context found, respond to the current query without context
-#             response = g4f.ChatCompletion.create(
-#                 model=g4f.models.mixtral_8x7b,
-#                 messages=[{"role": "user", "content": query}],
-#                 stream=True,
-#             )
-
-#         # Process and save response
-#         result = ''
-#         for message in response:
-#             try:
-#                 print(message, flush=True, end='')
-#                 result += message
-#             except UnicodeEncodeError:
-#                 print("An emoji is supposed to be here :).")
-
-#         # Save current query to the conversation history
-#         user_chat_collection.insert_one({"user_query": query, "ai_response": result})
-
-#         # Prepare the output data
-#         output_data = {'assistant_response': result}
-        
-#         # Return the output data
-#         return output_data
-
-#     except Exception as e:
-#         print("Error processing chat query:", e)
-#         logging.error("Error processing chat query: %s", e)
-#         # If an error occurs, return an error message
-#         return {'error': f'An error occurred: {str(e)}'}
-
-# def get_relevant_context(user_chat_collection, query):
-#     try:
-#         # Retrieve conversation history similar to the query
-#         relevant_context = list(user_chat_collection.find({"$text": {"$search": query}}).limit(3))
-
-#         # If no exact match found, retrieve the most recent conversation history
-#         if not relevant_context:
-#             relevant_context = list(user_chat_collection.find().sort("_id", -1).limit(3))
-
-#         return relevant_context
-
-#     except Exception as e:
-#         print("Error retrieving conversation history:", e)
-#         logging.error("Error retrieving conversation history: %s", e)
-#         return []
-
-# # Ensure that each user's chat history collection is properly initialized with required fields
-# def initialize_user_chat_collections():
-#     try:
-#         for user_email in users_db.list_collection_names():
-#             user_chat_collection = users_db[user_email]
-#             user_chat_collection.create_index([("user_query", pymongo.TEXT)], name="user_query_index")
-#     except pymongo.errors.PyMongoError as e:
-#         print("Error creating index:", e)
-#         logging.error("Error creating index: %s", e)
-
-# if __name__ == "__main__":
-#     # Initialize user chat history collections
-#     initialize_user_chat_collections()
-
-#     # Example usage
-#     while True:
-#         user_email = "cglynn.skip@gmail.com"  # Retrieve the user's email from the session or request data
-#         query = input("User: ")  # User's query
-#         chat_with_bae(query, user_email)
-
-# from flask import Flask, request, session, jsonify
-# import pymongo
 
 # app = Flask(__name__)
-# app.secret_key = 'your_secret_key_here'  # Set a secret key for session management
 
-# # Connect to MongoDB Atlas
-# client = pymongo.MongoClient("mongodb+srv://UNR3A1:JXoO1X4EY6iArT0E@baemodelcluster.yvin3kv.mongodb.net/")
-# db = client["chat_history"]  # Connecting to the "chat_history" database
-# users_db = client["user_database"]  # Connecting to the "user_database" database
+# @app.route('/')
+# def index():
+#     return render_template('index.html')
 
-# @app.route('/chat', methods=['POST'])
-# def chat_with_bae():
+# @app.route('/speech_to_text', methods=['POST'])
+# def speech_to_text():
+#     # Check if the 'audio' file is included in the request
+#     if 'audio' not in request.files:
+#         return jsonify({'error': 'No audio file provided'})
+
+#     audio_file = request.files['audio']
+    
+#     # Save the audio file temporarily
+#     audio_path = 'temp_audio.wav'
+#     audio_file.save(audio_path)
+
+#     # Use SpeechRecognition library to convert speech to text
+#     recognizer = sr.Recognizer()
+#     with sr.AudioFile(audio_path) as source:
+#         audio_data = recognizer.record(source)
+
 #     try:
-#         user_email = session.get('user_email')  # Retrieve the user's email from the session
-        
-#         if not user_email:
-#             return jsonify({'error': 'User email not found in session'}), 400
+#         text = recognizer.recognize_google(audio_data)
+#         os.remove(audio_path)  # Delete the temporary audio file
+#         return jsonify({'text': text})
+#     except sr.UnknownValueError:
+#         return jsonify({'error': 'Speech recognition could not understand audio'})
+#     except sr.RequestError as e:
+#         return jsonify({'error': f'Speech recognition service error: {str(e)}'})
 
-#         query = request.json.get('query')  # Assuming the user's query is sent in the request body
-        
-#         if not query:
-#             return jsonify({'error': 'No query provided'}), 400
+# @app.route('/text_to_speech', methods=['POST'])
+# def text_to_speech():
+#     text = request.form.get('text')
+#     if not text:
+#         return jsonify({'error': 'No text provided'})
 
-#         # Determine the collection for the user's chat history based on their email
-#         user_chat_collection = users_db[user_email]
+#     # Use gTTS library to convert text to speech
+#     tts = gTTS(text)
+#     tts.save('output_audio.mp3')
 
-#         # Retrieve relevant context from the database
-#         context = get_relevant_context(user_chat_collection, query)
-        
-#         # Chat processing logic...
-        
-#         return jsonify({'response': 'Your response here'})
-
-#     except Exception as e:
-#         return jsonify({'error': f'An error occurred: {str(e)}'}), 500
-
-# def get_relevant_context(user_chat_collection, query):
-#     # Retrieve conversation history similar to the query
-#     relevant_context = list(user_chat_collection.find({"$text": {"$search": query}}).limit(3))
-
-#     # If no exact match found, retrieve the most recent conversation history
-#     if not relevant_context:
-#         relevant_context = list(user_chat_collection.find().sort("_id", -1).limit(3))
-
-#     return relevant_context
+#     return jsonify({'message': 'Text converted to speech successfully'})
 
 # if __name__ == '__main__':
 #     app.run(debug=True)
+# <!DOCTYPE html>
+# <html lang="en">
+# <head>
+#     <meta charset="UTF-8">
+#     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+#     <title>Speech to Text and Text to Speech</title>
+# </head>
+# <body>
+#     <h1>Speech to Text and Text to Speech</h1>
+
+#     <h2>Speech to Text</h2>
+#     <form id="speechToTextForm" enctype="multipart/form-data">
+#         <input type="file" id="audioInput" name="audio" accept="audio/*" required>
+#         <button type="submit">Convert Speech to Text</button>
+#     </form>
+#     <div id="speechToTextResult"></div>
+
+#     <h2>Text to Speech</h2>
+#     <form id="textToSpeechForm">
+#         <textarea id="textInput" name="text" placeholder="Enter text here" required></textarea>
+#         <button type="submit">Convert Text to Speech</button>
+#     </form>
+#     <div id="textToSpeechResult"></div>
+
+#     <script>
+#         document.getElementById('speechToTextForm').onsubmit = function(event) {
+#             event.preventDefault(); // Prevent form submission
+#             var formData = new FormData(this); // Create FormData object
+#             fetch('/speech_to_text', {
+#                 method: 'POST',
+#                 body: formData
+#             })
+#             .then(response => response.json())
+#             .then(data => {
+#                 if (data.text) {
+#                     document.getElementById('speechToTextResult').innerHTML = '<p>Text: ' + data.text + '</p>';
+#                 } else if (data.error) {
+#                     document.getElementById('speechToTextResult').innerHTML = '<p>Error: ' + data.error + '</p>';
+#                 }
+#             })
+#             .catch(error => {
+#                 console.error('Error:', error);
+#             });
+#         };
+
+#         document.getElementById('textToSpeechForm').onsubmit = function(event) {
+#             event.preventDefault(); // Prevent form submission
+#             var text = document.getElementById('textInput').value;
+#             fetch('/text_to_speech', {
+#                 method: 'POST',
+#                 headers: {
+#                     'Content-Type': 'application/json'
+#                 },
+#                 body: JSON.stringify({text: text})
+#             })
+#             .then(response => response.json())
+#             .then(data => {
+#                 if (data.message) {
+#                     document.getElementById('textToSpeechResult').innerHTML = '<p>Text converted to speech successfully. <a href="/output_audio.mp3" download>Download audio</a></p>';
+#                 } else if (data.error) {
+#                     document.getElementById('textToSpeechResult').innerHTML = '<p>Error: ' + data.error + '</p>';
+#                 }
+#             })
+#             .catch(error => {
+#                 console.error('Error:', error);
+#             });
+#         };
+#     </script>
+# </body>
+# </html>
