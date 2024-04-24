@@ -1026,7 +1026,7 @@ def get_user_tasks():
 from flask import Flask, request, jsonify
 import os
 
-import speech_recognition as sr
+# import speech_recognition as sr
 
 
 
