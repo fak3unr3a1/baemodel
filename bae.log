@@ -12904,3 +12904,61 @@ INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:43:46] "OPTIONS /conversation_histor
 INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:43:49] "GET /conversation_history_react HTTP/1.1" 200 -
 INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
 INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.14:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 980-603-149
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:45:11] "OPTIONS /user-data HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:45:11] "POST /user-data HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:45:13] "OPTIONS /conversation_history_react HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:45:17] "GET /conversation_history_react HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:45:28] "OPTIONS /get_response_react HTTP/1.1" 200 -
+ERROR:root:Error retrieving conversation history: text index required for $text query, full error: {'ok': 0.0, 'errmsg': 'text index required for $text query', 'code': 27, 'codeName': 'IndexNotFound', '$clusterTime': {'clusterTime': Timestamp(1713937527, 87), 'signature': {'hash': b'v\x16r\xf3\xe1\xe25\xe3U\xb8\x856I_\xaa\x00\xec_\xe3\x83', 'keyId': 7325221316380852227}}, 'operationTime': Timestamp(1713937527, 87)}
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:45:37] "POST /get_response_react HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:45:55] "OPTIONS /get_response_react HTTP/1.1" 200 -
+ERROR:root:Error retrieving conversation history: text index required for $text query, full error: {'ok': 0.0, 'errmsg': 'text index required for $text query', 'code': 27, 'codeName': 'IndexNotFound', '$clusterTime': {'clusterTime': Timestamp(1713937554, 9), 'signature': {'hash': b'\xa7\xcf\x9a\xb3\xa8\xc8\xc1dy\xe0w\x90Y\xb0\xaa\xe1\x02\xecNb', 'keyId': 7325221316380852227}}, 'operationTime': Timestamp(1713937554, 9)}
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:46:15] "POST /get_response_react HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:46:48] "OPTIONS /get_response_react HTTP/1.1" 200 -
+ERROR:root:Error retrieving conversation history: text index required for $text query, full error: {'ok': 0.0, 'errmsg': 'text index required for $text query', 'code': 27, 'codeName': 'IndexNotFound', '$clusterTime': {'clusterTime': Timestamp(1713937607, 12), 'signature': {'hash': b's\xf6\x9c\x9f\x1e\xad\'\x1f*\x8e\xbe4\x86\xd5"\x97r\xda:\xa2', 'keyId': 7325221316380852227}}, 'operationTime': Timestamp(1713937607, 12)}
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:47:10] "POST /get_response_react HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:47:43] "OPTIONS /get_response_react HTTP/1.1" 200 -
+ERROR:root:Error retrieving conversation history: text index required for $text query, full error: {'ok': 0.0, 'errmsg': 'text index required for $text query', 'code': 27, 'codeName': 'IndexNotFound', '$clusterTime': {'clusterTime': Timestamp(1713937662, 16), 'signature': {'hash': b'o\xd0v\xf9\xc7\xc2\xc3P\xc73u=\xa2\xe1p=\xbd\xbc@\xb0', 'keyId': 7325221316380852227}}, 'operationTime': Timestamp(1713937662, 16)}
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:47:51] "POST /get_response_react HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:47:55] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:47:55] "GET /static/style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:47:55] "GET /static/images/f06ffbda-0c5b-4bd8-a53e-168fdfc2d669.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:47:55] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:47:57] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:47:59] "[32mPOST /signin HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:48:08] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:48:08] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:51:38] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:51:38] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:51:47] "GET /conversation_history HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:51:47] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:54:13] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:54:13] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:54:24] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:54:24] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:55:43] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:55:43] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:55:51] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:55:51] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:57:14] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:57:14] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:57:31] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:57:31] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:57:35] "GET /store HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:57:35] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:57:39] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:57:39] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:57:41] "GET /get_user_tasks?email=cglynn.skip@gmail.com HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:58:37] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:58:37] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:58:39] "GET /get_user_tasks?email=cglynn.skip@gmail.com HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:58:53] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:58:53] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
