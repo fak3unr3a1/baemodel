@@ -1025,57 +1025,57 @@ def get_user_tasks():
 
 from flask import Flask, request, jsonify
 import os
-import pygame
+
 import speech_recognition as sr
 
 
 
-# Function for TTS
-def speak(text):
-    voice = "en-GB-RyanNeural"
-    output_file = "output.mp3"
-    command = f'edge-tts --voice "{voice}" --text "{text}" --write-media "{output_file}"'
-    os.system(command)
+# # Function for TTS
+# def speak(text):
+#     voice = "en-GB-RyanNeural"
+#     output_file = "output.mp3"
+#     command = f'edge-tts --voice "{voice}" --text "{text}" --write-media "{output_file}"'
+#     os.system(command)
 
-    pygame.init()
-    pygame.mixer.init()
+#     pygame.init()
+#     pygame.mixer.init()
 
-    try:
-        pygame.mixer.music.load(output_file)
-        pygame.mixer.music.play()
-        while pygame.mixer.music.get_busy():
-            pygame.time.Clock().tick(10)
-    except Exception as e:
-        print(e)
-    finally:
-        pygame.mixer.music.stop()
-        pygame.mixer.quit()
+#     try:
+#         pygame.mixer.music.load(output_file)
+#         pygame.mixer.music.play()
+#         while pygame.mixer.music.get_busy():
+#             pygame.time.Clock().tick(10)
+#     except Exception as e:
+#         print(e)
+#     finally:
+#         pygame.mixer.music.stop()
+#         pygame.mixer.quit()
 
-# Function for STT
-def get_user_response():
-    r = sr.Recognizer()
-    with sr.Microphone() as source:
-        print("Listening for response...")
-        r.adjust_for_ambient_noise(source)
-        audio = r.listen(source)
-    try:
-        response = r.recognize_google(audio, language='en-us').lower()
-        return response
-    except sr.UnknownValueError:
-        return "Could not understand audio"
-    except sr.RequestError as e:
-        return f"Error with the speech recognition service: {e}"
+# # Function for STT
+# def get_user_response():
+#     r = sr.Recognizer()
+#     with sr.Microphone() as source:
+#         print("Listening for response...")
+#         r.adjust_for_ambient_noise(source)
+#         audio = r.listen(source)
+#     try:
+#         response = r.recognize_google(audio, language='en-us').lower()
+#         return response
+#     except sr.UnknownValueError:
+#         return "Could not understand audio"
+#     except sr.RequestError as e:
+#         return f"Error with the speech recognition service: {e}"
 
-@app.route('/tts', methods=['POST'])
-def tts():
-    text = request.json['text']
-    speak(text)
-    return jsonify({'message': 'TTS completed'})
+# @app.route('/tts', methods=['POST'])
+# def tts():
+#     text = request.json['text']
+#     speak(text)
+#     return jsonify({'message': 'TTS completed'})
 
-@app.route('/stt', methods=['GET'])
-def stt():
-    response = get_user_response()
-    return jsonify({'response': response})
+# @app.route('/stt', methods=['GET'])
+# def stt():
+#     response = get_user_response()
+#     return jsonify({'response': response})
 
 
 

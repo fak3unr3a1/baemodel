@@ -12962,3 +12962,10 @@ INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:58:37] "[36mGET /static/style.css H
 INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:58:39] "GET /get_user_tasks?email=cglynn.skip@gmail.com HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:58:53] "GET /home HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 08:58:53] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 09:14:44] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 09:14:49] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 09:14:49] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 09:14:51] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 09:14:51] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2024 09:15:13] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\cglyn\\BAEMODEL\\server.py', reloading
