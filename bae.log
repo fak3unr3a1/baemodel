@@ -15682,3 +15682,34 @@ ERROR:root:Error processing chat query: can only concatenate str (not "FinishRea
 INFO:werkzeug:127.0.0.1 - - [10/May/2024 19:15:10] "POST /get_response HTTP/1.1" 200 -
 ERROR:asyncio:Task was destroyed but it is pending!
 task: <Task pending name='Task-215' coro=<AsyncCurl._force_timeout() done, defined at C:\Users\cglyn\AppData\Local\Programs\Python\Python311\Lib\site-packages\curl_cffi\aio.py:176> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.0.11:8000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 980-603-149
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:10:38] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:10:38] "GET /static/style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:10:38] "GET /static/images/f06ffbda-0c5b-4bd8-a53e-168fdfc2d669.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:10:38] "[33mGET /static/backgroundowl.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:10:39] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:10:41] "[32mPOST /signin HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:10:50] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:10:50] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:10:52] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:10:52] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:10:59] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:11:06] "GET /store HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:11:06] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:11:37] "POST /get_response HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:11:50] "GET /store HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:11:50] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:11:53] "POST /remove_user_task HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:12:02] "POST /remove_user_task HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:12:06] "GET /store HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:12:06] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:12:07] "GET /index HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:12:07] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2024 22:12:20] "POST /get_response HTTP/1.1" 200 -
