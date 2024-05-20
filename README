@@ -1,6 +1,8 @@
-history
-you will need an openai key set as a system enviroment variable
+You will need an openai key 'OPENAI_API_KEY' set as a system enviroment variable
 
-run python server.py
+
+To download required libraries run 'pip install requirements.txt'
+
+Then run 'python server.py'
 
 it will be connected to localhost 8000
