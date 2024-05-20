@@ -83,6 +83,8 @@
                 <strong>Description:</strong> {{ folder.description }}<br>
                 <strong>UUID:</strong> {{ folder.uuid }}<br>
                 <button onclick="enableTask('{{ folder.uuid }}')">Enable Task</button>
+                <button onclick="removeTask('{{ folder.uuid }}')">Disable Task</button> <!-- New button to remove task -->
+
             </li>
             {% endfor %}
         </ul>
@@ -149,6 +151,35 @@ function enableTask(taskUUID) {
             }
         }
     }
+
+// Function to send a POST request to remove a task
+function removeTask(taskName) {
+    // Send a POST request to remove the task
+    fetch('/remove_user_task', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json' // Change content type to JSON
+        },
+        body: JSON.stringify({task_name: taskName}) // Pass task_name in the request body as JSON
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Response from server:', data); // Log the response from the server
+        if (data.success) {
+            alert('Task removed successfully');
+            // Optionally, you can reload the page to reflect the changes
+            location.reload();
+        } else {
+            alert('Error removing task: ' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('An error occurred while removing the task:', error); // Log any errors that occur
+        alert('An error occurred while removing the task: ' + error);
+    });
+}
+
+
     </script>
 </body>
 </html>

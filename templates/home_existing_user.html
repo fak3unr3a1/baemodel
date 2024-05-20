@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Back</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> 
-    <meta name="google-adsense-account" content="ca-pub-9723851544098708">
     <style>
         .button-container {
             text-align: center;
@@ -100,13 +99,14 @@
     <!-- Add content here to display the user's AI model -->
     <div class="top-buttons-container">
         <button onclick="location.href='/index'" type="button">Interact With AI</button>
+        <a href="tasks"><button type="button">Abilities Page</button></a>
 
         <button onclick="location.href='/conversation_history'" type="button">Conversation History</button>
         <button onclick="location.href='/settings'" type="button">Settings</button>
         <!-- Add a button to view conversation history -->
         <!-- Use the button directly to trigger the getAvailableTasks() function -->
         <button id="viewTasksButton" type="button">View Enabled Abilities</button>
-        
+
         <a href="/store"><button type="button">View Store</button></a>
 
     </div>
@@ -125,124 +125,168 @@
 
 
     <script>
-// Function to retrieve available tasks from the server
-function getAvailableTasks() {
-    try {
-        var xhr = new XMLHttpRequest();
-        var userEmail = "{{ session.email }}"; // Retrieve the user's email from the session
-        xhr.open('GET', '/get_user_tasks?email=' + encodeURIComponent(userEmail), true); // Pass user's email as a query parameter
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    displayAvailableTasks(response); // Pass the entire response to the display function
+        // Function to retrieve available tasks from the server
+        function getAvailableTasks() {
+            try {
+                var xhr = new XMLHttpRequest();
+                var userEmail = "{{ session.email }}"; // Retrieve the user's email from the session
+                xhr.open('GET', '/get_user_tasks?email=' + encodeURIComponent(userEmail), true); // Pass user's email as a query parameter
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        if (xhr.status == 200) {
+                            var response = JSON.parse(xhr.responseText);
+                            displayAvailableTasks(response); // Pass the entire response to the display function
+                        } else {
+                            console.error('Error fetching tasks. Status code:', xhr.status);
+                        }
+                    }
+                };
+                xhr.send();
+            } catch (error) {
+                console.error('An error occurred:', error);
+            }
+        }
+
+        // Function to display available tasks on the webpage
+        function displayAvailableTasks(tasks) {
+            try {
+                var taskListContainer = document.getElementById('task_list_container');
+                taskListContainer.innerHTML = ''; // Clear previous content
+                
+                if (!Array.isArray(tasks) || tasks.length === 0) {
+                    taskListContainer.innerHTML = '<p>No Abilities available.</p>';
                 } else {
-                    console.error('Error fetching tasks. Status code:', xhr.status);
+                    var taskList = '<div class="task-container">'; // Add a container for tasks
+                    taskList += '<h3>Enabled Tasks</h3>'; // Add a title for the task container
+                    taskList += '<ul>';
+
+                    tasks.forEach(function(task) {
+                        taskList += '<li>' + task.name + '</li>'; // Display the task name
+                    });
+
+                    taskList += '</ul>';
+                    taskList += '</div>'; // Close the task container
+                    taskListContainer.innerHTML = taskList;
+                }
+            } catch (error) {
+                console.error('An error occurred:', error);
+            }
+        }
+
+        // Add an event listener to the button to trigger getAvailableTasks()
+        document.getElementById('viewTasksButton').addEventListener('click', function() {
+            getAvailableTasks();
+        });
+
+
+
+                // Function to scroll to the bottom of the page with animation
+        function scrollToBottom() {
+            const scrollHeight = document.documentElement.scrollHeight;
+            const viewportHeight = window.innerHeight;
+            const scrollDuration = 1000; // Adjust the duration of the scroll animation (in milliseconds)
+
+            // Calculate the distance to scroll
+            const distance = scrollHeight - viewportHeight;
+
+            // Calculate how many pixels to scroll per frame
+            const scrollStep = Math.PI / (scrollDuration / 15);
+            let count = 0, currPos = 0;
+
+            // Start scrolling animation
+            requestAnimationFrame(step);
+
+            function step() {
+                if (currPos < distance) {
+                    // Increment count to animate scroll step
+                    count += 1;
+                    // Calculate new position using sinusoidal easing function
+                    const newPos = Math.round(distance * 0.5 * (1 - Math.cos(count * scrollStep)));
+                    // Scroll to new position
+                    window.scrollTo(0, newPos);
+                    // Update current position
+                    currPos = newPos;
+                    // Continue animation
+                    requestAnimationFrame(step);
+                } else {
+                    // Scroll to the bottom of the page
+                    window.scrollTo(0, document.body.scrollHeight);
                 }
             }
+        }
+
+        // Function to scroll to the top of the page with animation
+        function scrollToTop() {
+            const scrollDuration = 1000; // Adjust the duration of the scroll animation (in milliseconds)
+
+            // Calculate how many pixels to scroll per frame
+            const scrollStep = Math.PI / (scrollDuration / 15);
+            let count = 0;
+
+            // Start scrolling animation
+            requestAnimationFrame(step);
+
+            function step() {
+                if (window.pageYOffset > 0) {
+                    // Increment count to animate scroll step
+                    count += 1;
+                    // Calculate new position using sinusoidal easing function
+                    const newPos = Math.round(window.pageYOffset * 0.5 * (1 - Math.cos(count * scrollStep)));
+                    // Scroll to new position
+                    window.scrollTo(0, newPos);
+                    // Continue animation
+                    requestAnimationFrame(step);
+                } else {
+                    // Scroll to the top of the page
+                    window.scrollTo(0, 0);
+                }
+            }
+        }
+
+        // Function to remove a user task
+        function removeUserTask(taskUUID) {
+            try {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/remove_user_task', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        if (xhr.status == 200) {
+                            var response = JSON.parse(xhr.responseText);
+                            if (response.success) {
+                                // Task removal was successful
+                                console.log('Task removed successfully');
+                                // Refresh the list of available tasks
+                                displayAvailableTasks();
+                            } else {
+                                // Task removal failed
+                                console.error('Error removing task:', response.error);
+                                // Optionally, you can display an error message to the user
+                            }
+                        } else {
+                            console.error('Error removing task. Status code:', xhr.status);
+                            // Optionally, you can handle different HTTP status codes
+                        }
+                    }
+                };
+                // Send the task UUID as JSON payload
+                xhr.send(JSON.stringify({ task_uuid: taskUUID }));
+            } catch (error) {
+                console.error('An error occurred:', error);
+            }
+        }
+
+        // Load available tasks when the page is loaded
+        window.onload = function() {
+            displayAvailableTasks();
         };
-        xhr.send();
-    } catch (error) {
-        console.error('An error occurred:', error);
-    }
-}
 
-// Function to display available tasks on the webpage
-function displayAvailableTasks(tasks) {
-    try {
-        var taskListContainer = document.getElementById('task_list_container');
-        taskListContainer.innerHTML = ''; // Clear previous content
-        
-        if (!Array.isArray(tasks) || tasks.length === 0) {
-            taskListContainer.innerHTML = '<p>No Abilities available.</p>';
-        } else {
-            var taskList = '<div class="task-container">'; // Add a container for tasks
-            taskList += '<h3>Enabled Tasks</h3>'; // Add a title for the task container
-            taskList += '<ul>';
-
-            tasks.forEach(function(task) {
-                taskList += '<li>' + task.name + '</li>'; // Display the task name
-            });
-
-            taskList += '</ul>';
-            taskList += '</div>'; // Close the task container
-            taskListContainer.innerHTML = taskList;
-        }
-    } catch (error) {
-        console.error('An error occurred:', error);
-    }
-}
-
-// Add an event listener to the button to trigger getAvailableTasks()
-document.getElementById('viewTasksButton').addEventListener('click', function() {
-    getAvailableTasks();
-});
-
-
-
-        // Function to scroll to the bottom of the page with animation
-function scrollToBottom() {
-    const scrollHeight = document.documentElement.scrollHeight;
-    const viewportHeight = window.innerHeight;
-    const scrollDuration = 1000; // Adjust the duration of the scroll animation (in milliseconds)
-
-    // Calculate the distance to scroll
-    const distance = scrollHeight - viewportHeight;
-
-    // Calculate how many pixels to scroll per frame
-    const scrollStep = Math.PI / (scrollDuration / 15);
-    let count = 0, currPos = 0;
-
-    // Start scrolling animation
-    requestAnimationFrame(step);
-
-    function step() {
-        if (currPos < distance) {
-            // Increment count to animate scroll step
-            count += 1;
-            // Calculate new position using sinusoidal easing function
-            const newPos = Math.round(distance * 0.5 * (1 - Math.cos(count * scrollStep)));
-            // Scroll to new position
-            window.scrollTo(0, newPos);
-            // Update current position
-            currPos = newPos;
-            // Continue animation
-            requestAnimationFrame(step);
-        } else {
-            // Scroll to the bottom of the page
-            window.scrollTo(0, document.body.scrollHeight);
-        }
-    }
-}
-
-// Function to scroll to the top of the page with animation
-function scrollToTop() {
-    const scrollDuration = 1000; // Adjust the duration of the scroll animation (in milliseconds)
-
-    // Calculate how many pixels to scroll per frame
-    const scrollStep = Math.PI / (scrollDuration / 15);
-    let count = 0;
-
-    // Start scrolling animation
-    requestAnimationFrame(step);
-
-    function step() {
-        if (window.pageYOffset > 0) {
-            // Increment count to animate scroll step
-            count += 1;
-            // Calculate new position using sinusoidal easing function
-            const newPos = Math.round(window.pageYOffset * 0.5 * (1 - Math.cos(count * scrollStep)));
-            // Scroll to new position
-            window.scrollTo(0, newPos);
-            // Continue animation
-            requestAnimationFrame(step);
-        } else {
-            // Scroll to the top of the page
-            window.scrollTo(0, 0);
-        }
-    }
-}
-
+        // Add an event listener to the remove tasks button
+        document.getElementById('removeTasksButton').addEventListener('click', function() {
+            if (confirm("Are you sure you want to remove all tasks?")) {
+                removeUserTasks();
+            }
+        });
 
     </script>
 </body>

@@ -41,6 +41,7 @@ try:
     user_db = client["user_database"] 
     creators_collection = users_db["creators"] 
     users_collection = user_db["users"]
+    
 except pymongo.errors.ConnectionFailure as e:
     print("Error connecting to MongoDB Atlas:", e)
 
@@ -73,6 +74,7 @@ def signin():
 def signup():
     email = request.form['email']
     password = request.form['password']
+
     
     hashed_password = hashlib.sha256(password.encode()).hexdigest()
     
@@ -90,7 +92,10 @@ def get_user_data():
     data = request.json
     email = data.get('email')
     password = data.get('password')
+    print("Received email:", email)
+    print("Received password:", password)
     
+      
     if not email or not password:
         return jsonify({'error': 'Email and password are required'}), 400
 
@@ -479,6 +484,8 @@ def submit_task():
 
 
 import uuid
+import git
+
 @app.route('/submit_repo', methods=['POST'])
 def submit_repo():
     # Get the user's email from the session
@@ -700,8 +707,117 @@ def enable_task_react_route():
     return jsonify({'success': False, 'error': 'Task folder not found'})
 
 
+import os
+import shutil
+from flask import request, jsonify, session
+from bae import is_task_enabled
 
 
+
+import os
+import shutil
+import stat  # Import the stat module to handle file attributes
+
+def remove_readonly(func, path, _):
+    """Clear the read-only bit and reattempt the operation"""
+    os.chmod(path, stat.S_IWRITE)
+    func(path)
+
+def remove_task_by_name(email, task_name):
+    try:
+        # Get the path of the user's directory
+        user_directory = os.path.join(os.path.dirname(__file__), 'enabledtasks', email)
+
+        print(f"Checking for task folder in: {user_directory}")
+
+        # Check if the user's directory exists
+        if os.path.exists(user_directory):
+            print(f"User's directory exists.")
+
+            # Iterate over each folder in the user's directory
+            for folder_name in os.listdir(user_directory):
+                folder_path = os.path.join(user_directory, folder_name)
+                uuid_file_path = os.path.join(folder_path, 'task_uuid.txt')
+
+                # Check if the folder contains the task_uuid.txt file
+                if os.path.exists(uuid_file_path):
+                    # Read the UUID from the file
+                    with open(uuid_file_path, 'r') as uuid_file:
+                        folder_uuid = uuid_file.read().strip()
+
+                    # Check if the folder UUID matches the provided task name
+                    if folder_uuid == task_name:
+                        print(f"Match found for task UUID: {task_name} in folder: {folder_path}")
+
+                        # Attempt to remove the task folder and its contents
+                        try:
+                            # Remove read-only attribute before attempting to delete
+                            shutil.rmtree(folder_path, onerror=remove_readonly)
+                            return True, None  # Success, no error message
+                        except Exception as e:
+                            return False, f"Error removing task folder: {e}"
+
+            # If no matching task UUID is found
+            return False, f"Task '{task_name}' does not exist."
+        else:
+            return False, f"User's directory does not exist."
+    except Exception as e:
+        return False, f'Error removing task: {e}'
+
+
+def move_task_to_deleted(email, task_name):
+    try:
+        # Get the path of the task folder
+        task_folder = os.path.join(os.path.dirname(__file__), 'enabledtasks', email, task_name)
+
+        print(f"Checking for task folder in: {task_folder}")
+
+        # Check if the task folder exists
+        if os.path.exists(task_folder):
+            print(f"Task folder exists.")
+
+            # Move the task folder to the DeletedTasks directory
+            deleted_tasks_folder = os.path.join(os.path.dirname(__file__), 'DeletedTasks')
+            if not os.path.exists(deleted_tasks_folder):
+                os.makedirs(deleted_tasks_folder)  # Create the DeletedTasks directory if it doesn't exist
+
+            # Move the task folder to DeletedTasks
+            shutil.move(task_folder, os.path.join(deleted_tasks_folder, task_name))
+
+            return True, None  # Success, no error message
+        else:
+            return False, f"Task '{task_name}' does not exist."
+    except Exception as e:
+        return False, f'Error moving task to DeletedTasks: {e}'
+
+
+from bae import is_task_enabled
+
+import os
+
+@app.route('/remove_user_task', methods=['POST'])
+def remove_user_task():
+    if 'email' not in session:
+        return jsonify({'success': False, 'error': 'User not logged in'})
+
+    # Retrieve the task name and UUID from the request
+    task_data = request.json
+    task_name = task_data.get('task_name')
+    if not task_name:
+        return jsonify({'success': False, 'error': 'Task name not provided'})
+
+    print(f"Received task name: {task_name}")
+
+    # Call the function to remove the task
+    success, error_msg = remove_task_by_name(session['email'], task_name)
+    if success:
+        return jsonify({'success': True})
+    else:
+        return jsonify({'success': False, 'error': error_msg})
+
+    
+    
+    
 # from flask import session, request, jsonify
 # # Function to check if a task is enabled for a user
 # @app.route('/get_response', methods=['POST'])
@@ -885,7 +1001,7 @@ def get_user_tasks():
 
 
     
-from bae import remove_task
+from bae import remove_task 
 #from entire store
 @app.route('/remove_task', methods=['POST'])
 def remove_task_route():
@@ -1129,11 +1245,90 @@ def ai_functionality():
         # If the request method is not POST, return an error response
         return jsonify({'error': 'Only POST requests are allowed for this endpoint'})
 
+# Import necessary libraries
+from flask import Flask, request, jsonify
+import pymongo
+
+# Connect to MongoDB Atlas
+try:
+    client = pymongo.MongoClient("mongodb+srv://UNR3A1:JXoO1X4EY6iArT0E@baemodelcluster.yvin3kv.mongodb.net/")
+    usertextfiles_db = client["usertextfiles"]  # Connecting to the "usertextfiles" database
+except pymongo.errors.ConnectionFailure as e:
+    print("Failed to connect to MongoDB Atlas:", e)
+
+
+from datetime import datetime
+
+# Endpoint to store text data in MongoDB
+@app.route('/api/store-text-data', methods=['POST'])
+def store_text_data():
+    try:
+        user_email = request.headers.get('User-Email')  # Extract the user's email from request headers
+        print('User Email:', user_email)
+        if not user_email:
+            return jsonify({'error': 'User email not provided'}), 400
+        print('Received request to store text data...')
+        data = request.json  # Get the data from the request body
+        print('Received data:', data)
+        text = data.get('text')  # Extract the text from the data
+
+        print('Text:', text)
+        print('User Email:', user_email)
+        timestamp = datetime.now()  # Generate current timestamp
+        user_collection = usertextfiles_db[user_email]  # Get the collection for the user's email
+        user_collection.insert_one({'text': text, 'timestamp': timestamp})  # Insert the text data with timestamp
+        return jsonify({'message': 'Text data stored successfully'}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 
 
 
+
+# Endpoint to retrieve stored text data from MongoDB
+@app.route('/api/get-stored-text-data', methods=['GET'])
+def get_stored_text_data():
+    try:
+        user_email = request.headers.get('User-Email')  # Extract the user's email from request headers
+        if not user_email:
+            return jsonify({'error': 'User email not provided'}), 400
+        stored_data = list(usertextfiles_db[user_email].find())  # Retrieve all stored text data for the user
+        # Convert ObjectId to string
+        for data in stored_data:
+            data['_id'] = str(data['_id'])
+        return jsonify({'storedData': stored_data}), 200  # Include the timestamp along with the text data
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+
+# Endpoint to update stored text data in MongoDB
+@app.route('/api/update-stored-text', methods=['POST'])
+def update_stored_text():
+    try:
+        print('Received request to update stored text...')
+        data = request.json  # Get the data from the request body
+        print('Received data:', data)
+        text = data.get('text')  # Extract the text from the data
+        user_email = request.headers.get('User-Email')  # Extract the user's email from request headers
+        if not user_email:
+            return jsonify({'error': 'User email not provided'}), 400
+        print('Text:', text)
+        print('User Email:', user_email)
+        
+        # Update the stored text data for the user in MongoDB
+        usertextfiles_db[user_email].update_one({}, {'$set': {'text': text}})
+        
+        return jsonify({'message': 'Text data updated successfully'}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+
+    
+    
+    
 ##example usage
 
 if __name__ == '__main__':

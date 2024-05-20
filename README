@@ -1,0 +1,6 @@
+history
+you will need an openai key set as a system enviroment variable
+
+run python server.py
+
+it will be connected to localhost 8000

@@ -1,121 +1,117 @@
-# from flask import Flask, render_template, request, jsonify
-# import speech_recognition as sr
-# from gtts import gTTS
-# import os
+import os
+from datetime import datetime
+from openai import OpenAI
+from bae import get_enabled_tasks, get_task_description, get_relevant_context, initialize_user_chat_collections, identify_task, is_task_enabled, execute_task
+import logging
+import pymongo
 
-# app = Flask(__name__)
+# Initialize OpenAI client
+openai_client = OpenAI(
+    # This is the default and can be omitted
+    api_key=os.environ.get("OPENAI_API_KEY"),
+)
 
-# @app.route('/')
-# def index():
-#     return render_template('index.html')
+# Connect to MongoDB Atlas
+try:
+    mongo_client = pymongo.MongoClient("mongodb+srv://UNR3A1:JXoO1X4EY6iArT0E@baemodelcluster.yvin3kv.mongodb.net/")
+    db = mongo_client["chat_history"]  # Connecting to the "chat_history" database
+    users_db = mongo_client["user_database"]  # Connecting to the "user_database" database
+except pymongo.errors.ConnectionFailure as e:
+    print("Failed to connect to MongoDB Atlas:", e)
+    logging.error("Failed to connect to MongoDB Atlas: %s", e)
 
-# @app.route('/speech_to_text', methods=['POST'])
-# def speech_to_text():
-#     # Check if the 'audio' file is included in the request
-#     if 'audio' not in request.files:
-#         return jsonify({'error': 'No audio file provided'})
 
-#     audio_file = request.files['audio']
-    
-#     # Save the audio file temporarily
-#     audio_path = 'temp_audio.wav'
-#     audio_file.save(audio_path)
+def chat_with_bae(query, user_email):
+    try:
+        if not query.strip() or not user_email:
+            print("Please enter a valid query and user email.")
+            return
 
-#     # Use SpeechRecognition library to convert speech to text
-#     recognizer = sr.Recognizer()
-#     with sr.AudioFile(audio_path) as source:
-#         audio_data = recognizer.record(source)
+        # Retrieve enabled tasks for the user
+        enabled_tasks = get_enabled_tasks(user_email)
 
-#     try:
-#         text = recognizer.recognize_google(audio_data)
-#         os.remove(audio_path)  # Delete the temporary audio file
-#         return jsonify({'text': text})
-#     except sr.UnknownValueError:
-#         return jsonify({'error': 'Speech recognition could not understand audio'})
-#     except sr.RequestError as e:
-#         return jsonify({'error': f'Speech recognition service error: {str(e)}'})
+        # Retrieve task descriptions for enabled tasks
+        task_descriptions = {}
+        for task_name in enabled_tasks:
+            description = get_task_description(user_email, task_name)
+            task_descriptions[task_name] = description
 
-# @app.route('/text_to_speech', methods=['POST'])
-# def text_to_speech():
-#     text = request.form.get('text')
-#     if not text:
-#         return jsonify({'error': 'No text provided'})
+        # Combine task descriptions into the AI model's knowledge
+        # For example, you can append them to the user's query for better context understanding
 
-#     # Use gTTS library to convert text to speech
-#     tts = gTTS(text)
-#     tts.save('output_audio.mp3')
+        # Proceed with the conversation as usual
+        # Determine the collection for the user's chat history based on their email
+        user_chat_collection = users_db[user_email]
 
-#     return jsonify({'message': 'Text converted to speech successfully'})
+        # Retrieve relevant context from the database
+        context = get_relevant_context(user_chat_collection, query)
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
-# <!DOCTYPE html>
-# <html lang="en">
-# <head>
-#     <meta charset="UTF-8">
-#     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-#     <title>Speech to Text and Text to Speech</title>
-# </head>
-# <body>
-#     <h1>Speech to Text and Text to Speech</h1>
+        # Check if there is relevant context available
+        if context:
+            # Extract the previous query and response
+            previous_query = context[0]["user_query"]
+            previous_response = context[0]["ai_response"]
 
-#     <h2>Speech to Text</h2>
-#     <form id="speechToTextForm" enctype="multipart/form-data">
-#         <input type="file" id="audioInput" name="audio" accept="audio/*" required>
-#         <button type="submit">Convert Speech to Text</button>
-#     </form>
-#     <div id="speechToTextResult"></div>
+            # Use the previous query and response to provide context for the current query
+            chat_completion = openai_client.chat.completions.create(
+                messages=[
+                    {"role": "user", "content": previous_query},
+                    {"role": "assistant", "content": previous_response},
+                    {"role": "user", "content": query}
+                ],
+                model="gpt-3.5-turbo",
+            )
+        else:
+                   chat_completion = openai_client.chat.completions.create(
+            messages=[{"role": "user", "content": query}],
+            model="gpt-3.5-turbo",
+        )
 
-#     <h2>Text to Speech</h2>
-#     <form id="textToSpeechForm">
-#         <textarea id="textInput" name="text" placeholder="Enter text here" required></textarea>
-#         <button type="submit">Convert Text to Speech</button>
-#     </form>
-#     <div id="textToSpeechResult"></div>
+        result = ''  # Define result variable here
+        try:
+            # Your code to process and save response
+            for message in chat_completion.choices[0].message.content:
+                try:
+                    print(message, flush=True, end='')
+                    result += message
+                except UnicodeEncodeError:
+                    print("An emoji is supposed to be here :).")
+        except Exception as e:
+            print("Error processing chat query:", e)
+            logging.error("Error processing chat query: %s", e)
+            result = f'An error occurred: {str(e)}'  # Assign a default value in case of an error
 
-#     <script>
-#         document.getElementById('speechToTextForm').onsubmit = function(event) {
-#             event.preventDefault(); // Prevent form submission
-#             var formData = new FormData(this); // Create FormData object
-#             fetch('/speech_to_text', {
-#                 method: 'POST',
-#                 body: formData
-#             })
-#             .then(response => response.json())
-#             .then(data => {
-#                 if (data.text) {
-#                     document.getElementById('speechToTextResult').innerHTML = '<p>Text: ' + data.text + '</p>';
-#                 } else if (data.error) {
-#                     document.getElementById('speechToTextResult').innerHTML = '<p>Error: ' + data.error + '</p>';
-#                 }
-#             })
-#             .catch(error => {
-#                 console.error('Error:', error);
-#             });
-#         };
+        # Save current query with timestamp to the conversation history
+        timestamp = datetime.now()
+        user_chat_collection.insert_one({"user_query": query, "ai_response": result, "timestamp": timestamp})
+        # Prepare the output data
+        output_data = {'assistant_response': result}
 
-#         document.getElementById('textToSpeechForm').onsubmit = function(event) {
-#             event.preventDefault(); // Prevent form submission
-#             var text = document.getElementById('textInput').value;
-#             fetch('/text_to_speech', {
-#                 method: 'POST',
-#                 headers: {
-#                     'Content-Type': 'application/json'
-#                 },
-#                 body: JSON.stringify({text: text})
-#             })
-#             .then(response => response.json())
-#             .then(data => {
-#                 if (data.message) {
-#                     document.getElementById('textToSpeechResult').innerHTML = '<p>Text converted to speech successfully. <a href="/output_audio.mp3" download>Download audio</a></p>';
-#                 } else if (data.error) {
-#                     document.getElementById('textToSpeechResult').innerHTML = '<p>Error: ' + data.error + '</p>';
-#                 }
-#             })
-#             .catch(error => {
-#                 console.error('Error:', error);
-#             });
-#         };
-#     </script>
-# </body>
-# </html>
+        # Return the output data
+        return output_data
+
+    except Exception as e:
+        print("Error processing chat query:", e)
+        logging.error("Error processing chat query: %s", e)
+        # If an error occurs, return an error message
+        return {'error': f'An error occurred: {str(e)}'}
+
+
+if __name__ == "__main__":
+    # Initialize user chat history collections
+    initialize_user_chat_collections()
+
+    # Example usage
+    while True:
+        user_email = "glynn.kiprotich@gmail.com"  # Retrieve the user's email from the session or request data
+        # Determine if the user wants to perform a task or chat with the AI
+        query = input('\nGlynn: ')
+        user_chat_collection = users_db[user_email]
+
+        task_name = identify_task(query, user_email)
+        if task_name:
+            execute_task(task_name, query, user_email)
+            # execute_task(task_name, query)
+        else:
+            chat_with_bae(query, user_email)
+        # display_conversation_history(user_email)

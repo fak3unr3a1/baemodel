@@ -1,5 +1,5 @@
 flask
-g4f
+g4f==0.3
 spacy
 pymongo
 spacy

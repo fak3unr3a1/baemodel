@@ -9,6 +9,18 @@ import g4f
 from difflib import SequenceMatcher
 import logging
 import mimetypes
+from datetime import datetime
+from openai import OpenAI
+
+
+
+
+
+# Initialize OpenAI client
+openai_client = OpenAI(
+    # This is the default and can be omitted
+    api_key=os.environ.get("OPENAI_API_KEY"),
+)
 
 # Configure logging
 logging.basicConfig(filename='bae.log', level=logging.ERROR)
@@ -137,65 +149,6 @@ def execute_task(task_name, query=None, user_email=None):
         return {'output_type': 'error', 'error_message': error_message}
 
 
-# def execute_task(task_name, query=None):
-#     result_dest_path = None  # Initialize result_dest_path to None
-    
-#     try:
-#         project_folder = os.path.join(os.path.dirname(__file__), "usertasks", task_name)
-        
-#         # Read the main module name from main_module.txt
-#         main_module_file = os.path.join(project_folder, "main_module.txt")
-#         with open(main_module_file, 'r') as f:
-#             main_module_name = f.read().strip()  # Read the main module name and remove any leading/trailing whitespace
-        
-#         # Add the project folder to sys.path to allow importing modules from it
-#         sys.path.append(project_folder)
-        
-#         filename = os.path.join(project_folder, f"{main_module_name}")
-
-#         # Dynamically import the main module
-#         spec = importlib.util.spec_from_file_location(main_module_name, filename)
-#         main_module = importlib.util.module_from_spec(spec)
-#         spec.loader.exec_module(main_module)        
-        
-#         # Execute the main function within the dynamically imported module
-#         if query is not None and hasattr(main_module, 'main') and callable(main_module.main):
-#             result = main_module.main(query)  # Pass the query to the main function if it requires it
-#         else:
-#             result = main_module.main()  # Call the main function without passing any arguments
-        
-#         # Create a folder for executed tasks if it doesn't exist
-#         executed_tasks_folder = os.path.join(os.path.dirname(__file__), "executed_tasks")
-#         os.makedirs(executed_tasks_folder, exist_ok=True)
-        
-#         # Move the result to the executed tasks folder
-#         if result:
-#             # Assuming result is a file path
-#             result_file_name = os.path.basename(result)
-#             result_dest_path = os.path.join(executed_tasks_folder, result_file_name)
-            
-#             # Handle existing files
-#             if os.path.exists(result_dest_path):
-#                 print("File already exists in the destination folder. Renaming...")
-#                 result_file_name = "new_" + result_file_name
-#                 result_dest_path = os.path.join(executed_tasks_folder, result_file_name)
-            
-#             shutil.move(result, result_dest_path)
-#             print("File moved successfully to:", result_dest_path)  # Print the destination path for debugging
-        
-#         # Return the path where the result is saved
-#         return result_dest_path
-        
-#     except FileNotFoundError as e:
-#         print("Task file not found:", e)
-#         logging.error("Task file not found: %s", e)
-#         return {'output_type': 'error', 'error_message': f'Task file not found: {e}'}
-#     except Exception as e:
-#         print("Error executing task:", e)
-#         logging.error("Error executing task: %s", e)
-#         return {'output_type': 'error', 'error_message': f'Error executing task: {e}'}
-
-
 
 import os
 import logging
@@ -224,7 +177,7 @@ def identify_task(query, user_email=None):
 
         return best_match_folder
     except Exception as e:
-        print("Error identifying task:", e)
+        print("Error identifying task, Maybe you dont have any tasks enabled:", e)
         logging.error("Error identifying task: %s", e)
         return None
 
@@ -264,6 +217,7 @@ def remove_task(task_name):
     except Exception as e:
         error_message = f"Error removing task '{task_name}': {e}"
         return error_message
+    
 
 # Example usage
 # result_message = remove_task(".hidden_Screenshot")
@@ -277,112 +231,25 @@ def remove_task(task_name):
 
 import os
 
-def chat_with_bae(query, user_email):
-    try:
-        if not query.strip() or not user_email:
-            print("Please enter a valid query and user email.")
-            return
-
-        # Retrieve enabled tasks for the user
-        enabled_tasks = get_enabled_tasks(user_email)
-
-        # Retrieve task descriptions for enabled tasks
-        task_descriptions = {}
-        for task_name in enabled_tasks:
-            description = get_task_description(user_email, task_name)
-            task_descriptions[task_name] = description
-
-        # Combine task descriptions into the AI model's knowledge
-        # For example, you can append them to the user's query for better context understanding
-
-        # Proceed with the conversation as usual
-        # Determine the collection for the user's chat history based on their email
-        user_chat_collection = users_db[user_email]
-
-        # Retrieve relevant context from the database
-        context = get_relevant_context(user_chat_collection, query)
-        
-        # Check if there is relevant context available
-        if context:
-            # Extract the previous query and response
-            previous_query = context[0]["user_query"]
-            previous_response = context[0]["ai_response"]
-            
-            # Use the previous query and response to provide context for the current query
-            response = g4f.ChatCompletion.create(
-                model=g4f.models.mixtral_8x7b,
-                messages=[
-                    {"role": "user", "content": previous_query},
-                    {"role": "assistant", "content": previous_response},
-                    {"role": "user", "content": query}
-                ],
-                stream=True,
-            )
-        else:
-            # If no relevant context found, respond to the current query without context
-            response = g4f.ChatCompletion.create(
-                model=g4f.models.mixtral_8x7b,
-                messages=[{"role": "user", "content": query}],
-                stream=True,
-            )
-
-        # Process and save response
-        result = ''
-        for message in response:
-            try:
-                print(message, flush=True, end='')
-                result += message
-            except UnicodeEncodeError:
-                print("An emoji is supposed to be here :).")
-
-        from datetime import datetime
-        # Save current query with timestamp to the conversation history
-        timestamp = datetime.now()
-        user_chat_collection.insert_one({"user_query": query, "ai_response": result, "timestamp": timestamp})
-        # Prepare the output data
-        output_data = {'assistant_response': result}
-        
-        # Return the output data
-        return output_data
-
-    except Exception as e:
-        print("Error processing chat query:", e)
-        logging.error("Error processing chat query: %s", e)
-        # If an error occurs, return an error message
-        return {'error': f'An error occurred: {str(e)}'}
-
-def get_enabled_tasks(user_email):
-    enabled_tasks = []
-    try:
-        # Retrieve enabled tasks for the user
-        user_enabled_tasks_folder = os.path.join(os.path.dirname(__file__), "enabledtasks", user_email)
-        if os.path.exists(user_enabled_tasks_folder):
-            enabled_tasks = [task_name for task_name in os.listdir(user_enabled_tasks_folder) if os.path.isdir(os.path.join(user_enabled_tasks_folder, task_name))]
-    except Exception as e:
-        print("Error retrieving enabled tasks:", e)
-        logging.error("Error retrieving enabled tasks: %s", e)
-    return enabled_tasks
-
-def get_task_description(user_email, task_name):
-    description = ""
-    try:
-        # Read the task description from task_description.txt
-        task_description_file = os.path.join(os.path.dirname(__file__), "enabledtasks", user_email, task_name, "task_description.txt")
-        if os.path.exists(task_description_file):
-            with open(task_description_file, 'r') as file:
-                description = file.read()
-    except Exception as e:
-        print("Error retrieving task description:", e)
-        logging.error("Error retrieving task description: %s", e)
-    return description
-
-
 # def chat_with_bae(query, user_email):
 #     try:
 #         if not query.strip() or not user_email:
 #             print("Please enter a valid query and user email.")
 #             return
 
+#         # Retrieve enabled tasks for the user
+#         enabled_tasks = get_enabled_tasks(user_email)
+
+#         # Retrieve task descriptions for enabled tasks
+#         task_descriptions = {}
+#         for task_name in enabled_tasks:
+#             description = get_task_description(user_email, task_name)
+#             task_descriptions[task_name] = description
+
+#         # Combine task descriptions into the AI model's knowledge
+#         # For example, you can append them to the user's query for better context understanding
+
+#         # Proceed with the conversation as usual
 #         # Determine the collection for the user's chat history based on their email
 #         user_chat_collection = users_db[user_email]
 
@@ -437,6 +304,109 @@ def get_task_description(user_email, task_name):
 #         logging.error("Error processing chat query: %s", e)
 #         # If an error occurs, return an error message
 #         return {'error': f'An error occurred: {str(e)}'}
+
+def chat_with_bae(query, user_email):
+    try:
+        if not query.strip() or not user_email:
+            print("Please enter a valid query and user email.")
+            return
+
+        # Retrieve enabled tasks for the user
+        enabled_tasks = get_enabled_tasks(user_email)
+
+        # Retrieve task descriptions for enabled tasks
+        task_descriptions = {}
+        for task_name in enabled_tasks:
+            description = get_task_description(user_email, task_name)
+            task_descriptions[task_name] = description
+
+        # Combine task descriptions into the AI model's knowledge
+        # For example, you can append them to the user's query for better context understanding
+
+        # Proceed with the conversation as usual
+        # Determine the collection for the user's chat history based on their email
+        user_chat_collection = users_db[user_email]
+
+        # Retrieve relevant context from the database
+        context = get_relevant_context(user_chat_collection, query)
+
+        # Check if there is relevant context available
+        if context:
+            # Extract the previous query and response
+            previous_query = context[0]["user_query"]
+            previous_response = context[0]["ai_response"]
+
+            # Use the previous query and response to provide context for the current query
+            chat_completion = openai_client.chat.completions.create(
+                messages=[
+                    {"role": "user", "content": previous_query},
+                    {"role": "assistant", "content": previous_response},
+                    {"role": "user", "content": query}
+                ],
+                model="gpt-3.5-turbo",
+            )
+        else:
+                   chat_completion = openai_client.chat.completions.create(
+            messages=[{"role": "user", "content": query}],
+            model="gpt-3.5-turbo",
+        )
+
+        result = ''  # Define result variable here
+        try:
+            # Your code to process and save response
+            for message in chat_completion.choices[0].message.content:
+                try:
+                    print(message, flush=True, end='')
+                    result += message
+                except UnicodeEncodeError:
+                    print("An emoji is supposed to be here :).")
+        except Exception as e:
+            print("Error processing chat query:", e)
+            logging.error("Error processing chat query: %s", e)
+            result = f'An error occurred: {str(e)}'  # Assign a default value in case of an error
+
+        # Save current query with timestamp to the conversation history
+        timestamp = datetime.now()
+        user_chat_collection.insert_one({"user_query": query, "ai_response": result, "timestamp": timestamp})
+        # Prepare the output data
+        output_data = {'assistant_response': result}
+
+        # Return the output data
+        return output_data
+
+    except Exception as e:
+        print("Error processing chat query:", e)
+        logging.error("Error processing chat query: %s", e)
+        # If an error occurs, return an error message
+        return {'error': f'An error occurred: {str(e)}'}
+
+def get_enabled_tasks(user_email):
+    enabled_tasks = []
+    try:
+        # Retrieve enabled tasks for the user
+        user_enabled_tasks_folder = os.path.join(os.path.dirname(__file__), "enabledtasks", user_email)
+        if os.path.exists(user_enabled_tasks_folder):
+            enabled_tasks = [task_name for task_name in os.listdir(user_enabled_tasks_folder) if os.path.isdir(os.path.join(user_enabled_tasks_folder, task_name))]
+    except Exception as e:
+        print("Error retrieving enabled tasks:", e)
+        logging.error("Error retrieving enabled tasks: %s", e)
+    return enabled_tasks
+
+def get_task_description(user_email, task_name):
+    description = ""
+    try:
+        # Read the task description from task_description.txt
+        task_description_file = os.path.join(os.path.dirname(__file__), "enabledtasks", user_email, task_name, "task_description.txt")
+        if os.path.exists(task_description_file):
+            with open(task_description_file, 'r') as file:
+                description = file.read()
+    except Exception as e:
+        print("Error retrieving task description:", e)
+        logging.error("Error retrieving task description: %s", e)
+    return description
+
+
+
 
 def get_relevant_context(user_chat_collection, query):
     try:
