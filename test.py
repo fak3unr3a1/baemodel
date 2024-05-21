@@ -11,9 +11,12 @@ openai_client = OpenAI(
     api_key=os.environ.get("OPENAI_API_KEY"),
 )
 
+
+# Fetch the MongoDB URI from the environment variable
+mongodb_uri_srv = os.getenv("MONGODB_URI_SRV")
 # Connect to MongoDB Atlas
 try:
-    mongo_client = pymongo.MongoClient("mongodb+srv://UNR3A1:JXoO1X4EY6iArT0E@baemodelcluster.yvin3kv.mongodb.net/")
+    mongo_client = pymongo.MongoClient(mongodb_uri_srv)
     db = mongo_client["chat_history"]  # Connecting to the "chat_history" database
     users_db = mongo_client["user_database"]  # Connecting to the "user_database" database
 except pymongo.errors.ConnectionFailure as e:

@@ -20,10 +20,11 @@ from flask_cors import CORS
 
   # Set a secret key for session management
 
-MONGODB_URI_SRV = 'mongodb+srv://UNR3A1:JXoO1X4EY6iArT0E@baemodelcluster.yvin3kv.mongodb.net/'
-uri = os.environ.get('MONGODB_URI_SRV')
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
+
+# Fetch the MongoDB URI from the environment variable
+mongodb_uri_srv = os.getenv("MONGODB_URI_SRV")
 
 
 
@@ -32,7 +33,7 @@ CORS(app)
 try:
 
     # MongoDB client initialization
-    client = MongoClient(uri)    
+    client = pymongo.MongoClient(mongodb_uri_srv)
     users_db = client["user_database"]  # Connecting to the "user_database" database
     chat_history_db = client["chat_history"]  # Connecting to the "chat_history" database
     

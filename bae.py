@@ -22,6 +22,9 @@ openai_client = OpenAI(
     api_key=os.environ.get("OPENAI_API_KEY"),
 )
 
+# Fetch the MongoDB URI from the environment variable
+mongodb_uri_srv = os.getenv("MONGODB_URI_SRV")
+
 # Configure logging
 logging.basicConfig(filename='bae.log', level=logging.ERROR)
 
@@ -30,7 +33,7 @@ nlp = spacy.load("en_core_web_sm")
 
 # Connect to MongoDB Atlas
 try:
-    client = pymongo.MongoClient("mongodb+srv://UNR3A1:JXoO1X4EY6iArT0E@baemodelcluster.yvin3kv.mongodb.net/")
+    client = pymongo.MongoClient(mongodb_uri_srv)
     db = client["chat_history"]  # Connecting to the "chat_history" database
     users_db = client["user_database"]  # Connecting to the "user_database" database
 except pymongo.errors.ConnectionFailure as e:
